@@ -1,0 +1,8 @@
+#mainHeader {
+    display:inline;
+}
+
+.mainHeaderName {
+    display: inline;
+    font-size: 1.5vh;
+}
