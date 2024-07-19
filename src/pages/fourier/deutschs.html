@@ -12,9 +12,46 @@
     </head>
     <body>
         <a href="../index.html"><h2>Deutsch's algorithm</h2></a>
+        <p>Deutsch's algorithm finds whether a function \( f(x) \) that takes in either 0 or 1, is <a href="">balanced</a> or <a href="">constant</a>.</p>
+        <p>A constant function is a function that returns the same output no matter if \( x = 0 \) or \( x = 1 \)</p>
+        <p>\( f(0) = 0 \quad \quad f(x) = x \)</p>
+        <p>\( f(1) = 0 \quad \quad f(y) = x \)</p>
+        <br>
+        <p>A balanced function is a function that returns different outputs, so if \( x = 0 \) then \( y = 1 \)</p>
+        <p>\( f(0) = 0 \quad \quad f(x) = x \)</p>
+        <p>\( f(1) = 1 \quad \quad f(y) = y \)</p>
+        <br>
+        <p>Using any <a href="">classical algorithm</a>, to know if \(f(x) = f(y)\), you need to evaluate the function \(f\) for \(x\) and \(y\).</p>
+        <p>Using Deutsch's <a href="">quantum algorithm</a>, we only have to evalucate the function \(f\) once.</p>
+        <br>
+        <p>Taking a look at Deutsch's <a href="">quantum circuit diagram</a>:</p>
+        <br>
         <img src="../../../assets/deutsch.png">
-        <p>Deutsch's algorithm takes in </p>
-        <p>\( |\Psi_1\rangle \) our ket at this time is <a href="">\(|01\rangle\)</a>
+        <p>
+        Deutsch's algorithm takes in two kets \(|0\rangle\) and \(|1\rangle\). We'll use \( |\Psi_x\rangle \)
+        to take a look at the different states that our kets \(|0\rangle\) and \(|1\rangle\) are in througout the algorithm.
         </p>
+        <p>
+        \( |\Psi_1\rangle \): <br>&emsp; Our <a href="">ket</a> at this time is <a href="">\(|01\rangle\)<a></a>.
+        Both \(|0\rangle\) and \(|1\rangle\) are being sent into \(H\) (<a href="">Hadamarad</a>) gates. Hadamarad
+        gates put the given qubit into a superposition state.
+        </p>
+        <p>
+        \( |\Psi_2\rangle \): <br>&emsp; The superposition state of \(|0\rangle\) is 
+        <div class="superposition-of-ket-0">\[ \frac{|\ket{0} + \ket{1}|}{\sqrt{2}} \]</div>
+        and \(|1\rangle\) is 
+        <div class="superposition-of-ket-1">\[ \frac{|\ket{0} - \ket{1}|}{\sqrt{2}} \]</div>
+        </p>
+
+
+
+
+        
+
+
+
+
+
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </body>
 </html>
