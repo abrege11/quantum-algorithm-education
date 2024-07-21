@@ -8,18 +8,24 @@
         <meta name="keywords" content="Quantum, Alogrithms, Deutsch">
         <meta name="author" content="Abraham Brege">
         <title>QAE - Deutsch's algorithm</title>
-        <link rel="stylesheet" href="../styles/deutschs-styles.css">
+        <link rel="stylesheet" href="../../styles/deutsch.styles.css">
+        <script src="../../utils/latex-helper.js"></script>
     </head>
     <body>
+        <span id="deutsch">
         <a href="../index.html"><h2>Deutsch's algorithm</h2></a>
+        </span>
+        [<a href="#deutsch-jozsa">skip to deutsch-jozsa</a>]
         <p>Deutsch's algorithm finds whether a function \( f(x) \) that takes in either 0 or 1, is <a href="">balanced</a> or <a href="">constant</a>.</p>
-        <p>A constant function is a function that returns the same output no matter if \( x = 0 \) or \( x = 1 \)</p>
+        <p>A constant function is a function that returns the same output no matter the input</p>
         <p>\( f(0) = 0 \quad \quad f(x) = x \)</p>
         <p>\( f(1) = 0 \quad \quad f(y) = x \)</p>
+        <p>\( f(0) = f(1) \)</p>
         <br>
-        <p>A balanced function is a function that returns different outputs, so if \( x = 0 \) then \( y = 1 \)</p>
+        <p>A balanced function is a function that returns different outputs given different inputs</p>
         <p>\( f(0) = 0 \quad \quad f(x) = x \)</p>
         <p>\( f(1) = 1 \quad \quad f(y) = y \)</p>
+        <p>\( f(0) \ne f(1) \)</p>
         <br>
         <p>Using any <a href="">classical algorithm</a>, to know if \(f(x) = f(y)\), you need to evaluate the function \(f\) for \(x\) and \(y\).</p>
         <p>Using Deutsch's <a href="">quantum algorithm</a>, we only have to evalucate the function \(f\) once.</p>
@@ -28,29 +34,169 @@
         <br>
         <img src="../../../assets/deutsch.png">
         <p>
-        Deutsch's algorithm takes in two kets \(|0\rangle\) and \(|1\rangle\). We'll use \( |\Psi_x\rangle \)
-        to take a look at the different states that our kets \(|0\rangle\) and \(|1\rangle\) are in througout the algorithm.
+        Deutsch's algorithm takes in two <a href="">kets \(|0\rangle\) and \(|1\rangle\)</a>. We'll use \( |\Psi_x\rangle \)
+        to take a look at the different states our kets are in througout the algorithm.
         </p>
         <p>
-        \( |\Psi_1\rangle \): <br>&emsp; Our <a href="">ket</a> at this time is <a href="">\(|01\rangle\)<a></a>.
+        \( |\Psi_1\rangle \): <br>&emsp; Our ket at this time is <a href="">\(|01\rangle\)<a></a>.
         Both \(|0\rangle\) and \(|1\rangle\) are being sent into \(H\) (<a href="">Hadamarad</a>) gates. Hadamarad
         gates put the given qubit into a superposition state.
         </p>
         <p>
-        \( |\Psi_2\rangle \): <br>&emsp; The superposition state of \(|0\rangle\) is 
-        <div class="superposition-of-ket-0">\[ \frac{|\ket{0} + \ket{1}|}{\sqrt{2}} \]</div>
-        and \(|1\rangle\) is 
-        <div class="superposition-of-ket-1">\[ \frac{|\ket{0} - \ket{1}|}{\sqrt{2}} \]</div>
+        \( |\Psi_2\rangle \): <br>&emsp; The <a href="">superposition</a> state of \(|0\rangle\) is
+        \[ \frac{|\ket{0} + \ket{1}|}{\sqrt{2}} \]
+        &emsp;and \(|1\rangle\) is 
+        \[ \frac{|\ket{0} - \ket{1}|}{\sqrt{2}} \]
+        &emsp;Both of these states can be rewritten as <a href="">\(|+\rangle\) and \(|-\rangle\)</a>, respectively, which we can refer to as \(|+-\rangle\)<br>
+        &emsp;We can then rewrite the \(|+\rangle\) as \[ \frac{\left( \ket{0} + \ket{1} \right)}{\sqrt{2}} \] &emsp; so, \(|+-\rangle\) is now represented as
+        \[ \frac{\left( \ket{0} + \ket{1} \right) \ket{-}}{\sqrt{2}} \] &emsp; Furthermore, we can distribute \(|-\rangle\) into to \(|+\rangle\) obtain
+        \[ \frac{\left( \ket{0} \ket{-} + \ket{1} \ket{-} \right)}{\sqrt{2}} \]
         </p>
-
-
-
-
-        
-
-
-
-
+        <p>
+        \( |\Psi_3\rangle \): <br>&emsp; We then apply our quantum oracle \( U_f \) to get
+        \[ \frac{\left(U_f \ket{0} \ket{-} + U_f \ket{1} \ket{-} \right)}{\sqrt{2}}  \] &emsp;
+        These states are in <a href="">phase oracle</a> form, so given
+        \[ U_f \ket{x} \ket{-} = (-1)^{f(x)} \ket{x} \ket{-} \]&emsp;
+        Where \( \ket{x} = \ket{0} \) or \( \ket{1} \), we get
+        \[ \frac{(-1)^{f(0)} \ket{0} \ket{-} + (-1)^{f(1)} \ket{1} \ket{-}}{\sqrt{2}} \]&emsp;
+        Furthermore, we can factor \( \ket {-} \) out for now and just focus on what is inside the parentheses<br>&emsp;
+        \[ 
+        \left( \frac{(-1)^{f(0)} \ket{0} + (-1)^{f(1)} \ket{1} }{\sqrt{2}} \right) \ket{-} 
+        \longrightarrow 
+        \frac{(-1)^{f(0)} \ket{0} + (-1)^{f(1)} \ket{1} }{\sqrt{2}} 
+        \]&emsp;
+        Now, our outputs depend on whether our function is constant, or balanced.<br><br>&emsp;
+        If \( f(x) \) is constant, \( f(0) = f(1) \), we get two options:<br><br>&emsp;
+        \( f(x) = 1 \):
+        \[ 
+        \frac{(-1)^1 \ket{0}  + (-1)^1 \ket{1}}{\sqrt{2}} 
+        \longrightarrow
+        \frac{- \ket{0} + -\ket{1}}{\sqrt{2}}
+        \longrightarrow
+        -\left(\frac{ \ket{0} + \ket{1} }{\sqrt{2}} \right)
+        \] &emsp;
+        and <br><br>&emsp;
+        \( f(x) = 0 \):
+        \[ 
+        \frac{(-1)^0 \ket{0}  + (-1)^0 \ket{1}}{\sqrt{2}} 
+        \longrightarrow
+        \frac{(1)\ket{0} + (1)\ket{1}}{\sqrt{2}}
+        \longrightarrow
+        \frac{ \ket{0} + \ket{1} }{\sqrt{2}}
+        \] &emsp;
+        We can simplify this answer,
+        \[ 
+        \left[ \frac{ \ket{0} + \ket{1} }{\sqrt{2}}, -\frac{ \ket{0} + \ket{1} }{\sqrt{2}} \right]
+        \longrightarrow
+        \pm\left(\frac{ \ket{0} + \ket{1} }{\sqrt{2}} \right)
+        \]&emsp;
+        giving<br><br>&emsp;
+        \( f(0) = f(1) \):
+        \[
+        \pm\left(\frac{ \ket{0} + \ket{1} }{\sqrt{2}} \right)
+        \]
+        <br><br>&emsp;
+        If \( f(x) \) is balanced, \( f(1) \ne f(0) \), we get two options:
+        <br><br>&emsp;
+        \( f(0) = 0, \) &ensp;\( f(1) = 1 \):
+        \[ 
+        \frac{(-1)^0 \ket{0}  + (-1)^1 \ket{1}}{\sqrt{2}} 
+        \longrightarrow
+        \frac{(1)\ket{0} -\ket{1}}{\sqrt{2}}
+        \longrightarrow
+        \frac{\ket{0} -\ket{1}}{\sqrt{2}}
+        \] &emsp;
+        and <br><br>&emsp;
+        \( f(0) = 1, \)&ensp; \( f(1) = 0 \):
+        \[ 
+        \frac{(-1)^1 \ket{0}  + (-1)^0 \ket{1}}{\sqrt{2}} 
+        \longrightarrow
+        \frac{-\ket{0} + (1)\ket{1}}{\sqrt{2}}
+        \longrightarrow
+        \frac{ -\ket{0} + \ket{1} }{\sqrt{2}}
+        \longrightarrow
+        -\left( \frac{ \ket{0} - \ket{1} }{\sqrt{2}} \right)
+        \] &emsp;
+        We can simplify this answer,
+        \[ 
+        \left[ \frac{ \ket{0} - \ket{1} }{\sqrt{2}}, -\frac{ \ket{0} - \ket{1} }{\sqrt{2}} \right]
+        \longrightarrow
+        \pm\left(\frac{ \ket{0} - \ket{1} }{\sqrt{2}} \right)
+        \]&emsp;
+        giving<br><br>&emsp;
+        \( f(0) \ne f(1) \):
+        \[
+        \pm\left(\frac{ \ket{0} - \ket{1} }{\sqrt{2}} \right)
+        \]<br>
+        </p>
+        <p>
+        &emsp;
+        <b>As of now, our states are:<br><br>&emsp;
+        \( f(0) = f(1) \):
+        \[
+        \pm\left(\frac{ \ket{0} + \ket{1} }{\sqrt{2}} \right)
+        \]&emsp;
+        and <br><br>&emsp;
+        \( f(0) \ne f(1) \):
+        \[
+        \pm\left(\frac{ \ket{0} - \ket{1} }{\sqrt{2}} \right)
+        \]
+        </b><br>&emsp;
+        Notice that our two states are equal to \( \ket{+} \) and \(\ket{-} \):
+        \[
+        \pm
+        \left[
+        \frac{ \ket{0} + \ket{1} }{\sqrt{2}},
+        \vphantom{\frac{ \ket{0} + \ket{1} }{\sqrt{2}}}
+        \frac{ \ket{0} - \ket{1} }{\sqrt{2}}
+        \right]
+        \longrightarrow
+        \pm \left[
+        \vphantom{\frac{ \ket{0} + \ket{1} }{\sqrt{2}}}
+        \ket{+},
+        \vphantom{\frac{ \ket{0} + \ket{1} }{\sqrt{2}}}
+        \ket{-}
+        \right]
+        \]&emsp;
+        </p>
+        <p>
+        \( |\Psi_4\rangle \): <br>&emsp; We then send the top qubit through an \( H \) gate. <br><br>&emsp;
+        If \( f(0) = f(1) \):
+        \[
+        \pm \ket{+}
+        \longrightarrow
+        \pm \ket{0}
+        \]&emsp;
+        and<br><br>&emsp;
+        If \( f(0) \ne f(1) \):
+        \[
+        \pm \ket{-}
+        \longrightarrow
+        \pm \ket{1}
+        \]&emsp;
+        </p>
+        <p>
+        This leaves us with:
+        \[
+        \pm
+        \left[
+        \vphantom{\frac{ \ket{0} + \ket{1} }{\sqrt{2}}}
+        \ket{0},
+        \ket{1}
+        \right]
+        \]
+        <br>
+        <b>Therefore, <br>&emsp;
+        If \( \ket{0} \) is measured, the function is constant, \( f(0) = f(1) \) <br>&emsp;
+        and if \( \ket{1} \) is measured, the function is balanced, \( f(0) \ne f(1) \)
+        </b>
+        <br><br>
+        Deutsch's algorithm proves <a href="">quantum supremacy</a>.<br> 
+        It performs an operation that would take 2 measurments in classical computation, and gets the same output with only 1 measurement using quantum computation.
+        </p><br><br><br><br>
+        <span id="deutsch-jozsa">
+        <a href="#deutsch"><h2>Deutsch-Jozsa algorithm</h2></a>
+        </span>
 
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </body>

@@ -1,7 +1,11 @@
-.superposition-of-ket-0 .MathJax_CHTML {
-    position: relative;
-    left: -15px; 
+a {
+    text-decoration: none;
 }
-.superposition-of-ket-1 {
-    margin-left: -15px;
-}
+
+mjx-container[jax="CHTML"][display="true"] {
+    text-align: left !important;
+    margin-left: 5vh !important;
+  }
+
+
+  
