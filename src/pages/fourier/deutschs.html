@@ -16,7 +16,7 @@
         <a href="../index.html"><h2>Deutsch's algorithm</h2></a>
         </span>
         [<a href="#deutsch-jozsa">skip to deutsch-jozsa</a>]
-        <p>Deutsch's algorithm finds whether a function \( f(x) \) that takes in either 0 or 1, is <a href="">balanced</a> or <a href="">constant</a>.</p>
+        <p>Deutsch's algorithm finds whether a function \( f(x) \) that takes in either 0 or 1, is <a href="../basics/function-types.html#constant">constant</a> or <a href="../basics/function-types.html#balanced">balanced</a>.</p>
         <p>A constant function is a function that returns the same output no matter the input</p>
         <p>\( f(0) = 0 \quad \quad f(x) = x \)</p>
         <p>\( f(1) = 0 \quad \quad f(y) = x \)</p>
@@ -27,35 +27,35 @@
         <p>\( f(1) = 1 \quad \quad f(y) = y \)</p>
         <p>\( f(0) \ne f(1) \)</p>
         <br>
-        <p>Using any <a href="">classical algorithm</a>, to know if \(f(x) = f(y)\), you need to evaluate the function \(f\) for \(x\) and \(y\).</p>
-        <p>Using Deutsch's <a href="">quantum algorithm</a>, we only have to evalucate the function \(f\) once.</p>
+        <p>Using any <a href="../basics/classical-computation.html#classical-algorithms">classical algorithm</a>, to know if \(f(x) = f(y)\), you need to evaluate the function \(f\) for \(x\) and \(y\).</p>
+        <p>Using Deutsch's <a href="../basics/quantum-computation.html#quantum-algorithms">quantum algorithm</a>, we only have to evalucate the function \(f\) once.</p>
         <br>
-        <p>Taking a look at Deutsch's <a href="">quantum circuit diagram</a>:</p>
+        <p>Taking a look at Deutsch's <a href="../quantum-circuits/quantum-circuit-diagram.html">quantum circuit diagram</a>:</p>
         <br>
         <img src="../../../assets/deutsch.png">
         <p>
-        Deutsch's algorithm takes in two <a href="">kets \(|0\rangle\) and \(|1\rangle\)</a>. We'll use \( |\Psi_x\rangle \)
+        Deutsch's algorithm takes in two <a href="../notation/dirac-notation.html#bra-ket">kets \(|0\rangle\) and \(|1\rangle\)</a>. We'll use \( |\Psi_x\rangle \)
         to take a look at the different states our kets are in througout the algorithm.
         </p>
         <p>
-        \( |\Psi_1\rangle \): <br>&emsp; Our ket at this time is <a href="">\(|01\rangle\)<a></a>.
-        Both \(|0\rangle\) and \(|1\rangle\) are being sent into \(H\) (<a href="">Hadamarad</a>) gates. Hadamarad
+        \( |\Psi_1\rangle \): <br>&emsp; Our ket at this time is <a href="../notation/dirac-notation.html">\(|01\rangle\)<a></a>.
+        Both \(|0\rangle\) and \(|1\rangle\) are being sent into \(H\) (<a href="../quantum-circuits/quantum-gates.html#hadamarad">Hadamarad</a>) gates. Hadamarad
         gates put the given qubit into a superposition state.
         </p>
         <p>
-        \( |\Psi_2\rangle \): <br>&emsp; The <a href="">superposition</a> state of \(|0\rangle\) is
+        \( |\Psi_2\rangle \): <br>&emsp; The <a href="../basics/superposition.html">superposition</a> state of \(|0\rangle\) is
         \[ \frac{|\ket{0} + \ket{1}|}{\sqrt{2}} \]
         &emsp;and \(|1\rangle\) is 
         \[ \frac{|\ket{0} - \ket{1}|}{\sqrt{2}} \]
-        &emsp;Both of these states can be rewritten as <a href="">\(|+\rangle\) and \(|-\rangle\)</a>, respectively, which we can refer to as \(|+-\rangle\)<br>
+        &emsp;Both of these states can be rewritten as <a href="../notation/dirac-notation.html#plus-minus-states">\(|+\rangle\) and \(|-\rangle\)</a>, respectively, which we can refer to as \(|+-\rangle\)<br>
         &emsp;We can then rewrite the \(|+\rangle\) as \[ \frac{\left( \ket{0} + \ket{1} \right)}{\sqrt{2}} \] &emsp; so, \(|+-\rangle\) is now represented as
         \[ \frac{\left( \ket{0} + \ket{1} \right) \ket{-}}{\sqrt{2}} \] &emsp; Furthermore, we can distribute \(|-\rangle\) into to \(|+\rangle\) obtain
         \[ \frac{\left( \ket{0} \ket{-} + \ket{1} \ket{-} \right)}{\sqrt{2}} \]
         </p>
         <p>
-        \( |\Psi_3\rangle \): <br>&emsp; We then apply our <a href="">quantum oracle \( U_f \)</a> to get
+        \( |\Psi_3\rangle \): <br>&emsp; We then apply our <a href="../quantum-circuits/quantum-oracle.html">quantum oracle \( U_f \)</a> to get
         \[ \frac{\left(U_f \ket{0} \ket{-} + U_f \ket{1} \ket{-} \right)}{\sqrt{2}}  \] &emsp;
-        These states are in <a href="">phase oracle</a> form, so given
+        These states are in <a href="../quantum-circuits/phase-oracle.html">phase oracle</a> form, so given
         \[ U_f \ket{x} \ket{-} = (-1)^{f(x)} \ket{x} \ket{-} \]&emsp;
         Where \( \ket{x} = \ket{0} \) or \( \ket{1} \), we get
         \[ \frac{(-1)^{f(0)} \ket{0} \ket{-} + (-1)^{f(1)} \ket{1} \ket{-}}{\sqrt{2}} \]&emsp;
@@ -191,8 +191,8 @@
         and if \( \ket{1} \) is measured, the function is balanced, \( f(0) \ne f(1) \)
         </b>
         <br><br>
-        Deutsch's algorithm proves <a href="">quantum supremacy</a>.<br> 
-        It performs an operation that would take 2 measurments in <a href="">classical computation</a>, and gets the same output with only 1 measurement using <a href="">quantum computation</a>.
+        Deutsch's algorithm proves <a href="../misc/quantum-supremacy.html">quantum supremacy</a>.<br> 
+        It performs an operation that would take 2 measurments in <a href="../basics/classical-computation.html">classical computation</a>, and gets the same output with only 1 measurement using <a href="../basics/quantum-computation.html">quantum computation</a>.
         </p><br><br><br><br>
         <span id="deutsch-jozsa">
         <a href="#deutsch"><h2>Deutsch-Jozsa algorithm</h2></a>
