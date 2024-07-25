@@ -204,13 +204,17 @@
         However, unlike Deutsch's algorithm, Deutsch Jozsa's algorithm can take in an amount \( n \) of qubits. Formally, this is represented as 
         </p>
         \[ f :\{0,1\}^n \longrightarrow \{0,1\} \]
-        <p>Using any <a href="../basics/classical-computation.html#classical-algorithms">classical algorithm</a>, you would have to evaluate the function \( 2^{n-1} + 1 \) times.</p>
+        <p>Using any <a href="../basics/classical-computation.html#classical-algorithms">classical algorithm</a>, in the worst case scenario, you would have to evaluate the function \( 2^{n-1} + 1 \) times.</p>
         <p>Using Deutsch-Jozsa's <a href="../basics/quantum-computation.html#quantum-algorithms">quantum algorithm</a>, we only have to evaluate the function \(f\) once.</p> 
         <p><b>Why \( 2^{n-1} + 1 \) ?</b></p>
-        <p><b>\( 2^{n-1} \) refers to half of n, as \( 2^5 = 32 \), \( 2^4 = 16 \), \( 2^3 = 8 \), and so on.</p>
-        <br><br>
-        <br><br>
-        <br><br>
+        <p>\( 2^{n-1} \) refers to half of n, as \( 2^5 = 32 \), \( 2^4 = 16 \), \( 2^3 = 8 \), and so on.</p>
+        <p>The +1 can be explained by a short example</p>
+        <p>
+        When \( n=5 \)<br>&emsp;
+        In the worst case, no matter if \( f \) is constant or balanced, the first \( 2^{n-1} \) (or \( 16 \) in this case) evaluations could be all \( \ket{0} \)'s or \( \ket{1} \)'s. Lets say we get all \( \ket{0} \)'s <br>&emsp;
+        Thus, the \( +1 \) refers to the need for us to evaluate once more to see if we get another \( \ket{0} \), meaning\( f \) is constant, or \( \ket{1} \), meaning \( f \) is balanced.
+        </p>
+        <p>Let's take a look at the circuit diagram.</p>
         <img src="../../../assets/deutsch-jozsa.png">
         
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
