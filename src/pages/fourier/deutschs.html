@@ -16,7 +16,9 @@
         <a href="../index.html"><h2>Deutsch's algorithm</h2></a>
         </span>
         [<a href="#deutsch-jozsa">skip to deutsch-jozsa</a>]
-        <p>Deutsch's algorithm finds whether a function \( f(x) \) that takes in either 0 or 1, is <a href="../basics/function-types.html#constant">constant</a> or <a href="../basics/function-types.html#balanced">balanced</a>.</p>
+        <p>Deutsch's algorithm is a function \( f(x) \) that takes in either 0 or 1, and determines whether it is <a href="../basics/function-types.html#constant">constant</a> or <a href="../basics/function-types.html#balanced">balanced</a>.</p>
+        <p>Formally, this is written as</p>
+        \[ f :\{0,1\} \longrightarrow \{0,1\} \]
         <p>A constant function is a function that returns the same output no matter the input</p>
         <p>\( f(0) = 0 \quad \quad f(x) = x \)</p>
         <p>\( f(1) = 0 \quad \quad f(y) = x \)</p>
@@ -28,14 +30,14 @@
         <p>\( f(0) \ne f(1) \)</p>
         <br>
         <p>Using any <a href="../basics/classical-computation.html#classical-algorithms">classical algorithm</a>, to know if \(f(x) = f(y)\), you need to evaluate the function \(f\) for \(x\) and \(y\).</p>
-        <p>Using Deutsch's <a href="../basics/quantum-computation.html#quantum-algorithms">quantum algorithm</a>, we only have to evalucate the function \(f\) once.</p>
+        <p>Using Deutsch's <a href="../basics/quantum-computation.html#quantum-algorithms">quantum algorithm</a>, we only have to evaluate the function \(f\) once.</p>
         <br>
         <p>Taking a look at Deutsch's <a href="../quantum-circuits/quantum-circuit-diagram.html">quantum circuit diagram</a>:</p>
         <br>
         <img src="../../../assets/deutsch.png">
         <p>
         Deutsch's algorithm takes in two <a href="../notation/dirac-notation.html#bra-ket">kets \(|0\rangle\) and \(|1\rangle\)</a>. We'll use \( |\Psi_x\rangle \)
-        to take a look at the different states our kets are in througout the algorithm.
+        to take a look at the different states our kets are in throughout the algorithm.
         </p>
         <p>
         \( |\Psi_1\rangle \): <br>&emsp; Our ket at this time is <a href="../notation/dirac-notation.html">\(|01\rangle\)<a></a>.
@@ -197,6 +199,18 @@
         <span id="deutsch-jozsa">
         <a href="#deutsch"><h2>Deutsch-Jozsa algorithm</h2></a>
         </span>
+        <p>
+        Deutsch-Jozsa's algorithm, similar to Deutsch's algorithm, determines whether a function \( f \) is constant, or balanced. <br><br>
+        However, unlike Deutsch's algorithm, Deutsch Jozsa's algorithm can take in an amount \( n \) of qubits. Formally, this is represented as 
+        </p>
+        \[ f :\{0,1\}^n \longrightarrow \{0,1\} \]
+        <p>Using any <a href="../basics/classical-computation.html#classical-algorithms">classical algorithm</a>, you would have to evaluate the function \( 2^{n-1} + 1 \) times.</p>
+        <p>Using Deutsch-Jozsa's <a href="../basics/quantum-computation.html#quantum-algorithms">quantum algorithm</a>, we only have to evaluate the function \(f\) once.</p> 
+        <p><b>Why \( 2^{n-1} + 1 \) ?</b></p>
+        <p><b>\( 2^{n-1} \) refers to half of n, as \( 2^5 = 32 \), \( 2^4 = 16 \), \( 2^3 = 8 \), and so on.</p>
+        <br><br>
+        <br><br>
+        <br><br>
         <img src="../../../assets/deutsch-jozsa.png">
         
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
