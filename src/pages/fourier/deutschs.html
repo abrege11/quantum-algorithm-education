@@ -225,22 +225,22 @@
         </p>
         <p>
         \( |\Psi_1\rangle \): <br>&emsp;
-        Our ket at this time is \( n \) amounts of \( \ket{0} \)'s and one \( \ket{1} \), which we can represent as \( \ket{00..01} \)
+        Our ket at this time is \( n \) amounts of \( \ket{0} \)'s and one \( \ket{1} \), which we can represent as \( \ket{0}^{\otimes n} \ket{1} \)
         </p>
         <p>
         \( |\Psi_2\rangle \): <br>&emsp;
         Our qubits are run through \( H \) gates which put them into a superposition state<br>&emsp;
         Our ket is now \( n \) amounts of \( \ket{+} \)'s and one \( \ket{-} \), which we can represent as 
         \[
-        \ket{++..+-} 
+        \ket{+}^{\otimes n} \ket{-}
         \]&emsp;
-        Let's focus on our state \( \ket{++..} \), we can redefine this as 
+        Let's focus on our state \( \ket{+}^{\otimes n} \), we can redefine this as 
         \[  
-        \ket{++..}
+        \ket{+}^{\otimes n}
         \longrightarrow
-        \left( \frac{ \ket{0} + \ket{1} }{\sqrt{2}} \right) \left( \frac{ \ket{0} + \ket{1} }{\sqrt{2}} \right).. \left( \frac{ \ket{0} + \ket{1} }{\sqrt{2}} \right)
+        \left( \frac{ \ket{0} + \ket{1} }{\sqrt{2}} \right)^{\otimes n}
         \longrightarrow
-        \frac{1}{\sqrt{2}} \Bigg(\ket{0} + \ket{1}\Bigg) \frac{1}{\sqrt{2}} \Bigg(\ket{0} + \ket{1}\Bigg) .. \frac{1}{\sqrt{2}} \Bigg(\ket{0} + \ket{1}\Bigg)
+        \frac{1}{\sqrt{2}} \Bigg(\ket{0} + \ket{1}\Bigg) ^{\otimes n}
         \] &emsp;
         Lets say that \( n=2 \), in this case, we can expand this state,
         \[
@@ -260,20 +260,18 @@
         \] &emsp;
         Now, looking back at our full state 
         \[
-        \ket{++..+-} 
+        \ket{+}^{\otimes n} \ket{-}  
         \]&emsp;
         We can represent this as
         \[ 
         \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} \ket{x} \ket{-}
         \] &emsp;
         </p>
-        <p>&emsp;
-        Now, we run our 
-        </p>
-        <img src="../../../assets/deutsch-jozsa.png">
         <p>
-        \( |\Psi_3\rangle \): <br>&emsp;
-        Our state
+        \( |\Psi_3\rangle \): <br> &emsp;
+        Looking back at our diagram, <br>
+        <img src="../../../assets/deutsch-jozsa.png"><br>&emsp;
+        our state
         \[ 
         \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} \ket{x} \ket{-}
         \] &emsp;
@@ -292,6 +290,56 @@
         \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} U_f \ket{x} \ket{-}
         \longrightarrow
         \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} (-1)^{f(x)} \ket{x} \ket{-}
+        \] &emsp;
+        Again, we can factor \( \ket{-} \) out.
+        </p>
+        <p>
+        \( |\Psi_4\rangle \): <br>&emsp;
+        We now run each of our \( \ket{+} \)'s through \( H \) gates
+        \[
+        \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} (-1)^{f(x)} \ket{x}
+        \longrightarrow
+        \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} (-1)^{f(x)} H^{\otimes n} \ket{x}
+        \] &emsp;
+        Now we can look back at our Hadamarad transform for \( \ket{+}^{\otimes n}  \) and apply \( (-1)^{f(x)} \)
+        \[
+        \ket{+}^{\otimes n} 
+        \longrightarrow
+        (-1)^{f(x)}\ket{+}^{\otimes n}
+        \] &emsp;
+        Recall,
+        \[
+        \ket{+}
+        \longrightarrow
+        \frac{1}{\sqrt{2}} \Bigg(\ket{0} + \ket{1}\Bigg)
+        \]&emsp;
+        So \[ (-1)^{f(x)}\ket{+}^{\otimes n} \]&emsp; can be represented by
+        \[
+        (-1)^{f(x)} \left( \frac{1}{\sqrt{2}} \Bigg(\ket{0} + \ket{1}\Bigg) \right)
+        \]&emsp;
+        Which we can rewrite as
+        \[
+        H\ket{x} = \frac{1}{\sqrt{2}} \Bigg(\ket{0} + (-1)^x\ket{1}\Bigg)
+        \]&emsp;
+        This leaves us with two options <br><br>&emsp;
+        \( x=0 \)
+        \[
+        H\ket{0} = \frac{1}{\sqrt{2}} \Bigg(\ket{0} + (-1)^0\ket{1}\Bigg)
+        \] &emsp;
+        Which gives us the \( \ket{+} \), or
+        \[
+        \left( \frac{ \ket{0} + \ket{1} }{\sqrt{2}} \right)
+        \]
+        </p>
+        &emsp; and
+        <br><br>&emsp;
+        \( x=1 \)
+        \[
+        H\ket{1} = \frac{1}{\sqrt{2}} \Bigg(\ket{0} + (-1)^1\ket{1}\Bigg)
+        \] &emsp;
+        Which gives us the \( \ket{-} \), or
+        \[
+        \left( \frac{ \ket{0} - \ket{1} }{\sqrt{2}} \right)
         \]
         </p>
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
