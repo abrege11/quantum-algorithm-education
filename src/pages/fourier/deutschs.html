@@ -15,7 +15,7 @@
         <span id="deutsch">
         <a href="../index.html"><h2>Deutsch's algorithm</h2></a>
         </span>
-        [<a href="#deutsch-jozsa">skip to deutsch-jozsa</a>]
+        [<a href="javascript:history.back()">skip to deutsch-jozsa</a>]
         <p>Deutsch's algorithm is a function \( f(x) \) that takes in either 0 or 1, and determines whether it is <a href="../basics/function-types.html#constant">constant</a> or <a href="../basics/function-types.html#balanced">balanced</a>.</p>
         <p>Formally, this is written as</p>
         \[ f :\{0,1\} \longrightarrow \{0,1\} \]
@@ -197,7 +197,7 @@
         It performs an operation that would take 2 measurments in <a href="../basics/classical-computation.html">classical computation</a>, and gets the same output with only 1 measurement using <a href="../basics/quantum-computation.html">quantum computation</a>.
         </p><br><br><br><br>
         <span id="deutsch-jozsa">
-        <a href="#deutsch"><h2>Deutsch-Jozsa algorithm</h2></a>
+        <a href="javascript:history.back()"><h2>Deutsch-Jozsa algorithm</h2></a>
         </span>
         <p>
         Deutsch-Jozsa's algorithm, similar to Deutsch's algorithm, determines whether a function \( f \) is constant, or balanced. <br><br>
@@ -216,7 +216,84 @@
         </p>
         <p>Let's take a look at the circuit diagram.</p>
         <img src="../../../assets/deutsch-jozsa.png">
-        
+        <p>
+        Notice, the symbols
+        \[ \ket{0}^{\otimes n} \]
+        \[ /^n \]
+        \[ H^{\otimes n} \]
+        Referring to \( n \) amounts of \( \ket{0} \)'s, qubits (represented by lines), and \( H \) gates, respectively.
+        </p>
+        <p>
+        \( |\Psi_1\rangle \): <br>&emsp;
+        Our ket at this time is \( n \) amounts of \( \ket{0} \)'s and one \( \ket{1} \), which we can represent as \( \ket{00..01} \)
+        </p>
+        <p>
+        \( |\Psi_2\rangle \): <br>&emsp;
+        Our qubits are run through \( H \) gates which put them into a superposition state<br>&emsp;
+        Our ket is now \( n \) amounts of \( \ket{+} \)'s and one \( \ket{-} \), which we can represent as 
+        \[
+        \ket{++..+-} 
+        \]&emsp;
+        Let's focus on our state \( \ket{++..} \), we can redefine this as 
+        \[  
+        \ket{++..}
+        \longrightarrow
+        \left( \frac{ \ket{0} + \ket{1} }{\sqrt{2}} \right) \left( \frac{ \ket{0} + \ket{1} }{\sqrt{2}} \right).. \left( \frac{ \ket{0} + \ket{1} }{\sqrt{2}} \right)
+        \longrightarrow
+        \frac{1}{\sqrt{2}} \Bigg(\ket{0} + \ket{1}\Bigg) \frac{1}{\sqrt{2}} \Bigg(\ket{0} + \ket{1}\Bigg) .. \frac{1}{\sqrt{2}} \Bigg(\ket{0} + \ket{1}\Bigg)
+        \] &emsp;
+        Lets say that \( n=2 \), in this case, we can expand this state,
+        \[
+        \frac{1}{\sqrt{2}} \Bigg(\ket{0} + \ket{1}\Bigg) \frac{1}{\sqrt{2}} \Bigg(\ket{0} + \ket{1}\Bigg)
+        \longrightarrow
+        \frac{1}{\sqrt{2^2}} \Bigg( \ket{00} + \ket{01} + \ket{10} + \ket{11} \Bigg)
+        \] &emsp;
+        Similarly, lets say \( n=3 \)
+        \[
+        \frac{1}{\sqrt{2}} \Bigg(\ket{0} + \ket{1}\Bigg) \frac{1}{\sqrt{2}} \Bigg(\ket{0} + \ket{1}\Bigg)\frac{1}{\sqrt{2}} \Bigg(\ket{0} + \ket{1}\Bigg)
+        \longrightarrow
+        \frac{1}{\sqrt{2^3}} \Bigg( \ket{000} + \ket{001} + \ket{010} + \ket{011} + \ket{100} + \ket{101} + \ket{110} + \ket{111} \Bigg)
+        \]&emsp;
+        This can be represented as
+        \[
+        \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} \ket{x}
+        \] &emsp;
+        Now, looking back at our full state 
+        \[
+        \ket{++..+-} 
+        \]&emsp;
+        We can represent this as
+        \[ 
+        \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} \ket{x} \ket{-}
+        \] &emsp;
+        </p>
+        <p>&emsp;
+        Now, we run our 
+        </p>
+        <img src="../../../assets/deutsch-jozsa.png">
+        <p>
+        \( |\Psi_3\rangle \): <br>&emsp;
+        Our state
+        \[ 
+        \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} \ket{x} \ket{-}
+        \] &emsp;
+        is ran through our quantum oracle \( U_f \)
+        \[ 
+        \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} \ket{x} \ket{-} 
+        \longrightarrow
+        U_f\frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} \ket{x} \ket{-}
+        \longrightarrow
+        \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} U_f \ket{x} \ket{-}   
+        \] &emsp;
+        Recall
+        \[ U_f \ket{x} \ket{-} = (-1)^{f(x)} \ket{x} \ket{-} \]&emsp;
+        So,
+        \[
+        \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} U_f \ket{x} \ket{-}
+        \longrightarrow
+        \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} (-1)^{f(x)} \ket{x} \ket{-}
+        \]
+        </p>
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </body>
 </html>
