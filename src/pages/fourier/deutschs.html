@@ -410,7 +410,67 @@
         \[
         (-1)^{x_1 + x_2} \ket{011}
         \] &emsp;
-        
+        Which we can express as
+        \[
+        H^{\otimes n} \ket{x} = \frac{1}{\sqrt{2^n}} \sum_{z \in \{ 0,1 \}^n} (-1)^{x \cdot z} \ket{z}
+        \] &emsp;
+        Notice that the \( x \cdot z \) in, \((-1)^{x \cdot z}\) is referring to being dotted with z.
+        <br><br>&emsp;
+        This 
+        <br><br>&emsp;
+        Now that we can define \( H^{\otimes n} \ket{x} \), looking back at the start of \( |\Psi_4\rangle \)
+        \[
+        \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} (-1)^{f(x)} H^{\otimes n} \ket{x}
+        \] &emsp;
+        We can replace \( H^{\otimes n} \ket{x} \) with our new definition
+        \[
+        \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} (-1)^{f(x)} 
+        \frac{1}{\sqrt{2^n}} \sum_{z \in \{0,1\}^n} (-1)^{x \cdot z} \ket{z}
+        \] &emsp;
+        This isn't in its most readable form, lets express this differently
+        \[
+        \sum_{x \in \{0,1\}^n} \sum_{z \in \{0,1\}^n} \frac{1}{2^n} (-1)^{f(x) + x \cdot z} \ket{z} 
+        \] &emsp;
+        </p>
+        &emsp;
+        <b>Now lets look at what out measurements will tell us.</b><br><br>&emsp;
+        When our amplitude \( z = \ket{0}^{\otimes n} \), our state becomes
+        \[
+        \sum_{x \in \{0,1\}^n} \sum_{z \in \{0,1\}^n} \frac{1}{2^n} (-1)^{f(x) + x \cdot \ket{0}^{\otimes n}} \ket{z} 
+        \] &emsp;
+        Which simplifies to
+        \[
+        \sum_{x \in \{0,1\}^n} \frac{1}{2^n} (-1)^{f(x)}
+        \] &emsp;
+        Now, we have two options, <br><br>&emsp;
+        \( f(x) = 0 \) 
+        \[
+        \sum_{x \in \{0,1\}^n} \frac{1}{2^n} (-1)^0
+        \longrightarrow
+        \frac{1}{2^n} \sum_{x \in \{0,1\}^n} 1
+        \] &emsp;
+        In this case, notice that \(\sum_{x \in \{0,1\}^n} 1\) is equal \( (1 + 1 + 1..) \) \( n \) times. So it can be represented as \( 2^n \)<br><br>&emsp;
+        Now, lets rewrite our state with our new expression,
+        \[
+        \frac{1}{2^n} 2^n
+        \] &emsp;
+        <b>Which will become 1.</b><br><br>&emsp;
+        Similarly, when <br><br>&emsp;
+        \( f(x) = 1 \) <br><br>&emsp;
+        We see that the steps are repeated, except instead of our \( (-1) \) being raised to the \( 0 \) it's raised to the \( 1 \).
+        \[
+        \sum_{x \in \{0,1\}^n} \frac{1}{2^n} (-1)^1
+        \longrightarrow
+        \frac{1}{2^n} \sum_{x \in \{0,1\}^n} -1
+        \longrightarrow
+        \frac{1}{2^n} (-2^n)
+        \longrightarrow
+        -\frac{2^n}{2^n}
+        \longrightarrow
+        -1
+        \] &emsp;
+        <b>This causes our output to be \(-1\)</b> <br><br><br>&emsp;
+        This means that <b>when \( f \) is constant, our output is \( \pm 1 \) </b>
         </p>
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </body>
