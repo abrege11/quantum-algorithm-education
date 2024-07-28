@@ -200,8 +200,8 @@
         <a href="javascript:history.back()"><h2>Deutsch-Jozsa algorithm</h2></a>
         </span>
         <p>
-        Deutsch-Jozsa's algorithm, similar to Deutsch's algorithm, determines whether a function \( f \) is constant, or balanced. <br><br>
-        However, unlike Deutsch's algorithm, Deutsch Jozsa's algorithm can take in an amount \( n \) of qubits. Formally, this is represented as 
+        Deutsch-Jozsa's algorithm, similar to <a href="#deutsch">Deutsch's algorithm</a>, determines whether a function \( f \) is constant, or balanced. <br><br>
+        However, unlike Deutsch's algorithm, Deutsch Jozsa's algorithm can take in an amount \( n \) of <a href="../basics/basics.html">qubits</a>. Formally, this is represented as 
         </p>
         \[ f :\{0,1\}^n \longrightarrow \{0,1\} \]
         <p>Using any <a href="../basics/classical-computation.html#classical-algorithms">classical algorithm</a>, in the worst case scenario, you would have to evaluate the function \( 2^{n-1} + 1 \) times.</p>
@@ -214,14 +214,14 @@
         In the worst case, no matter if \( f \) is constant or balanced, the first \( 2^{n-1} \) (or \( 16 \) in this case) evaluations could be all \( \ket{0} \)'s or \( \ket{1} \)'s. Lets say we get all \( \ket{0} \)'s <br>&emsp;
         Thus, the \( +1 \) refers to the need for us to evaluate once more to see if we get another \( \ket{0} \), meaning\( f \) is constant, or \( \ket{1} \), meaning \( f \) is balanced.
         </p>
-        <p>Let's take a look at the circuit diagram.</p>
+        <p>Let's take a look at the <a href="../quantum-circuits/quantum-circuit-diagram.html">circuit diagram.</a></p>
         <img src="../../../assets/deutsch-jozsa.png">
         <p>
-        Notice, the symbols
+        Notice, the <a href="../quantum-circuits/quantum-circuit-diagram.html#symbols">symbols</a>
         \[ \ket{0}^{\otimes n} \]
         \[ /^n \]
         \[ H^{\otimes n} \]
-        Referring to \( n \) amounts of \( \ket{0} \)'s, qubits (represented by lines), and \( H \) gates, respectively.
+        Referring to \( n \) amounts of \( \ket{0} \)'s, qubits (represented by lines), and <a href="../quantum-circuits/quantum-gates.html">\( H \) gates</a>, respectively.
         </p>
         <p>
         \( |\Psi_1\rangle \): <br>&emsp;
@@ -229,7 +229,7 @@
         </p>
         <p>
         \( |\Psi_2\rangle \): <br>&emsp;
-        Our qubits are run through \( H \) gates which put them into a superposition state<br>&emsp;
+        Our qubits are run through \( H \) gates which put them into a <a href="../basics/superposition.html">superposition</a> state<br>&emsp;
         Our ket is now \( n \) amounts of \( \ket{+} \)'s and one \( \ket{-} \), which we can represent as 
         \[
         \ket{+}^{\otimes n} \ket{-}
@@ -255,9 +255,10 @@
         \frac{1}{\sqrt{2^3}} \Bigg( \ket{000} + \ket{001} + \ket{010} + \ket{011} + \ket{100} + \ket{101} + \ket{110} + \ket{111} \Bigg)
         \]&emsp;
         This can be represented as
+        <a href="../basics/mathematics.html">
         \[
         \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} \ket{x}
-        \] &emsp;
+        \] </a>&emsp;
         Now, looking back at our full state 
         \[
         \ket{+}^{\otimes n} \ket{-}  
@@ -275,7 +276,7 @@
         \[ 
         \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} \ket{x} \ket{-}
         \] &emsp;
-        is ran through our quantum oracle \( U_f \)
+        is ran through our <a href="../quantum-circuits/quantum-oracle.html">quantum oracle \( U_f \)</a>
         \[ 
         \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} \ket{x} \ket{-} 
         \longrightarrow
@@ -414,7 +415,7 @@
         \[
         H^{\otimes n} \ket{x} = \frac{1}{\sqrt{2^n}} \sum_{z \in \{ 0,1 \}^n} (-1)^{x \cdot z} \ket{z}
         \] &emsp;
-        Notice that the \( x \cdot z \) in, \((-1)^{x \cdot z}\) is referring to being dotted with z.
+        Notice that the \( x \cdot z \) in, \((-1)^{x \cdot z}\) is referring to being <a href="../basics/mathematics.html">dotted</a> with z.
         <br><br>&emsp;
         This 
         <br><br>&emsp;
@@ -434,7 +435,7 @@
         </p>
         &emsp;
         <b>Now lets look at what out measurements will tell us.</b><br><br>&emsp;
-        When our amplitude \( z = \ket{0}^{\otimes n} \), our state becomes
+        When \( z = \ket{0}^{\otimes n} \), our state becomes
         \[
         \sum_{x \in \{0,1\}^n} \sum_{z \in \{0,1\}^n} \frac{1}{2^n} (-1)^{f(x) + x \cdot \ket{0}^{\otimes n}} \ket{z} 
         \] &emsp;
@@ -470,7 +471,34 @@
         -1
         \] &emsp;
         <b>This causes our output to be \(-1\)</b> <br><br><br>&emsp;
-        This means that <b>when \( f \) is constant, our output is \( \pm 1 \) </b>
+        This means that <b>when \( f \) is constant, the <a href="../basics/amplitude.html">amplitude</a> of our state \(\ket{0}^{\otimes n} \) is \( \pm 1 \) </b> <br><br><br>&emsp;
+        If \( f \) is balanced, we see some similarities, currently we have,
+        \[
+        \sum_{x \in \{0,1\}^n} \frac{1}{2^n} (-1)^f(x)
+        \] &emsp;
+        Recall, a balanced function is a function in which 0 appears as frequently as 1, 
+        \[
+        (-1)^0 + (-1)^1 + (-1)^0 + (-1)^1 + (-1)^0 + (-1)^1..
+        \longrightarrow
+
+        \]
+        \[
+        1 - 1 + 1 - 1 + 1 - 1.. = 0
+        \] &emsp;
+        As we see, an infinite string of alternating \( \pm 1 \)'s will always leave us with 0. <br><br>&emsp;
+        This will leave us with 
+        \[
+        \frac{1}{2^n} (0) = 0
+        \] &emsp;
+        This means that <b>when \( f \) is balanced, the amplitude of our state \(\ket{0}^{\otimes n} \) is \( 0 \) </b> <br><br><br>&emsp;
+        </p>
+        <p>
+        <b>What does this mean?</b><br><br>
+        If \( f \) is constant, our amplitude is \( \pm 1 \)<br>
+        If \( f \) is balanced, our amplitude is \( 0 \) <br><br>
+        
+        Amplitudes are probabilities, so this means we will only ever measure \( f \) as constant given the state \( \ket{0}^{\otimes n} \), and if we measure any other state, \( f \) will be balanced. <br><br>
+        In short, if we get a stream of all \( \ket{0} \)'s, we will always measure \( f \) to be constant 100% of the time. If we get even a singular \( \ket{1} \), \( f \) is balanced.
         </p>
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </body>
