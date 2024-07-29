@@ -6,20 +6,147 @@
         <meta name="author" content="Abraham Brege">
         <title>QAE - Basics</title>
         <link rel="stylesheet" href="../../styles/basics.styles.css">
+        <script src="../../utils/latex-helper.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </head>
     <body>
         <a href="javascript:history.back()"><h2>Basics</h2></a>
         <p>Don't know a thing about quantum computing? No worries. Follow the roadmap below to prepare yourself for the quantum algorithms ahead.</p>
         <h3>Roadmap</h3>
-        <p><b>Before proceeding, remember that all of the material covered below is specific to the algorithms covered to allow you to quickly grasp these complex topics. To obtain a deeper understanding of these topics, it is heavily recommended to study from accredited material.</b></p>
-        <span id="mathematics"></span>
-        <span id="bits-and-qubits"></span>
-        <span id="classical-computation"></span>
-        <span id="classical-logic-gates"></span>
-        <span id="entanglement"></span>
-        <span id="function-types"></span>
-        <span id="superposition"></span>
-        <span id="notation"></span>
-        <span id="quantum-computation"></span>
+        <p>Before proceeding, remember that all of the material covered below is specific to the algorithms covered to allow you to quickly grasp these complex topics. To obtain a deeper understanding of these topics, it is heavily recommended to study from accredited material.</p>
+        <p>If you're familiar with a topic, skip to your level of understanding</p>
+        <p>
+        <a href="#classical-computation">Classical Computation</a>
+        \( \rightarrow \)
+        <a href="#classical-logic-gates">Classical Logic Gates</a>
+        \( \rightarrow \)
+        <a href="#function-types">Function Types</a>
+        \( \rightarrow \)
+        <a href="#mathematics">Mathematics</a>
+        \( \rightarrow \)
+        <a href="#notation">Notation</a>
+        \( \rightarrow \)
+        <a href="#quantum-computation">Quantum Computation</a>
+        \( \rightarrow \)
+        <a href="#bits-and-qubits">Bits and Qubits</a>
+        \( \rightarrow \)
+        <a href="#superposition">Superposition</a>
+        \( \rightarrow \)
+        <a href="#entanglement">Entanglement</a>
+        \( \rightarrow \)
+        <a href="#quantum-logic-gates">Quantum Gates</a>
+        \( \rightarrow \)
+        <a href="#quantum-circuit-basics">Quantum Circuits</a>
+        </p>
+        <span id="classical-computation"><br>
+        <h3>Classical Computation</h3>
+        <p>
+        Classical computing is a very broad topic with countless branches and subsets of the practice. We'll focus on the basics and move on. <br><br>
+        Classical computers use bits <br>
+        Bits are binary values <br>
+        Binary values are either 0 or 1 <br> <br>
+        These bits are run through logic gates to perform operations on them. These few elementary operations are the building blocks of all technology today. <br><br>
+        In all, this is a gross over-generalization of the practice. However, this is really all you need to know for our application.
+        </p> <br>
+        </span>
+        <span id="classical-logic-gates">
+        <h3>Classical Logic Gates</h3>
+        <p>
+        The gates we will cover are AND, OR, NOT, XOR, and NAND
+        <table>
+            <tr>
+            <th>Gate</th>
+            <th>Circuit</th>
+            <th>Truth Table</th>
+            </tr>
+            <tr>
+            <td>AND</td>
+            <td><img src="../../../assets/and.png"></td>
+            <td><img src="../../../assets/and-truth.png"></td>
+            </tr>
+            <tr>
+            <td>OR</td>
+            <td><img src="../../../assets/or.png"></td>
+            <td><img src="../../../assets/or-truth.png"></td>
+            </tr>
+            <tr>
+            <td>NOT</td>
+            <td><img src="../../../assets/not.png"></td>
+            <td><img src="../../../assets/not-truth.png"></td>
+            </tr>
+            <tr>
+            <td>XOR</td>
+            <td><img src="../../../assets/xor.png"></td>
+            <td><img src="../../../assets/xor-truth.png"></td>
+            </tr>
+            <tr>
+            <td>NAND</td>
+            <td><img src="../../../assets/nand.png"></td>
+            <td><img src="../../../assets/nand-truth.png"></td>
+            </tr>
+          </table>
+        </p>
+        <p>
+        Looking at the truth tables, lets dissect each gate. <br><br>
+        <b>AND - </b> Outputs 1 when A & B are 1<br><br>
+        <b>OR - </b> Outputs 1 when A or B is 1, along with A & B being 1<br><br>
+        <b>NOT - </b> Outputs the opposite of A<br><br>
+        <b>XOR - </b> Same as the OR gate, but excludes when A & B is 1<br><br>
+        <b>NAND - </b> Stands for N(OT)AND. The opposite of AND's logic.<br><br>
+        </p>
+        <p>
+        The key takeaway is the concept of a <b>universal</b> gate.<br><br>
+        <b>NAND</b> is a universal gate, in layman's terms, any other logic gate can be made of just <b>NAND</b> gates. <br><br>
+        For more information on gate-universality, visit <a href="https://www.allaboutcircuits.com/textbook/digital/chpt-3/gate-universality/">here</a>
+        </p>
+        </span>
+        <span id="function-types">
+        <h3>Function Types</h3>
+        On this site, you will hear the term "constant" and "balanced" function.
+        <p>A constant function is a function that returns the same output no matter the input</p>
+        <p>\( f(0) = 0 \quad \quad f(x) = x \)</p>
+        <p>\( f(1) = 0 \quad \quad f(y) = x \)</p>
+        or
+        <p>\( f(0) = 1 \quad \quad f(x) = y \)</p>
+        <p>\( f(1) = 1 \quad \quad f(y) = y \)</p>
+        so
+        <p>\( f(0) = f(1) \)</p>
+        <br>
+        <p>A balanced function is a function that returns different outputs given different inputs</p>
+        <p>\( f(0) = 0 \quad \quad f(x) = x \)</p>
+        <p>\( f(1) = 1 \quad \quad f(y) = y \)</p>
+        or
+        <p>\( f(0) = 1 \quad \quad f(x) = y \)</p>
+        <p>\( f(1) = 0 \quad \quad f(y) = x \)</p>
+        so
+        <p>\( f(0) \ne f(1) \)</p>
+        Another note for balanced functions, outputs are equal in quantity. <br>
+        If you get five 1's, you will also get five 0's. 
+        </span>
+        <span id="mathematics">
+        <h3>Mathematics</h3>
+        </span>
+        <span id="notation">
+        <h3>Notation</h3>
+        </span>
+        <span id="quantum-computation">
+        <h3>Quantum Computation</h3>
+        </span>
+        <span id="bits-and-qubits">
+        <h3>Bits and Qubits</h3>
+        </span>
+        <span id="superposition">
+        <h3>Superposition</h3>
+        </span>
+        <span id="entanglement">
+        <h3>Entanglement</h3>
+        </span>
+        <span id="quantum-logic-gates">
+        <h3>Quantum Gates</h3>
+        </span>
+        <span id="quantum-circuit-basics">
+        <h3>Quantum Circuits</h3>
+        </span>
         </body>
 </html>
