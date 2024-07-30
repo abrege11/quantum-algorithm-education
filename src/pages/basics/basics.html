@@ -126,19 +126,127 @@
         </span>
         <span id="mathematics">
         <h3>Mathematics</h3>
+        While the mathematics in quantum computation looks complicated, it's all quite elementary when you look closer.
         </span>
         <span id="notation">
         <h3>Notation</h3>
         The largest takeaway from notation will be <b>Dirac notation</b>.<br><br>
         Dirac notation, also known as bra-ket notation is a way to represent vectors. <br><br>
-        Bra: \( \bra{x} \) <br>
-        Ket: \( \ket{x} \)
+        \[
+        \braket{bra|ket}
+        \]
+        Bra's \( \langle\Psi_b| \) represent row vectors, while Ket's \( |\Psi_k\rangle \) represent column vectors.<br>
+        \[
+        \langle\Psi_b| = 
+        \begin{pmatrix}
+        y_1^* & y_2^* & y_3^*
+        \end{pmatrix}  
+        \]
+        \[
+        |\Psi_k\rangle = 
+        \begin{pmatrix}
+        x_1 \\
+        x_2 \\
+        x_3
+        \end{pmatrix}   
+        \]
+        The *'s represent that we need to take the complex conjugate when converting from a row to column vector. <br><br>
+        To give you an idea of how these Bra-ket's work, let us look at these two vectors
+        \[
+        |\Psi_1\rangle = 
+        \begin{pmatrix}
+        a \\
+        b \\
+        c
+        \end{pmatrix}  
+        \quad
+        and
+        \quad
+        |\Psi_2\rangle = 
+        \begin{pmatrix}
+        x \\
+        y \\
+        z
+        \end{pmatrix}  
+        \]
+        If we were to represent these vectors as \( \langle\Psi_1| \Psi_2 \rangle \), you would get
+        \[
+        \langle\Psi_1| \Psi_2 \rangle = xa^* + yb^* + xc^*
+        \]
+        <br>
+        Before we continue, lets take a look at some common examples of dirac notation you'll see frequently<br><br>
+        \( 
+        \ket{0} =          
+        \begin{pmatrix}
+        1 \\
+        0
+        \end{pmatrix} 
+        \) <br><br>
+        \( 
+        \ket{1} =  
+        \begin{pmatrix}
+        0 \\
+        1
+        \end{pmatrix} 
+        \) <br><br>
+        This will be the most common example you see. <br><br>
+        Working with \( \ket{0} \) and \( \ket{1} \), you can remember which vectors these represent as thinking of the number inside of the ket as the position where the 1 is located in the vector.<br><br>
+        That's a mouthful, but notice the 1 is in the "0" spot in \( \ket{0} \) and the "1" spot in \( \ket{1} \). <b>(remember this is zero-indexed, intuitive for computer scientists, but for others, counting starts with 0. So the "0" spot is the first spot in the vector)</b><br><br>
+        Next,<br><br>
+        \(
+        \ket{+} =
+        \frac{|\ket{0} + \ket{1}|}{\sqrt{2}}
+        \)
+        <br>
+        \(
+        \ket{-} =
+        \frac{|\ket{0} - \ket{1}|}{\sqrt{2}}
+        \)
+        <br><br>
+        These represent our superposition states of \( \ket{0} \) and \( \ket{1} \), we'll get to superposition later.<br><br>
+        Now that you have an idea of our standard dirac notation states, let's take a look at an example where we express a vector in dirac notation <br><br>
+        Given the vector
+        \[
+        |\Psi_1\rangle = 
+        \begin{pmatrix}
+        a \\
+        b
+        \end{pmatrix} 
+        =
+        a 
+        \begin{pmatrix}
+        1 \\
+        0
+        \end{pmatrix} 
+        +
+        b
+        \begin{pmatrix}
+        0 \\
+        1
+        \end{pmatrix} 
+        \]
+        Notice that our vectors can be represented as \( \ket{0} \) and \( \ket{1} \)
+        \[
+        |\Psi_1\rangle = 
+        \begin{pmatrix}
+        a \\
+        b
+        \end{pmatrix} 
+        =
+        a \ket{0}
+        +
+        b \ket{1}
+        \]
         </span>
         <span id="quantum-computation">
         <h3>Quantum Computation</h3>
+        Quantum computing spans much further than Computer Science. It largely based in physics and mathematics, which both utilize quantum mechanics. <br><br>
+        We are going to focus on quantum algorithms, we won't touch much on the physics side of quantum computation. But it is important to cover some fundamental components<br><br>
+        Below we can see some key concepts that are used in quantum computation that we will cover throughout our algorithms.
         </span>
         <span id="bits-and-qubits">
         <h3>Bits and Qubits</h3>
+        
         </span>
         <span id="superposition">
         <h3>Superposition</h3>
