@@ -171,9 +171,55 @@
         \]
         If we were to represent these vectors as \( \langle\Psi_1| \Psi_2 \rangle \), you would get
         \[
-        \langle\Psi_1| \Psi_2 \rangle = xa^* + yb^* + xc^*
+        \langle\Psi_1| \Psi_2 \rangle = xa^* + yb^* + xc^* = 1
         \]
-        <br>
+        Remember that \( |\Psi_1\rangle |\Psi_2\rangle \) are equal to 
+        \[
+        \langle\Psi_1|= 
+        a 
+        \begin{pmatrix}
+        1 &
+        0 &
+        0
+        \end{pmatrix} 
+        + 
+        b
+        \begin{pmatrix}
+        0 &
+        1 &
+        0
+        \end{pmatrix}
+        +
+        c
+        \begin{pmatrix}
+        0 &
+        0 &
+        1
+        \end{pmatrix}
+        \]
+        and
+        \[
+        |\Psi_2\rangle = 
+        x 
+        \begin{pmatrix}
+        1 \\
+        0 \\
+        0
+        \end{pmatrix}  
+        y 
+        \begin{pmatrix}
+        0 \\
+        1 \\
+        0
+        \end{pmatrix}
+        z 
+        \begin{pmatrix}
+        0 \\
+        0 \\
+        1
+        \end{pmatrix}
+        \]
+        It is important to note that those values add up to a probability. So they all equal to 1. <br><br>
         Before we continue, lets take a look at some common examples of dirac notation you'll see frequently<br><br>
         \( 
         \ket{0} =          
@@ -237,6 +283,11 @@
         +
         b \ket{1}
         \]
+        Finally, lets look at what happens when we multiply a Ket by a Bra. 
+        \[
+        |\Psi_1 {\Large \times} \Psi_2| = xa^* + yb^* + xc^* = 1
+        
+        \]
         </span>
         <span id="quantum-computation">
         <h3>Quantum Computation</h3>
@@ -246,6 +297,7 @@
         </span>
         <span id="bits-and-qubits">
         <h3>Bits and Qubits</h3>
+        As we've covered, bits are a binary representation of data, you have the options 0 and 1.
         
         </span>
         <span id="superposition">
