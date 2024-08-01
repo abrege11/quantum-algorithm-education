@@ -139,7 +139,7 @@
         \[
         \langle\Psi_b| = 
         \begin{pmatrix}
-        y_1^* & y_2^* & y_3^*
+        y_1 & y_2 & y_3
         \end{pmatrix}  
         \]
         \[
@@ -169,28 +169,24 @@
         z
         \end{pmatrix}  
         \]
-        If we were to represent these vectors as \( \langle\Psi_1| \Psi_2 \rangle \), you would get
-        \[
-        \langle\Psi_1| \Psi_2 \rangle = xa^* + yb^* + xc^* = 1
-        \]
-        Remember that \( |\Psi_1\rangle |\Psi_2\rangle \) are equal to 
+        So, if we want to find \( \langle\Psi_1| \Psi_2 \rangle \), remember that \( \langle\Psi_1| \) and \( |\Psi_2\rangle \) are equal to 
         \[
         \langle\Psi_1|= 
-        a 
+        a^* 
         \begin{pmatrix}
         1 &
         0 &
         0
         \end{pmatrix} 
         + 
-        b
+        b^*
         \begin{pmatrix}
         0 &
         1 &
         0
         \end{pmatrix}
         +
-        c
+        c^*
         \begin{pmatrix}
         0 &
         0 &
@@ -206,20 +202,24 @@
         0 \\
         0
         \end{pmatrix}  
-        y 
+        + y 
         \begin{pmatrix}
         0 \\
         1 \\
         0
         \end{pmatrix}
-        z 
+        + z 
         \begin{pmatrix}
         0 \\
         0 \\
         1
         \end{pmatrix}
+        \] <br><br>
+        If we were to represent these vectors as \( \langle\Psi_1| \Psi_2 \rangle \), you would get
+        \[
+        \langle\Psi_1| \Psi_2 \rangle = xa^* + yb^* + xc^* = 1
         \]
-        It is important to note that those values add up to a probability. So they all equal to 1. <br><br>
+        It is important to note that those values add up to a probability. So, their sum is always equal to 1. <br><br>
         Before we continue, lets take a look at some common examples of dirac notation you'll see frequently<br><br>
         \( 
         \ket{0} =          
@@ -283,11 +283,6 @@
         +
         b \ket{1}
         \]
-        Finally, lets look at what happens when we multiply a Ket by a Bra. 
-        \[
-        |\Psi_1 {\Large \times} \Psi_2| = xa^* + yb^* + xc^* = 1
-        
-        \]
         </span>
         <span id="quantum-computation">
         <h3>Quantum Computation</h3>
@@ -297,20 +292,38 @@
         </span>
         <span id="bits-and-qubits">
         <h3>Bits and Qubits</h3>
-        As we've covered, bits are a binary representation of data, you have the options 0 and 1.
-        
+        As we've covered, bits are a binary representation of data, you have the options 0 and 1. <br><br>
+        Qubits are one in the same regrading binary. They too have the states 0 and 1, however, they also have a superposition state.
         </span>
         <span id="superposition">
         <h3>Superposition</h3>
+        Superposition is the backbone of every quantum algorithm. <br><br>
+        This a term that describes how a system can be in a state of all of it's possible outcomes. <br><br>
+        Looking at the superposition of a qubit, most likely you've seen
+        \[
+        \frac{1}{\sqrt{2}} \ket{0} +
+        \frac{1}{\sqrt{2}} \ket{1} 
+        \]
+        This for example, states that our bit is in a superposition state where it is a 50/50 chance it will be measured as a 0 or 1. <br><br>
+        It is important to note that whatever system is in a superposition state, that state is lost upon measurement. To which you obtain either 0 or 1 at the given probabilities of the kets.
         </span>
         <span id="entanglement">
         <h3>Entanglement</h3>
+        It is easiest to understand entanglement by a quick example. <br><br>
+        This explanation is derived from <a href="https://www.youtube.com/watch?v=rqmIVeheTVU">this</a> video <br><br>
+        If you were to give two people coins and have them flip them, they would have no connection, person A flipping heads would have no effect on person B flipping tails.
+        However, if you were to entangle these coins, person A flipping heads would let you know person B flipped tails <b>immediately</b>. <br><br>
+        The important part here is that it would happen immediately. Even if they were on other sides of the universe, they would know instantly. <br><br>
+        Although I pride myself on making sure everything on this website is mine, whether that be an interpretation, or an asset. Another amazing resource on entanglement is from my favorite theoretical physicist, Sabine Hossenfelder, who has an amazing video on this topic. <br><br>
+        Check out her explanation <a href="https://www.youtube.com/watch?v=j6Mw3_tOcNI&list=PLwgQsqtH9H5djIfFhXE6We207beTgUnyL&index=10">here</a> (skip to 3:30)
         </span>
         <span id="quantum-logic-gates">
         <h3>Quantum Gates</h3>
+
         </span>
         <span id="quantum-circuit-basics">
         <h3>Quantum Circuits</h3>
+        
         </span>
         </body>
 </html>
