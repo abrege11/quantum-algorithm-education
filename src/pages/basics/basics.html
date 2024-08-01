@@ -14,7 +14,7 @@
         <a href="javascript:history.back()"><h2>Basics</h2></a>
         <p>Don't know a thing about quantum computing? No worries. Follow the roadmap below to prepare yourself for the quantum algorithms ahead.</p>
         <h3>Roadmap</h3>
-        <p>Before proceeding, remember that all of the material covered below is specific to the algorithms covered to allow you to quickly grasp these complex topics. To obtain a deeper understanding of these topics, it is heavily recommended to study from accredited material.</p>
+        <p>Before proceeding, due to the fact that I'm a 19 year old who is learning myself and contributes to this website on my downtime at my warehouse job, all of the material covered below is specific to the algorithms covered to allow you to quickly grasp these complex topics. To obtain a deeper understanding of these topics, it is heavily recommended to study from accredited material.</p>
         <p>If you're familiar with a topic, skip to your level of understanding</p>
         <p>
         <a href="#classical-computation">Classical Computation</a>
@@ -39,7 +39,7 @@
         \( \rightarrow \)
         <a href="#quantum-circuit-basics">Quantum Circuits</a>
         </p>
-        <span id="classical-computation"><br>
+        <span id="classical-computation">
         <h3>Classical Computation</h3>
         <p>
         Classical computing is a very broad topic with countless branches and subsets of the practice. We'll focus on the basics and move on. <br><br>
@@ -317,13 +317,50 @@
         Although I pride myself on making sure everything on this website is mine, whether that be an interpretation, or an asset. Another amazing resource on entanglement is from my favorite theoretical physicist, Sabine Hossenfelder, who has an amazing video on this topic. <br><br>
         Check out her explanation <a href="https://www.youtube.com/watch?v=j6Mw3_tOcNI&list=PLwgQsqtH9H5djIfFhXE6We207beTgUnyL&index=10">here</a> (skip to 3:30)
         </span>
-        <span id="quantum-logic-gates">
-        <h3>Quantum Gates</h3>
-        
-        </span>
         <span id="quantum-circuit-basics">
-        <h3>Quantum Circuits</h3>
-
+        <h3>Quantum Circuits and Gates</h3>
+        To understand quantum circuits and gates, we can look at the <a href="../fourier/deutschs.html#deutsch-jozsa">Deutsch-Jozsa</a> circuit diagram and dissect it. <br>
+        <img src="../../../assets/deutsch-jozsa.png"><br>
+        Let's look at each component of this diagram.
+        <p>
+            <table>
+                <tr>
+                <th>Name</th>
+                <th>Item</th>
+                <th>Description</th>
+                </tr>
+                <tr>
+                <td>Hadamarad Gate</td>
+                <td><img src="../../../assets/hadamarad-isolate.png"></td>
+                <td>Puts a qubit into a superposition state</td>
+                </tr>
+                <tr>
+                <td>Hadamarad Gate of \( N \) amounts</td>
+                <td><img src="../../../assets/hadamarad-n-isolate.png"></td>
+                <td>Puts n amounts of qubits into superposition states</td>
+                </tr>
+                <tr>
+                <td>Line (Qubit)</td>
+                <td><img src="../../../assets/line-qubit.png"></td>
+                <td>The qubit that we perform an operation on</td>
+                </tr>
+                <tr>
+                <td>Line of N amounts (Qubits)</td>
+                <td><img src="../../../assets/line-n-qubit.png"></td>
+                <td>The qubits that we perform operations on</td>
+                </tr>
+                <tr>
+                <td>Measurement</td>
+                <td><img src="../../../assets/measurement.png"></td>
+                <td>Making our qubit converge to 0 or 1 to give our final output value</td>
+                </tr>
+                <tr>
+                <td>Quantum Oracle</td>
+                <td><img src="../../../assets/quantum-oracle-usubf.png"></td>
+                <td>Find more information on this topic <a href="../other-qunatum/quantum-circuits/quantum-oracle.html"> here</a></td>
+                </tr>
+              </table>
+            </p>
         </span>
         </body>
 </html>
