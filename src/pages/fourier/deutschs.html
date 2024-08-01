@@ -16,7 +16,7 @@
         <a href="../index.html"><h2>Deutsch's algorithm</h2></a>
         </span>
         [<a href="#deutsch-jozsa">skip to deutsch-jozsa</a>]
-        <p>Deutsch's algorithm is a function \( f(x) \) that takes in either 0 or 1, and determines whether it is <a href="../basics/function-types.html#constant">constant</a> or <a href="../basics/function-types.html#balanced">balanced</a>.</p>
+        <p>Deutsch's algorithm is a function \( f(x) \) that takes in either 0 or 1, and determines whether it is <a href="../basics/basics.html#function-types">constant</a> or <a href="../basics/basics.html#function-types">balanced</a>.</p>
         <p>Formally, this is written as</p>
         \[ f :\{0,1\} \longrightarrow \{0,1\} \]
         <p>A constant function is a function that returns the same output no matter the input</p>
@@ -29,27 +29,27 @@
         <p>\( f(1) = 1 \quad \quad f(y) = y \)</p>
         <p>\( f(0) \ne f(1) \)</p>
         <br>
-        <p>Using any <a href="../basics/classical-computation.html#classical-algorithms">classical algorithm</a>, to know if \(f(x) = f(y)\), you need to evaluate the function \(f\) for \(x\) and \(y\).</p>
-        <p>Using Deutsch's <a href="../basics/quantum-computation.html#quantum-algorithms">quantum algorithm</a>, we only have to evaluate the function \(f\) once.</p>
+        <p>Using any <a href="../basics/basics.html#classical-computation">classical algorithm</a>, to know if \(f(x) = f(y)\), you need to evaluate the function \(f\) for \(x\) and \(y\).</p>
+        <p>Using Deutsch's <a href="../basics/basics.html#quantum-algorithms">quantum algorithm</a>, we only have to evaluate the function \(f\) once.</p>
         <br>
-        <p>Taking a look at Deutsch's <a href="../quantum-circuits/quantum-circuit-diagram.html">quantum circuit diagram</a>:</p>
+        <p>Taking a look at Deutsch's <a href="../basics/basics.html#quantum-circuit-basics">quantum circuit diagram</a>:</p>
         <br>
         <img src="../../../assets/deutsch.png">
         <p>
-        Deutsch's algorithm takes in two <a href="../notation/dirac-notation.html#bra-ket">kets \(|0\rangle\) and \(|1\rangle\)</a>. We'll use \( |\Psi_x\rangle \)
+        Deutsch's algorithm takes in two <a href="../basics/basics.html#notation">kets \(|0\rangle\) and \(|1\rangle\)</a>. We'll use \( |\Psi_x\rangle \)
         to take a look at the different states our kets are in throughout the algorithm.
         </p>
         <p>
-        \( |\Psi_1\rangle \): <br>&emsp; Our ket at this time is <a href="../notation/dirac-notation.html">\(|01\rangle\)<a></a>.
-        Both \(|0\rangle\) and \(|1\rangle\) are being sent into \(H\) (<a href="../quantum-circuits/quantum-gates.html#hadamarad">Hadamarad</a>) gates. Hadamarad
+        \( |\Psi_1\rangle \): <br>&emsp; Our ket at this time is <a href="../basics/basics.html#notation">\(|01\rangle\)<a></a>.
+        Both \(|0\rangle\) and \(|1\rangle\) are being sent into \(H\) (<a href="../basics/basics.html#quantum-circuit-basics">Hadamarad</a>) gates. Hadamarad
         gates put the given qubit into a superposition state.
         </p>
         <p>
-        \( |\Psi_2\rangle \): <br>&emsp; The <a href="../basics/superposition.html">superposition</a> state of \(|0\rangle\) is
+        \( |\Psi_2\rangle \): <br>&emsp; The <a href="../basics/basics.html#superposition">superposition</a> state of \(|0\rangle\) is
         \[ \frac{|\ket{0} + \ket{1}|}{\sqrt{2}} \]
         &emsp;and \(|1\rangle\) is 
         \[ \frac{|\ket{0} - \ket{1}|}{\sqrt{2}} \]
-        &emsp;Both of these states can be rewritten as <a href="../notation/dirac-notation.html#plus-minus-states">\(|+\rangle\) and \(|-\rangle\)</a>, respectively, which we can refer to as \(|+-\rangle\)<br>
+        &emsp;Both of these states can be rewritten as <a href="../basics/basics.html#notation">\(|+\rangle\) and \(|-\rangle\)</a>, respectively, which we can refer to as \(|+-\rangle\)<br>
         &emsp;We can then rewrite the \(|+\rangle\) as \[ \frac{\left( \ket{0} + \ket{1} \right)}{\sqrt{2}} \] &emsp; so, \(|+-\rangle\) is now represented as
         \[ \frac{\left( \ket{0} + \ket{1} \right) \ket{-}}{\sqrt{2}} \] &emsp; Furthermore, we can distribute \(|-\rangle\) into to \(|+\rangle\) obtain
         \[ \frac{\left( \ket{0} \ket{-} + \ket{1} \ket{-} \right)}{\sqrt{2}} \]
@@ -193,19 +193,19 @@
         and if \( \ket{1} \) is measured, the function is balanced, \( f(0) \ne f(1) \)
         </b>
         <br><br>
-        Deutsch's algorithm proves <a href="../misc/quantum-supremacy.html">quantum supremacy</a>.<br> 
-        It performs an operation that would take 2 measurments in <a href="../basics/classical-computation.html">classical computation</a>, and gets the same output with only 1 measurement using <a href="../basics/quantum-computation.html">quantum computation</a>.
+        Deutsch's algorithm proves <a href="../other-qunatum/misc/quantum-supremacy.html">quantum supremacy</a>.<br> 
+        It performs an operation that would take 2 measurments in <a href="../basics/basics.html#classical-computation">classical computation</a>, and gets the same output with only 1 measurement using <a href="../basics/quantum-computation.html">quantum computation</a>.
         </p><br><br><br><br>
         <span id="deutsch-jozsa">
         <a href="javascript:history.back()"><h2>Deutsch-Jozsa algorithm</h2></a>
         </span>
         <p>
         Deutsch-Jozsa's algorithm, similar to <a href="#deutsch">Deutsch's algorithm</a>, determines whether a function \( f \) is constant, or balanced. <br><br>
-        However, unlike Deutsch's algorithm, Deutsch Jozsa's algorithm can take in an amount \( n \) of <a href="../basics/basics.html">qubits</a>. Formally, this is represented as 
+        However, unlike Deutsch's algorithm, Deutsch Jozsa's algorithm can take in an amount \( n \) of <a href="../basics/basics.html#bits-and-qubits">qubits</a>. Formally, this is represented as 
         </p>
         \[ f :\{0,1\}^n \longrightarrow \{0,1\} \]
-        <p>Using any <a href="../basics/classical-computation.html#classical-algorithms">classical algorithm</a>, in the worst case scenario, you would have to evaluate the function \( 2^{n-1} + 1 \) times.</p>
-        <p>Using Deutsch-Jozsa's <a href="../basics/quantum-computation.html#quantum-algorithms">quantum algorithm</a>, we only have to evaluate the function \(f\) once.</p> 
+        <p>Using any <a href="../basics/basics.html#classical-computation">classical algorithm</a>, in the worst case scenario, you would have to evaluate the function \( 2^{n-1} + 1 \) times.</p>
+        <p>Using Deutsch-Jozsa's <a href=".../basics/basics.html#quantum-computation">quantum algorithm</a>, we only have to evaluate the function \(f\) once.</p> 
         <p><b>Why \( 2^{n-1} + 1 \) ?</b></p>
         <p>\( 2^{n-1} \) refers to half of n, as \( 2^5 = 32 \), \( 2^4 = 16 \), \( 2^3 = 8 \), and so on.</p>
         <p>The +1 can be explained by a short example</p>
@@ -214,14 +214,14 @@
         In the worst case, no matter if \( f \) is constant or balanced, the first \( 2^{n-1} \) (or \( 16 \) in this case) evaluations could be all \( \ket{0} \)'s or \( \ket{1} \)'s. Lets say we get all \( \ket{0} \)'s <br>&emsp;
         Thus, the \( +1 \) refers to the need for us to evaluate once more to see if we get another \( \ket{0} \), meaning\( f \) is constant, or \( \ket{1} \), meaning \( f \) is balanced.
         </p>
-        <p>Let's take a look at the <a href="../quantum-circuits/quantum-circuit-diagram.html">circuit diagram.</a></p>
+        <p>Let's take a look at the <a href="../basics/basics.html#quantum-circuit-basics">circuit diagram.</a></p>
         <img src="../../../assets/deutsch-jozsa.png">
         <p>
-        Notice, the <a href="../quantum-circuits/quantum-circuit-diagram.html#symbols">symbols</a>
+        Notice, the <a href="../basics/basics.html#quantum-circuit-basics">symbols</a>
         \[ \ket{0}^{\otimes n} \]
         \[ /^n \]
         \[ H^{\otimes n} \]
-        Referring to \( n \) amounts of \( \ket{0} \)'s, qubits (represented by lines), and <a href="../quantum-circuits/quantum-gates.html">\( H \) gates</a>, respectively.
+        Referring to \( n \) amounts of \( \ket{0} \)'s, qubits (represented by lines), and <a href="../basics/basics.html#quantum-circuit-basics">\( H \) gates</a>, respectively.
         </p>
         <p>
         \( |\Psi_1\rangle \): <br>&emsp;
@@ -229,7 +229,7 @@
         </p>
         <p>
         \( |\Psi_2\rangle \): <br>&emsp;
-        Our qubits are run through \( H \) gates which put them into a <a href="../basics/superposition.html">superposition</a> state<br>&emsp;
+        Our qubits are run through \( H \) gates which put them into a <a href="../basics/basics.html#superposition">superposition</a> state<br>&emsp;
         Our ket is now \( n \) amounts of \( \ket{+} \)'s and one \( \ket{-} \), which we can represent as 
         \[
         \ket{+}^{\otimes n} \ket{-}
@@ -255,7 +255,7 @@
         \frac{1}{\sqrt{2^3}} \Bigg( \ket{000} + \ket{001} + \ket{010} + \ket{011} + \ket{100} + \ket{101} + \ket{110} + \ket{111} \Bigg)
         \]&emsp;
         This can be represented as
-        <a href="../basics/mathematics.html">
+        <a href="../basics/basics.html#mathematics">
         \[
         \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} \ket{x}
         \] </a>&emsp;
@@ -276,7 +276,7 @@
         \[ 
         \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} \ket{x} \ket{-}
         \] &emsp;
-        is ran through our <a href="../quantum-circuits/quantum-oracle.html">quantum oracle \( U_f \)</a>
+        is ran through our <a href="../other-qunatum/quantum-circuits/quantum-oracle.html">quantum oracle \( U_f \)</a>
         \[ 
         \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} \ket{x} \ket{-} 
         \longrightarrow
@@ -415,7 +415,7 @@
         \[
         H^{\otimes n} \ket{x} = \frac{1}{\sqrt{2^n}} \sum_{z \in \{ 0,1 \}^n} (-1)^{x \cdot z} \ket{z}
         \] &emsp;
-        Notice that the \( x \cdot z \) in, \((-1)^{x \cdot z}\) is referring to being <a href="../basics/mathematics.html">dotted</a> with z.
+        Notice that the \( x \cdot z \) in, \((-1)^{x \cdot z}\) is referring to being <a href="../basics/basics.html#mathematics">dotted</a> with z.
         <br><br>&emsp;
         This 
         <br><br>&emsp;
@@ -471,7 +471,7 @@
         -1
         \] &emsp;
         <b>This causes our output to be \(-1\)</b> <br><br><br>&emsp;
-        This means that <b>when \( f \) is constant, the <a href="../basics/amplitude.html">amplitude</a> of our state \(\ket{0}^{\otimes n} \) is \( \pm 1 \) </b> <br><br><br>&emsp;
+        This means that <b>when \( f \) is constant, the <a href="../basics/basics.html#amplitude">amplitude</a> of our state \(\ket{0}^{\otimes n} \) is \( \pm 1 \) </b> <br><br><br>&emsp;
         If \( f \) is balanced, we see some similarities, currently we have,
         \[
         \sum_{x \in \{0,1\}^n} \frac{1}{2^n} (-1)^f(x)
