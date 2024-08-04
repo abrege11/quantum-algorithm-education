@@ -1,24 +1,4 @@
 
-
-// // Select the parent element by its ID
-// var parentElement = document.getElementById('xxxxx-open');
-
-// // Create a new div element
-// var newDiv = document.createElement('div');
-
-// // Set some properties on the new div
-// newDiv.innerHTML = 'This is a new div element';
-
-// var newNewDiv = document.createElement('div');
-
-// newNewDiv.innerHTML = 'This is a new div vvvelement';
-
-
-// newDiv.appendChild(newNewDiv);
-
-// // Append the new div to the parent element
-// parentElement.appendChild(newDiv);
-
 const classicalAlgorithmDiv = {
     fetchName: "classical-algorithm",
     displayTitle: "Classical Algorithms",
@@ -111,44 +91,8 @@ function populateDivs (buttonObjList) {
     })
 }
 
-
-
 populateDivs(buttonObjList);
 
-// const classicalAlgorithmOpenModal = document.getElementById('classical-algorithm-open');
-// const classicalAlgorithmCloseModal = document.getElementById('classical-algorithm-close');
-// const classicalAlgorithmModalContainer = document.getElementById('classical-algorithm-modal-container');
-
-// const quantumAlgorithmOpenModal = document.getElementById('quantum-algorithm-open');
-// const quantumAlgorithmCloseModal = document.getElementById('quantum-algorithm-close');
-// const quantumAlgorithmModalContainer = document.getElementById('quantum-algorithm-modal-container');
-
-// const quantumCircuitOpenModal = document.getElementById('quantum-circuit-open');
-// const quantumCircuitCloseModal = document.getElementById('quantum-circuit-close');
-// const quantumCircuitModalContainer = document.getElementById('quantum-circuit-modal-container');
-
-// const classicalAlgorithms = {
-//     openSelector: classicalAlgorithmOpenModal,
-//     closeSelector: classicalAlgorithmCloseModal,
-//     containerSelector: classicalAlgorithmModalContainer,
-// }
-
-// const quantumAlgorithms = {
-//     openSelector: quantumAlgorithmOpenModal,
-//     closeSelector: quantumAlgorithmCloseModal,
-//     containerSelector: quantumAlgorithmModalContainer,
-// }
-
-// const quantumCircuits = {
-//     openSelector: quantumCircuitOpenModal,
-//     closeSelector: quantumCircuitCloseModal,
-//     containerSelector: quantumCircuitModalContainer,
-// }
-// const objList = [classicalAlgorithms, quantumAlgorithms, quantumCircuits]
-
-
-
-// displayModals(objList);
 
 
 
