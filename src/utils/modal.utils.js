@@ -313,7 +313,7 @@ function addStyles (stylePrefix) {
         z-index: 1;
         opacity: 0;
         pointer-events: none;
-        transition: opacity 0.2s ease;
+        transition: opacity 0.1s ease;
     }
     
     .${stylePrefix}-style.show {
