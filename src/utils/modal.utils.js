@@ -2,11 +2,13 @@
 const classicalAlgorithmDiv = {
     fetchName: "classical-algorithm",
     displayTitle: "Classical Algorithms",
+    bodyContent: ""
 };
 
 const quantumAlgorithmDiv = {
     fetchName: "quantum-algorithm",
     displayTitle: "Quantum Algorithms",
+    bodyContent: ""
 };
 
 
@@ -66,7 +68,8 @@ function populateDivs (buttonObjList) {
 
         var innerDiv = document.createElement('div');
         innerDiv.setAttribute("class", modalStr);
-        innerDiv.innerHTML = buttonObj.displayTitle;
+        innerDiv.innerHTML = buttonObj.displayTitle + '<br><br>';
+
 
         var closeButton = document.createElement('button');
         closeButton.setAttribute("id", closeStr);
