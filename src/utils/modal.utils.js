@@ -295,7 +295,29 @@ const mathematicsDiv = {
     `+ `<br><br>`
 };
 
-const buttonObjList = [constantDiv, balancedDiv, classicalAlgorithmDiv, quantumAlgorithmDiv, quantumCircuitDiv, ketsDiv, multiKetDiv, hadamaradDiv, superpositionDiv, plusMinusKetDiv, quantumOracleDiv, phaseOracleDiv, quantumSupremacyDiv, classicalComputationDiv, quantumComputationDiv, qubitDiv, mathematicsDiv];
+const amplitudeDiv = {
+    fetchName: "amplitude",
+    bodyContent: 
+    String.raw`
+        <h3>Amplitude</h3>
+        A probability amplitude is a complex number, in this case lets use \( x \). To get the probability of this, we perform 
+        \[
+        p = |x|^2
+        \]
+        We now can look at a system with two steps, \( s_1 \) and \( s_2 \). To get \( x \) we take the product<br>
+        <img src="../../../assets/probability-steps.png">
+        \[
+        x = s_1 s_2
+        \]
+        Similarly, a system with two options, \( o_1 \) and \( o_2 \). To get \( x \) we add these amplitudes <br><br>
+        <img src="../../../assets/probability-options.png">
+        \[
+        x = o_1 + o_2
+        \]
+    `+ `<br><br>`
+};
+
+const buttonObjList = [constantDiv, balancedDiv, classicalAlgorithmDiv, quantumAlgorithmDiv, quantumCircuitDiv, ketsDiv, multiKetDiv, hadamaradDiv, superpositionDiv, plusMinusKetDiv, quantumOracleDiv, phaseOracleDiv, quantumSupremacyDiv, classicalComputationDiv, quantumComputationDiv, qubitDiv, mathematicsDiv, amplitudeDiv];
 
 function addStyles (stylePrefix) {
     var style = document.createElement('style');
