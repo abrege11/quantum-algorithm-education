@@ -5,4 +5,108 @@ a {
 mjx-container[jax="CHTML"][display="true"] {
     text-align: left !important;
     margin-left: 5vh !important;
+    z-index: 0;
   }
+
+button {
+    background: none;
+    color: blue;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+/* .classical-algorithm-style {
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.classical-algorithm-style.show {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.classical-algorithm-modal {
+    background-color: #fff;
+    padding: 5vh;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    width: 50vh;
+    max-width: 100%;
+    text-align: center;
+}
+
+.quantum-algorithm-style {
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.quantum-algorithm-style.show {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.quantum-algorithm-modal {
+    background-color: #fff;
+    padding: 5vh;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    width: 50vh;
+    max-width: 100%;
+    text-align: center;
+}
+
+.quantum-circuit-style {
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.quantum-circuit-style.show {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.quantum-circuit-modal {
+    background-color: #fff;
+    padding: 5vh;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    width: 50vh;
+    max-width: 100%;
+    text-align: center;
+} */
