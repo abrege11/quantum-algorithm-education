@@ -14,7 +14,7 @@
         <a href="../index.html"><h2>Deutsch's algorithm</h2></a>
         </span>
         [<a href="#deutsch-jozsa">skip to deutsch-jozsa</a>]
-        <p>Deutsch's algorithm is a function \( f(x) \) that takes in either 0 or 1, and determines whether it is <button id="xxxxx-open">constant</button> or <button id="xxxxx-open">balanced</button>.</p>
+        <p>Deutsch's algorithm is a function \( f(x) \) that takes in either 0 or 1, and determines whether it is <button id="constant-open">constant</button> or <button id="balanced-open">balanced</button>.</p>
         <p>Formally, this is written as</p>
         \[ f :\{0,1\} \longrightarrow \{0,1\} \]
         <p>A constant function is a function that returns the same output no matter the input</p>
@@ -40,28 +40,28 @@
         <br>
         <img src="../../../assets/deutsch.png">
         <p>
-        Deutsch's algorithm takes in two <button id="xxxxx-open">kets \(|0\rangle\) and \(|1\rangle\)</button>. We'll use \( |\Psi_x\rangle \)
+        Deutsch's algorithm takes in two <button id="kets-open">kets \(|0\rangle\) and \(|1\rangle\)</button>. We'll use \( |\Psi_x\rangle \)
         to take a look at the different states our kets are in throughout the algorithm.
         </p>
         <p>
-        \( |\Psi_1\rangle \): <br>&emsp; Our ket at this time is <button id="xxxxx-open">\(|01\rangle\)<a></a>.
-        Both \(|0\rangle\) and \(|1\rangle\) are being sent into \(H\) (<button id="xxxxx-open">Hadamarad</button>) gates. Hadamarad
+        \( |\Psi_1\rangle \): <br>&emsp; Our ket at this time is <button id="multi-ket-open">\(|01\rangle\)</button>.
+        Both \(|0\rangle\) and \(|1\rangle\) are being sent into \(H\) (<button id="hadamarad-open">Hadamarad</button>) gates. Hadamarad
         gates put the given qubit into a superposition state.
         </p>
         <p>
-        \( |\Psi_2\rangle \): <br>&emsp; The <button id="xxxxx-open">superposition</button> state of \(|0\rangle\) is
+        \( |\Psi_2\rangle \): <br>&emsp; The <button id="superposition-open">superposition</button> state of \(|0\rangle\) is
         \[ \frac{|\ket{0} + \ket{1}|}{\sqrt{2}} \]
         &emsp;and \(|1\rangle\) is 
         \[ \frac{|\ket{0} - \ket{1}|}{\sqrt{2}} \]
-        &emsp;Both of these states can be rewritten as <button id="xxxxx-open">\(|+\rangle\) and \(|-\rangle\)</button>, respectively, which we can refer to as \(|+-\rangle\)<br>
+        &emsp;Both of these states can be rewritten as <button id="plus-minus-ket-open">\(|+\rangle\) and \(|-\rangle\)</button>, respectively, which we can refer to as \(|+-\rangle\)<br>
         &emsp;We can then rewrite the \(|+\rangle\) as \[ \frac{\left( \ket{0} + \ket{1} \right)}{\sqrt{2}} \] &emsp; so, \(|+-\rangle\) is now represented as
         \[ \frac{\left( \ket{0} + \ket{1} \right) \ket{-}}{\sqrt{2}} \] &emsp; Furthermore, we can distribute \(|-\rangle\) into to \(|+\rangle\) obtain
         \[ \frac{\left( \ket{0} \ket{-} + \ket{1} \ket{-} \right)}{\sqrt{2}} \]
         </p>
         <p>
-        \( |\Psi_3\rangle \): <br>&emsp; We then apply our <button id="xxxxx-open">quantum oracle \( U_f \)</button> to get
+        \( |\Psi_3\rangle \): <br>&emsp; We then apply our <button id="quantum-oracle-open">quantum oracle \( U_f \)</button> to get
         \[ \frac{\left(U_f \ket{0} \ket{-} + U_f \ket{1} \ket{-} \right)}{\sqrt{2}}  \] &emsp;
-        These states are in <button id="xxxxx-open">phase oracle</button> form, so given
+        These states are in <button id="phase-oracle-open">phase oracle</button> form, so given
         \[ U_f \ket{x} \ket{-} = (-1)^{f(x)} \ket{x} \ket{-} \]&emsp;
         Where \( \ket{x} = \ket{0} \) or \( \ket{1} \), we get
         \[ \frac{(-1)^{f(0)} \ket{0} \ket{-} + (-1)^{f(1)} \ket{1} \ket{-}}{\sqrt{2}} \]&emsp;
@@ -197,19 +197,19 @@
         and if \( \ket{1} \) is measured, the function is balanced, \( f(0) \ne f(1) \)
         </b>
         <br><br>
-        Deutsch's algorithm proves <button id="xxxxx-open">quantum supremacy</button>.<br> 
-        It performs an operation that would take 2 measurments in <button id="xxxxx-open">classical computation</button>, and gets the same output with only 1 measurement using <button id="xxxxx-open">quantum computation</button>.
+        Deutsch's algorithm proves <button id="quantum-supremacy-open">quantum supremacy</button>.<br> 
+        It performs an operation that would take 2 measurments in <button id="classical-computation-open">classical computation</button>, and gets the same output with only 1 measurement using <button id="quantum-computation-open">quantum computation</button>.
         </p><br><br><br><br>
         <span id="deutsch-jozsa">
         <a href="javascript:history.back()"><h2>Deutsch-Jozsa algorithm</h2></a>
         </span>
         <p>
         Deutsch-Jozsa's algorithm, similar to <a href="#deutsch">Deutsch's algorithm</a>, determines whether a function \( f \) is constant, or balanced. <br><br>
-        However, unlike Deutsch's algorithm, Deutsch Jozsa's algorithm can take in an amount \( n \) of <button id="xxxxx-open">qubits</button>. Formally, this is represented as 
+        However, unlike Deutsch's algorithm, Deutsch Jozsa's algorithm can take in an amount \( n \) of <button id="qubits-open">qubits</button>. Formally, this is represented as 
         </p>
         \[ f :\{0,1\}^n \longrightarrow \{0,1\} \]
-        <p>Using any <button id="xxxxx-open">classical algorithm</button>, in the worst case scenario, you would have to evaluate the function \( 2^{n-1} + 1 \) times.</p>
-        <p>Using Deutsch-Jozsa's <button id="xxxxx-open">quantum algorithm</button>, we only have to evaluate the function \(f\) once.</p> 
+        <p>Using any <button id="classical-algorithm-open">classical algorithm</button>, in the worst case scenario, you would have to evaluate the function \( 2^{n-1} + 1 \) times.</p>
+        <p>Using Deutsch-Jozsa's <button id="quantum-algorithm-open">quantum algorithm</button>, we only have to evaluate the function \(f\) once.</p> 
         <p><b>Why \( 2^{n-1} + 1 \) ?</b></p>
         <p>\( 2^{n-1} \) refers to half of n, as \( 2^5 = 32 \), \( 2^4 = 16 \), \( 2^3 = 8 \), and so on.</p>
         <p>The +1 can be explained by a short example</p>
@@ -218,14 +218,14 @@
         In the worst case, no matter if \( f \) is constant or balanced, the first \( 2^{n-1} \) (or \( 16 \) in this case) evaluations could be all \( \ket{0} \)'s or \( \ket{1} \)'s. Lets say we get all \( \ket{0} \)'s <br>&emsp;
         Thus, the \( +1 \) refers to the need for us to evaluate once more to see if we get another \( \ket{0} \), meaning\( f \) is constant, or \( \ket{1} \), meaning \( f \) is balanced.
         </p>
-        <p>Let's take a look at the <button id="xxxxx-open">circuit diagram.</button></p>
+        <p>Let's take a look at the <button id="quantum-circuit-open">circuit diagram.</button></p>
         <img src="../../../assets/deutsch-jozsa.png">
         <p>
-        Notice, the <button id="xxxxx-open">symbols</button>
+        Notice, the <button id="quantum-circuit-open">symbols</button>
         \[ \ket{0}^{\otimes n} \]
         \[ /^n \]
         \[ H^{\otimes n} \]
-        Referring to \( n \) amounts of \( \ket{0} \)'s, qubits (represented by lines), and <button id="xxxxx-open">\( H \) gates</button>, respectively.
+        Referring to \( n \) amounts of \( \ket{0} \)'s, qubits (represented by lines), and <button id="hadamarad-open">\( H \) gates</button>, respectively.
         </p>
         <p>
         \( |\Psi_1\rangle \): <br>&emsp;
@@ -233,7 +233,7 @@
         </p>
         <p>
         \( |\Psi_2\rangle \): <br>&emsp;
-        Our qubits are run through \( H \) gates which put them into a <button id="xxxxx-open">superposition</button> state<br>&emsp;
+        Our qubits are run through \( H \) gates which put them into a <button id="superposition-open">superposition</button> state<br>&emsp;
         Our ket is now \( n \) amounts of \( \ket{+} \)'s and one \( \ket{-} \), which we can represent as 
         \[
         \ket{+}^{\otimes n} \ket{-}
@@ -280,7 +280,7 @@
         \[ 
         \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} \ket{x} \ket{-}
         \] &emsp;
-        is ran through our <button id="xxxxx-open">quantum oracle \( U_f \)</button>
+        is ran through our <button id="quantum-oracle-open">quantum oracle \( U_f \)</button>
         \[ 
         \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} \ket{x} \ket{-} 
         \longrightarrow
@@ -419,7 +419,7 @@
         \[
         H^{\otimes n} \ket{x} = \frac{1}{\sqrt{2^n}} \sum_{z \in \{ 0,1 \}^n} (-1)^{x \cdot z} \ket{z}
         \] &emsp;
-        Notice that the \( x \cdot z \) in, \((-1)^{x \cdot z}\) is referring to being <button id="xxxxx-open">dotted</button> with z.
+        Notice that the \( x \cdot z \) in, \((-1)^{x \cdot z}\) is referring to being <button id="mathematics-open">dotted</button> with z.
         <br><br>&emsp;
         This 
         <br><br>&emsp;
