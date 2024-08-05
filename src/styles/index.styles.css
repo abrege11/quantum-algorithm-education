@@ -10,3 +10,19 @@
 a {
     text-decoration: none;
 }
+
+mjx-container[jax="CHTML"][display="true"] {
+    text-align: left !important;
+    margin-left: 5vh !important;
+    z-index: 0;
+  }
+
+button {
+    background: none;
+    color: blue;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
