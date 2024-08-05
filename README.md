@@ -12,4 +12,6 @@ Not exactly intuitive...
 <br><br>
 So, now I have to now take a detour and re-learn that topic before proceeding with the material at hand, not ideal.
 <br><br>
-While I can't program a focused consciousness, I have made a point to take foreign concepts on any page, and link to other pages explaining those concepts, so you can get all the information in house for the topic provided. This means, while my linear algebra page may not cover every chapter I learned in class, it will cover the linear algebra needed for the quantum algorithms at a surface level. 
+While I can't program a focused consciousness, I have made a point to take foreign concepts on any page, and display a modal explaining those concepts, so you can get all the information for the topic provided, without leaving the page! 
+<br><br>
+It is also important to note that I am teaching you how to understand quantum algorithms, not the entirety of quantum science. This means, while my Classical Computation page may not cover everything from Alan Turing to LLM's, it will provide what you need to know to understand these quantum algorithms. 
