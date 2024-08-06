@@ -15,7 +15,6 @@ const constantDiv = {
     bodyContent: 
     String.raw`
         <h3>Constant Function</h3>
-        On this site, you will hear the term "constant" and "balanced" function.
         <p>A constant function is a function that returns the same output no matter the input</p>
         <p>\( f(0) = 0 \quad \quad f(x) = x \)</p>
         <p>\( f(1) = 0 \quad \quad f(y) = x \)</p>
@@ -43,31 +42,49 @@ const balancedDiv = {
     ` + `<br><br>`
 };
 
-// REDO
 const classicalAlgorithmDiv = {
     fetchName: "classical-algorithm",
     bodyContent: 
     String.raw`
-        <h3>Classical Computation</h3>
+        <h3>Classical Algorithms</h3>
         <p>
-        Classical computers use bits <br>
-        Bits are binary values <br>
-        Binary values are either 0 or 1 <br> <br>
-        These bits are run through logic gates to perform operations on them. These few elementary operations are the building blocks of all technology today. <br><br>
-        In all, this is a gross over-generalization of the practice. However, this is really all you need to know for our application.
+        Classical algorithms are commonly known as "algorithms". Since you're just now learning about quantum algorithms, any algorithm you currently know (except for deutsch's algorithm) is classical. <br><br> An algorithm is a set of instructions to solve a problem. Think bubble sort, quick sort, etc. 
+        </p>
+        <p>
+        The important distinction to make between quantum and classical algorithms is their complexities. Classical algorithms are sequential, they can only perform one operation at a time, one by one.
         </p>
     `+ `<br><br>`
 };
 
-//REDO 
 const quantumAlgorithmDiv = {
     fetchName: "quantum-algorithm",
     bodyContent: 
     String.raw`
-        <h3>Quantum Computation</h3>
-        Quantum computing spans much further than Computer Science. It largely based in physics and mathematics, which both utilize quantum mechanics. <br><br>
-        We are going to focus on quantum algorithms, we won't touch much on the physics side of quantum computation. But it is important to cover some fundamental components<br><br>
-        Below we can see some key concepts that are used in quantum computation that we will cover throughout our algorithms.
+        <h3>Quantum Algorithms</h3>
+        We will cover quantum algorithms, but Deutsch's algorithm is indeed a quantum one. All classical algorithms are quantum algorithms by nature, quantum algorithms just use the concepts of quantum mechanics and the third state of a qubit, the superposition state, to perform these algorithms incredibly fast. Exponentially faster than classical computers using classical algorithms could.
+    `+ `<br><br>`
+};
+
+const jozaClassicalAlgorithmDiv = {
+    fetchName: "jozsa-classical-algorithm",
+    bodyContent: 
+    String.raw`
+        <h3>Classical Algorithms</h3>
+        <p>
+        Classical algorithms are commonly known as "algorithms". Since you're just now learning about quantum algorithms, any algorithm you currently know (except for deutsch's algorithm) is classical. <br><br> An algorithm is a set of instructions to solve a problem. Think bubble sort, quick sort, etc. 
+        </p>
+        <p>
+        The important distinction to make between quantum and classical algorithms is their complexities. Classical algorithms are sequential, they can only perform one operation at a time, one by one.
+        </p>
+    `+ `<br><br>`
+};
+
+const jozsaQuantumAlgorithmDiv = {
+    fetchName: "jozsa-quantum-algorithm",
+    bodyContent: 
+    String.raw`
+        <h3>Quantum Algorithms</h3>
+        We will cover quantum algorithms, but Deutsch's algorithm is indeed a quantum one. All classical algorithms are quantum algorithms by nature, quantum algorithms just use the concepts of quantum mechanics and the third state of a qubit, the superposition state, to perform these algorithms incredibly fast. Exponentially faster than classical computers using classical algorithms could.
     `+ `<br><br>`
 };
 
@@ -75,10 +92,46 @@ const quantumCircuitDiv = {
     fetchName: "quantum-circuit",
     bodyContent: 
     String.raw`
-            <h3>Quantum Circuits and Gates</h3>
-        To understand quantum circuits and gates, we can look at the <a href="../fourier/deutschs.html#deutsch-jozsa">Deutsch-Jozsa</a> circuit diagram and dissect it. <br>
+        <h3>Quantum Circuits and Gates</h3>
+        <img src="../../../assets/deutsch.png"><br>
+        <p>
+            <table>
+                <tr>
+                <th>Name</th>
+                <th>Item</th>
+                <th>Description</th>
+                </tr>
+                <tr>
+                <td>Hadamarad Gate</td>
+                <td><img src="../../../assets/hadamarad-isolate.png"></td>
+                <td>Puts a qubit into a superposition state</td>
+                </tr>
+                <tr>
+                <td>Line (Qubit)</td>
+                <td><img src="../../../assets/line-qubit.png"></td>
+                <td>The qubit that we perform an operation on</td>
+                </tr>
+                <tr>
+                <td>Measurement</td>
+                <td><img src="../../../assets/measurement.png"></td>
+                <td>Making our qubit converge to 0 or 1 to give our final output value</td>
+                </tr>
+                <tr>
+                <td>Quantum Oracle</td>
+                <td><img src="../../../assets/quantum-oracle-usubf.png"></td>
+                <td>Find more information on this topic <a href="../other-qunatum/quantum-circuits/quantum-oracle.html"> here</a></td>
+                </tr>
+              </table>
+            </p>
+    `+ `<br><br>`
+};
+
+const jozsaQuantumCircuitDiv = {
+    fetchName: "jozsa-quantum-circuit",
+    bodyContent: 
+    String.raw`
+        <h3>Quantum Circuits and Gates</h3>
         <img src="../../../assets/deutsch-jozsa.png"><br>
-        Let's look at each component of this diagram.
         <p>
             <table>
                 <tr>
@@ -118,6 +171,52 @@ const quantumCircuitDiv = {
                 </tr>
               </table>
             </p>
+    `+ `<br><br>`
+};
+
+const jozsaSymbolsDiv = {
+    fetchName: "jozsa-symbols",
+    bodyContent: 
+    String.raw`
+        <h3>Symbols</h3>
+        <p>
+            <table>
+                <tr>
+                <th>Name</th>
+                <th>Item</th>
+                <th>Description</th>
+                </tr>
+                <tr>
+                <td>Hadamarad Gate of \( N \) amounts</td>
+                <td><img src="../../../assets/hadamarad-n-isolate.png"></td>
+                <td>Puts n amounts of qubits into superposition states</td>
+                </tr>
+                <tr>
+                <td>Line of N amounts (Qubits)</td>
+                <td><img src="../../../assets/line-n-qubit.png"></td>
+                <td>The qubits that we perform operations on</td>
+                </tr>
+                <tr>
+                <td>N amounts of \( \ket{0} \)</td>
+                <td><img src="../../../assets/ketzerocrossn.png"></td>
+                <td>Sends n amounts of \( \ket{0} \)'s into the circuit</td>
+                </tr>
+              </table>
+            </p>
+    `+ `<br><br>`
+};
+
+const jozsaHadamardDiv = {
+    fetchName: "jozsa-hadamarad",
+    bodyContent: 
+    String.raw`
+        <h3>Hadamarad Gate</h3>
+        <p>
+        The Hadamarad gate takes in a qubit, and returns the qubit in it's superposition state.
+        </p>
+        <p>
+        These are denoted by <br><img src="../../../assets/hadamarad-isolate.png">
+        </p>
     `+ `<br><br>`
 };
 
@@ -200,7 +299,24 @@ const superpositionDiv = {
         \frac{1}{\sqrt{2}} \ket{0} +
         \frac{1}{\sqrt{2}} \ket{1} 
         \]
-        This for example, states that our bit is in a superposition state where it is a 50/50 chance it will be measured as a 0 or 1. <br><br>
+        This for example, states that our bit is in a superposition state where it is a 50/50 (\( \frac{1}{\sqrt{2}}\) is half) chance it will be measured as a \( \ket{0} \) or \( \ket{1} \). <br><br>
+        It is important to note that whatever system is in a superposition state, that state is lost upon measurement. To which you obtain either 0 or 1 at the given probabilities of the kets.
+    `+ `<br><br>`
+};
+
+const jozsaSuperpositionDiv = {
+    fetchName: "jozsa-superposition",
+    bodyContent: 
+    String.raw`
+        <h3>Superposition</h3>
+        Superposition is the backbone of every quantum algorithm. <br><br>
+        This a term that describes how a system can be in a state of all of it's possible outcomes. <br><br>
+        Looking at the superposition of a qubit, most likely you've seen
+        \[
+        \frac{1}{\sqrt{2}} \ket{0} +
+        \frac{1}{\sqrt{2}} \ket{1} 
+        \]
+        This for example, states that our bit is in a superposition state where it is a 50/50 (\( \frac{1}{\sqrt{2}}\) is half) chance it will be measured as a \( \ket{0} \) or \( \ket{1} \). <br><br>
         It is important to note that whatever system is in a superposition state, that state is lost upon measurement. To which you obtain either 0 or 1 at the given probabilities of the kets.
     `+ `<br><br>`
 };
@@ -220,7 +336,7 @@ const plusMinusKetDiv = {
         \frac{|\ket{0} - \ket{1}|}{\sqrt{2}}
         \)
         <br><br>
-        These represent our superposition states of \( \ket{0} \) and \( \ket{1} \), we'll get to superposition later.<br><br>
+        These represent our superposition states of \( \ket{0} \) and \( \ket{1} \).<br><br>
     `+ `<br><br>`
 };
 
@@ -247,7 +363,12 @@ const quantumSupremacyDiv = {
     fetchName: "quantum-supremacy",
     bodyContent: 
     String.raw`
-
+        <h3>Quantum Supremacy</h3>
+        <p>
+        Deutsch-Jozsa's algorithm was the first to prove quantum supremacy, the idea that quantum computers can solve problems faster than classical algorithms. <br><br>
+        With quantum phenomena such as entanglement and superposition, quantum algorithms can solve a problem with just a singular operation. This same problem would take \( x \) queries on a classical computer. <br><br>
+        This concept is what we consider quantum supremacy, we now know that quantum computers can indeed perform operations at a rate not possible by any classical computer.
+        </p>
     `+ `<br><br>`
 };
 
@@ -261,7 +382,6 @@ const classicalComputationDiv = {
         Bits are binary values <br>
         Binary values are either 0 or 1 <br> <br>
         These bits are run through logic gates to perform operations on them. These few elementary operations are the building blocks of all technology today. <br><br>
-        In all, this is a gross over-generalization of the practice. However, this is really all you need to know for our application.
         </p>
     `+ `<br><br>`
 };
@@ -271,9 +391,8 @@ const quantumComputationDiv = {
     bodyContent: 
     String.raw`
         <h3>Quantum Computation</h3>
-        Quantum computing spans much further than Computer Science. It largely based in physics and mathematics, which both utilize quantum mechanics. <br><br>
-        We are going to focus on quantum algorithms, we won't touch much on the physics side of quantum computation. But it is important to cover some fundamental components<br><br>
-        Below we can see some key concepts that are used in quantum computation that we will cover throughout our algorithms.
+        Quantum computing uses qubits, qubits have the states 0, 1, and a superposition of 0 and 1. These qubits make up quantum gates, which make up quantum algorithms. <br><br>
+        This superposition state is what allows quantum computers to perform operations so much quicker than classical computers. 
     `+ `<br><br>`
 };
 
@@ -317,7 +436,7 @@ const amplitudeDiv = {
     `+ `<br><br>`
 };
 
-const buttonObjList = [constantDiv, balancedDiv, classicalAlgorithmDiv, quantumAlgorithmDiv, quantumCircuitDiv, ketsDiv, multiKetDiv, hadamaradDiv, superpositionDiv, plusMinusKetDiv, quantumOracleDiv, phaseOracleDiv, quantumSupremacyDiv, classicalComputationDiv, quantumComputationDiv, qubitDiv, mathematicsDiv, amplitudeDiv];
+const buttonObjList = [constantDiv, balancedDiv, classicalAlgorithmDiv, quantumAlgorithmDiv, quantumCircuitDiv, ketsDiv, multiKetDiv, hadamaradDiv, superpositionDiv, plusMinusKetDiv, quantumOracleDiv, phaseOracleDiv, quantumSupremacyDiv, classicalComputationDiv, quantumComputationDiv, qubitDiv, mathematicsDiv, amplitudeDiv, jozaClassicalAlgorithmDiv, jozsaQuantumAlgorithmDiv, jozsaQuantumCircuitDiv, jozsaSymbolsDiv, jozsaHadamardDiv, jozsaSuperpositionDiv];
 
 function addStyles (stylePrefix) {
     var style = document.createElement('style');

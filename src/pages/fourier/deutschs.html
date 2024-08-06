@@ -208,8 +208,8 @@
         However, unlike Deutsch's algorithm, Deutsch Jozsa's algorithm can take in an amount \( n \) of <button id="qubits-open">qubits</button>. Formally, this is represented as 
         </p>
         \[ f :\{0,1\}^n \longrightarrow \{0,1\} \]
-        <p>Using any <button id="classical-algorithm-open">classical algorithm</button>, in the worst case scenario, you would have to evaluate the function \( 2^{n-1} + 1 \) times.</p>
-        <p>Using Deutsch-Jozsa's <button id="quantum-algorithm-open">quantum algorithm</button>, we only have to evaluate the function \(f\) once.</p> 
+        <p>Using any <button id="jozsa-classical-algorithm-open">classical algorithm</button>, in the worst case scenario, you would have to evaluate the function \( 2^{n-1} + 1 \) times.</p>
+        <p>Using Deutsch-Jozsa's <button id="jozsa-quantum-algorithm-open">quantum algorithm</button>, we only have to evaluate the function \(f\) once.</p> 
         <p><b>Why \( 2^{n-1} + 1 \) ?</b></p>
         <p>\( 2^{n-1} \) refers to half of n, as \( 2^5 = 32 \), \( 2^4 = 16 \), \( 2^3 = 8 \), and so on.</p>
         <p>The +1 can be explained by a short example</p>
@@ -218,14 +218,14 @@
         In the worst case, no matter if \( f \) is constant or balanced, the first \( 2^{n-1} \) (or \( 16 \) in this case) evaluations could be all \( \ket{0} \)'s or \( \ket{1} \)'s. Lets say we get all \( \ket{0} \)'s <br>&emsp;
         Thus, the \( +1 \) refers to the need for us to evaluate once more to see if we get another \( \ket{0} \), meaning\( f \) is constant, or \( \ket{1} \), meaning \( f \) is balanced.
         </p>
-        <p>Let's take a look at the <button id="quantum-circuit-open">circuit diagram.</button></p>
+        <p>Let's take a look at the <button id="jozsa-quantum-circuit-open">circuit diagram.</button></p>
         <img src="../../../assets/deutsch-jozsa.png">
         <p>
-        Notice, the <button id="quantum-circuit-open">symbols</button>
+        Notice, the <button id="jozsa-symbols-open">symbols</button>
         \[ \ket{0}^{\otimes n} \]
         \[ /^n \]
         \[ H^{\otimes n} \]
-        Referring to \( n \) amounts of \( \ket{0} \)'s, qubits (represented by lines), and <button id="hadamarad-open">\( H \) gates</button>, respectively.
+        Referring to \( n \) amounts of \( \ket{0} \)'s, qubits (represented by lines), and <button id="jozsa-hadamarad-open">\( H \) gates</button>, respectively.
         </p>
         <p>
         \( |\Psi_1\rangle \): <br>&emsp;
@@ -233,7 +233,7 @@
         </p>
         <p>
         \( |\Psi_2\rangle \): <br>&emsp;
-        Our qubits are run through \( H \) gates which put them into a <button id="superposition-open">superposition</button> state<br>&emsp;
+        Our qubits are run through \( H \) gates which put them into a <button id="jozsa-superposition-open">superposition</button> state<br>&emsp;
         Our ket is now \( n \) amounts of \( \ket{+} \)'s and one \( \ket{-} \), which we can represent as 
         \[
         \ket{+}^{\otimes n} \ket{-}
