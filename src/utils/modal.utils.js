@@ -345,20 +345,54 @@ const quantumOracleDiv = {
     fetchName: "quantum-oracle",
     bodyContent: 
     String.raw`
-
+        <h3>Quantum Oracle</h3>
+        Similarly to how all classical algorithms are made up of boolean functions, quantum algorithms are made with matrix multiplications. So "oracles" are just small circuits that give us more power in our algorithms. <br><br>
+        These oracles are unitary and reversible, however, you don't really need to know the in's and out's of these oracles, they're black box, so just remember you put in bits, and they give you bits back.
+        \[
+        f \{0,1\}^n 
+        \longrightarrow
+        f \{0,1\}^m
+        \]
+        The oracle, which we will denote at \( U_f \) will act on \( \ket{x} \) and \( \ket{y} \) as follows
+        \[
+        U_f \ket{x} \ket{y} = \ket{x} \ket{y \oplus f(x)}
+        \]
     `+ `<br><br>`
 };
 
-//TODO
+const jozsaQuantumOracleDiv = {
+    fetchName: "jozsa-quantum-oracle",
+    bodyContent: 
+    String.raw`
+        <h3>Quantum Oracle</h3>
+        Similarly to how all classical algorithms are made up of boolean functions, quantum algorithms are made with matrix multiplications. So "oracles" are just small circuits that give us more power in our algorithms. <br><br>
+        These oracles are unitary and reversible, however, you don't really need to know the in's and out's of these oracles, they're black box, so just remember you put in bits, and they give you bits back.
+        \[
+        f \{0,1\}^n 
+        \longrightarrow
+        f \{0,1\}^m
+        \]
+        The oracle, which we will denote at \( U_f \) will act on \( \ket{x} \) and \( \ket{y} \) as follows
+        \[
+        U_f \ket{x} \ket{y} = \ket{x} \ket{y \oplus f(x)}
+        \]
+    `+ `<br><br>`
+};
+
 const phaseOracleDiv = {
     fetchName: "phase-oracle",
     bodyContent: 
     String.raw`
-
+        <h3>Phase Oracle</h3>
+        The phase oracle is the same concept as a quantum oracle, except we conditionally apply it whether \( x=1 \) or \( x=0 \) <br><br>
+        Formally, we represent this as 
+        \[
+        U_f \ket{+} = (-1)^{f(x)}\ket{+}
+        \]
+        We apply this state if x is 1, and vise versa.
     `+ `<br><br>`
 };
 
-//TODO 
 const quantumSupremacyDiv = {
     fetchName: "quantum-supremacy",
     bodyContent: 
@@ -436,7 +470,7 @@ const amplitudeDiv = {
     `+ `<br><br>`
 };
 
-const buttonObjList = [constantDiv, balancedDiv, classicalAlgorithmDiv, quantumAlgorithmDiv, quantumCircuitDiv, ketsDiv, multiKetDiv, hadamaradDiv, superpositionDiv, plusMinusKetDiv, quantumOracleDiv, phaseOracleDiv, quantumSupremacyDiv, classicalComputationDiv, quantumComputationDiv, qubitDiv, mathematicsDiv, amplitudeDiv, jozaClassicalAlgorithmDiv, jozsaQuantumAlgorithmDiv, jozsaQuantumCircuitDiv, jozsaSymbolsDiv, jozsaHadamardDiv, jozsaSuperpositionDiv];
+const buttonObjList = [constantDiv, balancedDiv, classicalAlgorithmDiv, quantumAlgorithmDiv, quantumCircuitDiv, ketsDiv, multiKetDiv, hadamaradDiv, superpositionDiv, plusMinusKetDiv, quantumOracleDiv, phaseOracleDiv, quantumSupremacyDiv, classicalComputationDiv, quantumComputationDiv, qubitDiv, mathematicsDiv, amplitudeDiv, jozaClassicalAlgorithmDiv, jozsaQuantumAlgorithmDiv, jozsaQuantumCircuitDiv, jozsaSymbolsDiv, jozsaHadamardDiv, jozsaSuperpositionDiv, jozsaQuantumOracleDiv];
 
 function addStyles (stylePrefix) {
     var style = document.createElement('style');
