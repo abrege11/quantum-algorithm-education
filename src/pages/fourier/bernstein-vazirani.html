@@ -10,8 +10,391 @@
         <link rel="stylesheet" href="../../styles/bernstein-vazirani.styles.css">
     </head>
     <body>
-        <a href="javascript:history.back()"><h2>Bernstein-Vazirani algorithm</h2></a>
+        <a href="javascript:history.back()"><h2>Bernstein Vazirani (Deutsch-Jozsa) algorithm</h2></a>
         [<a href="../index.html">\( \leftarrow \) back to home</a>]
+        [<a href="#bv-difference">skip to the BV difference</a>] <br><br>
+        Interestingly enough, there is no Bernstein-Vazirani algorithm. The Deutsch-Jozsa algorithm solves the Bernstein-Vazirani exactly how it is, the only differnce being when you stop the algorithm. <br><br>
+        Note that a recursive approach was created, however, we will simply see what the standard Deutsch-Jozsa approach looks like.  <br><br>
+        We will run through this algorithm step by step as usual, however, if you want to see what the Bernstein-Vazirani algorithm does differently, you can click the link above to skip to that section.
+        <br><br>
+        The Bernstein-Vazirani problem is simple, there is a hidden string of binary digits that is size \( n \), and you have to guess what that stream of digits is. <br><br>
+        With this algorithm we still see a stream of binary digits as input, represented as: 
+        \[
+        f :\{0,1\}^n \longrightarrow \{0,1\}
+        \]
+        Classically, we would solve this by passing in strings of all 0's with a singular 1 until our string emerges, below is a graphic displaying this method <br><br>
+        <img src="../../../assets/bernstein-vazirani-problem-graphic.png"> <br>
+        This solution is taking the bitwise inner product with modulo 2, don't act like you know what that means, let's break it down
+        \[
+        f(x) = s \cdot x \mod 2
+        \]
+        What does this mean? When \( n=4 \), a possible secret string \( s \) could be \( 1001 \), which means <br><br>
+        \( s_1 = 1\)<br>
+        \( s_2 = 0\)<br>
+        \( s_3 = 0\)<br>
+        \( s_4 = 1\)<br><br>
+        So, let's build our \( x \) query string and take the bitwise inner product with our \( s \) string <br><br>
+        As we did in the example, let's start with \( x = 0001 \), which means <br><br>
+        \( x_1 = 0\)<br>
+        \( x_2 = 0\)<br>
+        \( x_3 = 0\)<br>
+        \( x_4 = 1\)<br><br>
+        Now, we multiply each value and add them together,
+        \[
+        (x_1 \times s_1) + (x_2 \times s_2) + (x_3 \times s_3) + (x_4 \times s_4)
+        \longrightarrow
+        \]
+        \[
+        (1 \times 0) + (0 \times 0) + (0 \times 0) + (1 \times 1)
+        \longrightarrow
+        \]
+        \[
+        0 + 0 + 0 + 1
+        \longrightarrow
+        \]
+        \[
+        1
+        \]
+        Now, we still have to fulfill the \( \mod 2\) portion of the function
+        \[
+        \mod 2 (1) = 1
+        \]
+        And just like that, we know the 0001 value of our string, which is 1. <br><br>
+        Now let's find the 0010 value. 
+        \[
+        (x_1 \times s_1) + (x_2 \times s_2) + (x_3 \times s_3) + (x_4 \times s_4)
+        \longrightarrow
+        \]
+        \[
+        (1 \times 0) + (0 \times 0) + (0 \times 1) + (1 \times 0)
+        \longrightarrow
+        \]
+        \[
+        0 + 0 + 0 + 0
+        \longrightarrow
+        \]
+        \[
+        0
+        \]
+        and of course, \(\mod 2 (0) = 0\), so the 0010 position of our string is 0. 
+        Now our string sits at \( 01 \). <br><br>Let's continue and find our last two spots.
+        \[
+        (x_1 \times s_1) + (x_2 \times s_2) + (x_3 \times s_3) + (x_4 \times s_4)
+        \longrightarrow
+        \]
+        \[
+        (1 \times 0) + (0 \times 1) + (0 \times 0) + (1 \times 0)
+        \longrightarrow
+        \]
+        \[
+        0 + 0 + 0 + 0
+        \longrightarrow
+        \]
+        \[
+        \mod 2 (0) = 0
+        \]
+        which gives us 001 and
+        \[
+        (x_1 \times s_1) + (x_2 \times s_2) + (x_3 \times s_3) + (x_4 \times s_4)
+        \longrightarrow
+        \]
+        \[
+        (1 \times 1) + (0 \times 0) + (0 \times 1) + (1 \times 0)
+        \longrightarrow
+        \]
+        \[
+        1 + 0 + 0 + 0
+        \longrightarrow
+        \]
+        \[
+        \mod 2(1) = 1
+        \]
+        Which finally leaves our output string at 1001. <br><br>
+        This method works, but it's slow, and we now know that quantum algorithms are superior, so we can leave this algorithm in the dust, and complete the problem in just a singular query.
+        <p>Let's take a look at the <button id="jozsa-quantum-circuit-open">circuit diagram.</button></p>
         <img src="../../../assets/deutsch-jozsa.png">
+        <p>
+        Notice, the <button id="jozsa-symbols-open">symbols</button>
+        \[ \ket{0}^{\otimes n} \]
+        \[ /^n \]
+        \[ H^{\otimes n} \]
+        Referring to \( n \) amounts of \( \ket{0} \)'s, qubits (represented by lines), and <button id="jozsa-hadamarad-open">\( H \) gates</button>, respectively.
+        </p>
+        <p>
+        \( |\Psi_1\rangle \): <br>&emsp;
+        Our ket at this time is \( n \) amounts of \( \ket{0} \)'s and one \( \ket{1} \), which we can represent as \( \ket{0}^{\otimes n} \ket{1} \)
+        </p>
+        <p>
+        \( |\Psi_2\rangle \): <br>&emsp;
+        Our qubits are run through \( H \) gates which put them into a <button id="jozsa-superposition-open">superposition</button> state<br>&emsp;
+        Our ket is now \( n \) amounts of \( \ket{+} \)'s and one \( \ket{-} \), which we can represent as 
+        \[
+        \ket{+}^{\otimes n} \ket{-}
+        \]&emsp;
+        Let's focus on our state \( \ket{+}^{\otimes n} \), we can redefine this as 
+        \[  
+        \ket{+}^{\otimes n}
+        \longrightarrow
+        \left( \frac{ \ket{0} + \ket{1} }{\sqrt{2}} \right)^{\otimes n}
+        \longrightarrow
+        \frac{1}{\sqrt{2}} \Bigg(\ket{0} + \ket{1}\Bigg) ^{\otimes n}
+        \] &emsp;
+        Lets say that \( n=2 \), in this case, we can expand this state,
+        \[
+        \frac{1}{\sqrt{2}} \Bigg(\ket{0} + \ket{1}\Bigg) \frac{1}{\sqrt{2}} \Bigg(\ket{0} + \ket{1}\Bigg)
+        \longrightarrow
+        \frac{1}{\sqrt{2^2}} \Bigg( \ket{00} + \ket{01} + \ket{10} + \ket{11} \Bigg)
+        \] &emsp;
+        Similarly, lets say \( n=3 \)
+        \[
+        \frac{1}{\sqrt{2}} \Bigg(\ket{0} + \ket{1}\Bigg) \frac{1}{\sqrt{2}} \Bigg(\ket{0} + \ket{1}\Bigg)\frac{1}{\sqrt{2}} \Bigg(\ket{0} + \ket{1}\Bigg)
+        \longrightarrow
+        \frac{1}{\sqrt{2^3}} \Bigg( \ket{000} + \ket{001} + \ket{010} + \ket{011} + \ket{100} + \ket{101} + \ket{110} + \ket{111} \Bigg)
+        \]&emsp;
+        This can be represented as
+        <button id="xxxxx-open">
+        \[
+        \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} \ket{x}
+        \] </button><br>&emsp;
+        Now, looking back at our full state 
+        \[
+        \ket{+}^{\otimes n} \ket{-}  
+        \]&emsp;
+        We can represent this as
+        \[ 
+        \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} \ket{x} \ket{-}
+        \] &emsp;
+        </p>
+        <p>
+        \( |\Psi_3\rangle \): <br> &emsp;
+        Looking back at our diagram, <br>
+        <img src="../../../assets/deutsch-jozsa.png"><br>&emsp;
+        our state
+        \[ 
+        \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} \ket{x} \ket{-}
+        \] &emsp;
+        is ran through our <button id="jozsa-quantum-oracle-open">quantum oracle \( U_f \)</button>
+        \[ 
+        \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} \ket{x} \ket{-} 
+        \longrightarrow
+        U_f\frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} \ket{x} \ket{-}
+        \longrightarrow
+        \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} U_f \ket{x} \ket{-}   
+        \] &emsp;
+        Recall
+        \[ U_f \ket{x} \ket{-} = (-1)^{f(x)} \ket{x} \ket{-} \]&emsp;
+        So,
+        \[
+        \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} U_f \ket{x} \ket{-}
+        \longrightarrow
+        \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} (-1)^{f(x)} \ket{x} \ket{-}
+        \] &emsp;
+        Again, we can factor \( \ket{-} \) out.
+        </p>
+        <p>
+        \( |\Psi_4\rangle \): <br>&emsp;
+        We now run each of our \( \ket{+} \)'s through \( H \) gates
+        \[
+        \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} (-1)^{f(x)} \ket{x}
+        \longrightarrow
+        \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} (-1)^{f(x)} H^{\otimes n} \ket{x}
+        \] &emsp;
+        Now we can look back at our Hadamarad transform for \( \ket{+}^{\otimes n}  \) and apply \( (-1)^{f(x)} \)
+        \[
+        \ket{+}^{\otimes n} 
+        \longrightarrow
+        (-1)^{f(x)}\ket{+}^{\otimes n}
+        \] &emsp;
+        Recall,
+        \[
+        \ket{+}
+        \longrightarrow
+        \frac{1}{\sqrt{2}} \Bigg(\ket{0} + \ket{1}\Bigg)
+        \]&emsp;
+        So \[ (-1)^{f(x)}\ket{+}^{\otimes n} \]&emsp; can be represented by
+        \[
+        (-1)^{f(x)} \left( \frac{1}{\sqrt{2}} \Bigg(\ket{0} + \ket{1}\Bigg) \right)
+        \]&emsp;
+        Which we can rewrite as
+        \[
+        H\ket{x_n} = \frac{1}{\sqrt{2}} \Bigg(\ket{0} + (-1)^{x_n}\ket{1}\Bigg)
+        \]&emsp;
+        This leaves us with two options <br><br>&emsp;
+        \( x=0 \)
+        \[
+        H\ket{0} = \frac{1}{\sqrt{2}} \Bigg(\ket{0} + (-1)^0\ket{1}\Bigg)
+        \] &emsp;
+        Which gives us the \( \ket{+} \), or
+        \[
+        \left( \frac{ \ket{0} + \ket{1} }{\sqrt{2}} \right)
+        \]
+        </p>
+        &emsp; and
+        <br><br>&emsp;
+        \( x=1 \)
+        \[
+        H\ket{1} = \frac{1}{\sqrt{2}} \Bigg(\ket{0} + (-1)^1\ket{1}\Bigg)
+        \] &emsp;
+        Which gives us the \( \ket{-} \), or
+        \[
+        \left( \frac{ \ket{0} - \ket{1} }{\sqrt{2}} \right)
+        \] &emsp;
+        Remembering when \( n=3 \), we can rewrite this state as
+        \[
+        \frac{1}{\sqrt{2}} \Bigg(\ket{0} + \ket{1}\Bigg)
+        \frac{1}{\sqrt{2}} \Bigg(\ket{0} + \ket{1}\Bigg)
+        \frac{1}{\sqrt{2}} \Bigg(\ket{0} + \ket{1}\Bigg)
+        \]
+        \[
+        \longrightarrow
+        \frac{1}{\sqrt{2}} \Bigg(\ket{0} + (-1)^{x_0}\ket{1}\Bigg)
+        \frac{1}{\sqrt{2}} \Bigg(\ket{0} + (-1)^{x_1}\ket{1}\Bigg)
+        \frac{1}{\sqrt{2}} \Bigg(\ket{0} + (-1)^{x_2}\ket{1}\Bigg)
+        \]&emsp;
+        so,
+        \[
+        \frac{1}{\sqrt{2^3}} \Bigg( \ket{000} + \ket{001} + \ket{010} + \ket{011} 
+        + \ket{100} + \ket{101} + \ket{110} + \ket{111} \Bigg)
+        \]
+        \[
+        \longrightarrow
+        \frac{1}{\sqrt{2^3}} \Bigg( \ket{000} + (-1)^{x_2}\ket{001} + (-1)^{x_1}\ket{010} + (-1)^{x_1 + x_2}\ket{011} \; + 
+        \]
+        \[
+        (-1)^{x_0}\ket{100} + (-1)^{x_0+x_2}\ket{101} + (-1)^{x_0+x_1}\ket{110} + (-1)^{x_0+x_1+x_2}\ket{111} \Bigg)
+        \]&emsp;
+        A lot at first glance, but notice 
+        \[
+        \ket{001}
+        \longrightarrow
+        \]
+        \[
+        \frac{1}{\sqrt{2}} \Bigg(\ket{0} + (-1)^{x_0(0)}\ket{1}\Bigg)
+        \frac{1}{\sqrt{2}} \Bigg(\ket{0} + (-1)^{x_1(0)}\ket{1}\Bigg)
+        \frac{1}{\sqrt{2}} \Bigg(\ket{0} + (-1)^{x_2(1)}\ket{1}\Bigg)
+        \longrightarrow
+        \]
+        \[
+        \frac{1}{\sqrt{2}} \Bigg(\ket{0} + (-1)^{x_2}\ket{1}\Bigg)
+        \longrightarrow
+        \]
+        \[
+        (-1)^{x_2} 
+        \longrightarrow
+        \]
+        \[
+        (-1)^{x_2} \ket{001}
+        \] &emsp;
+        Similarly,
+        \[
+        \ket{011}
+        \longrightarrow
+        \]
+        \[
+        \frac{1}{\sqrt{2}} \Bigg(\ket{0} + (-1)^{x_0(0)}\ket{1}\Bigg)
+        \frac{1}{\sqrt{2}} \Bigg(\ket{0} + (-1)^{x_1(1)}\ket{1}\Bigg)
+        \frac{1}{\sqrt{2}} \Bigg(\ket{0} + (-1)^{x_2(1)}\ket{1}\Bigg)
+        \longrightarrow
+        \]
+        \[
+        \frac{1}{\sqrt{2}} \Bigg(\ket{0} + (-1)^{x_1}\ket{1}\Bigg)
+        \frac{1}{\sqrt{2}} \Bigg(\ket{0} + (-1)^{x_2}\ket{1}\Bigg)
+        \longrightarrow
+        \]
+        \[
+        (-1)^{x_1 + x_2} 
+        \longrightarrow
+        \]
+        \[
+        (-1)^{x_1 + x_2} \ket{011}
+        \] &emsp;
+        Which we can express as
+        \[
+        H^{\otimes n} \ket{x} = \frac{1}{\sqrt{2^n}} \sum_{z \in \{ 0,1 \}^n} (-1)^{x \cdot z} \ket{z}
+        \] &emsp;
+        Notice that the \( x \cdot z \) in, \((-1)^{x \cdot z}\) is referring to being <button id="mathematics-open">dotted</button> with z.
+        <br><br>&emsp;
+        Now that we can define \( H^{\otimes n} \ket{x} \), looking back at the start of \( |\Psi_4\rangle \)
+        \[
+        \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} (-1)^{f(x)} H^{\otimes n} \ket{x}
+        \] &emsp;
+        We can replace \( H^{\otimes n} \ket{x} \) with our new definition
+        \[
+        \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} (-1)^{f(x)} 
+        \frac{1}{\sqrt{2^n}} \sum_{z \in \{0,1\}^n} (-1)^{x \cdot z} \ket{z}
+        \] &emsp;
+        This isn't in its most readable form, lets express this differently
+        \[
+        \sum_{x \in \{0,1\}^n} \sum_{z \in \{0,1\}^n} \frac{1}{2^n} (-1)^{f(x) + x \cdot z} \ket{z} 
+        \] &emsp;
+        </p>
+        &emsp;
+        <b>Now lets look at what out measurements will tell us.</b><br><br>&emsp;
+        When \( z = \ket{0}^{\otimes n} \), our state becomes
+        \[
+        \sum_{x \in \{0,1\}^n} \sum_{z \in \{0,1\}^n} \frac{1}{2^n} (-1)^{f(x) + x \cdot \ket{0}^{\otimes n}} \ket{z} 
+        \] &emsp;
+        Which simplifies to
+        \[
+        \sum_{x \in \{0,1\}^n} \frac{1}{2^n} (-1)^{f(x)}
+        \] &emsp;
+        Now, we have two options, <br><br>&emsp;
+        \( f(x) = 0 \) 
+        \[
+        \sum_{x \in \{0,1\}^n} \frac{1}{2^n} (-1)^0
+        \longrightarrow
+        \frac{1}{2^n} \sum_{x \in \{0,1\}^n} 1
+        \] &emsp;
+        In this case, notice that \(\sum_{x \in \{0,1\}^n} 1\) is equal \( (1 + 1 + 1..) \) \( n \) times. So it can be represented as \( 2^n \)<br><br>&emsp;
+        Now, lets rewrite our state with our new expression,
+        \[
+        \frac{1}{2^n} 2^n
+        \] &emsp;
+        <b>Which will become 1.</b><br><br>&emsp;
+        Similarly, when <br><br>&emsp;
+        \( f(x) = 1 \) <br><br>&emsp;
+        We see that the steps are repeated, except instead of our \( (-1) \) being raised to the \( 0 \) it's raised to the \( 1 \).
+        \[
+        \sum_{x \in \{0,1\}^n} \frac{1}{2^n} (-1)^1
+        \longrightarrow
+        \frac{1}{2^n} \sum_{x \in \{0,1\}^n} -1
+        \longrightarrow
+        \frac{1}{2^n} (-2^n)
+        \longrightarrow
+        -\frac{2^n}{2^n}
+        \longrightarrow
+        -1
+        \] &emsp;
+        <b>This causes our output to be \(-1\)</b> <br><br><br>&emsp;
+        This means that <b>when \( f \) is constant, the <button id="amplitude-open">amplitude</button> of our state \(\ket{0}^{\otimes n} \) is \( \pm 1 \) </b> <br><br><br>&emsp;
+        If \( f \) is balanced, we see some similarities, currently we have,
+        \[
+        \sum_{x \in \{0,1\}^n} \frac{1}{2^n} (-1)^f(x)
+        \] &emsp;
+        Recall, a balanced function is a function in which 0 appears as frequently as 1, 
+        \[
+        (-1)^0 + (-1)^1 + (-1)^0 + (-1)^1 + (-1)^0 + (-1)^1..
+        \longrightarrow
+
+        \]
+        \[
+        1 - 1 + 1 - 1 + 1 - 1.. = 0
+        \] &emsp;
+        As we see, an infinite string of alternating \( \pm 1 \)'s will always leave us with 0. <br><br>&emsp;
+        This will leave us with 
+        \[
+        \frac{1}{2^n} (0) = 0
+        \] &emsp;
+        This means that <b>when \( f \) is balanced, the amplitude of our state \(\ket{0}^{\otimes n} \) is \( 0 \) </b> <br><br><br>&emsp;
+        </p>
+        <p>
+        <b>What does this mean?</b><br><br>
+        If \( f \) is constant, our amplitude is \( \pm 1 \)<br>
+        If \( f \) is balanced, our amplitude is \( 0 \) <br><br>
+        
+        Amplitudes are probabilities, so this means we will only ever measure \( f \) as constant given the state \( \ket{0}^{\otimes n} \), and if we measure any other state, \( f \) will be balanced. <br><br>
+        In short, if we get a stream of all \( \ket{0} \)'s, we will always measure \( f \) to be constant 100% of the time. If we get even a singular \( \ket{1} \), \( f \) is balanced.
+        </p>
+        <script src="../../utils/modal.utils.js"></script>
     </body>
 </html>
