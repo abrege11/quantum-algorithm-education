@@ -328,73 +328,17 @@
         \sum_{x \in \{0,1\}^n} \sum_{z \in \{0,1\}^n} \frac{1}{2^n} (-1)^{f(x) + x \cdot z} \ket{z} 
         \] &emsp;
         </p>
+        <p>This is where the Bernstein-Vazirani problem differs from the Deutsch-Jozsa problem. See, we don't need to worry about the post processing of our data, we actually are targeting the string of bits.</p>
+        <p>&emsp;First, let's bring \( \ket{-} \) back into the equation</p>
+        \[
+        \sum_{x \in \{0,1\}^n} \sum_{z \in \{0,1\}^n} \frac{1}{2^n} (-1)^{f(x) + x \cdot z} \ket{z} 
+        \longrightarrow
+        \] 
+        \[
+        \sum_{x \in \{0,1\}^n} \sum_{z \in \{0,1\}^n} \frac{1}{2^n} (-1)^{f(x) + x \cdot z} \ket{z} \ket{-}
+        \] &emsp;
+        Now, we can go back to what \( f(x) \) promises us.
+        <span id="bv-difference"></span>
         &emsp;
-        <b>Now lets look at what out measurements will tell us.</b><br><br>&emsp;
-        When \( z = \ket{0}^{\otimes n} \), our state becomes
-        \[
-        \sum_{x \in \{0,1\}^n} \sum_{z \in \{0,1\}^n} \frac{1}{2^n} (-1)^{f(x) + x \cdot \ket{0}^{\otimes n}} \ket{z} 
-        \] &emsp;
-        Which simplifies to
-        \[
-        \sum_{x \in \{0,1\}^n} \frac{1}{2^n} (-1)^{f(x)}
-        \] &emsp;
-        Now, we have two options, <br><br>&emsp;
-        \( f(x) = 0 \) 
-        \[
-        \sum_{x \in \{0,1\}^n} \frac{1}{2^n} (-1)^0
-        \longrightarrow
-        \frac{1}{2^n} \sum_{x \in \{0,1\}^n} 1
-        \] &emsp;
-        In this case, notice that \(\sum_{x \in \{0,1\}^n} 1\) is equal \( (1 + 1 + 1..) \) \( n \) times. So it can be represented as \( 2^n \)<br><br>&emsp;
-        Now, lets rewrite our state with our new expression,
-        \[
-        \frac{1}{2^n} 2^n
-        \] &emsp;
-        <b>Which will become 1.</b><br><br>&emsp;
-        Similarly, when <br><br>&emsp;
-        \( f(x) = 1 \) <br><br>&emsp;
-        We see that the steps are repeated, except instead of our \( (-1) \) being raised to the \( 0 \) it's raised to the \( 1 \).
-        \[
-        \sum_{x \in \{0,1\}^n} \frac{1}{2^n} (-1)^1
-        \longrightarrow
-        \frac{1}{2^n} \sum_{x \in \{0,1\}^n} -1
-        \longrightarrow
-        \frac{1}{2^n} (-2^n)
-        \longrightarrow
-        -\frac{2^n}{2^n}
-        \longrightarrow
-        -1
-        \] &emsp;
-        <b>This causes our output to be \(-1\)</b> <br><br><br>&emsp;
-        This means that <b>when \( f \) is constant, the <button id="amplitude-open">amplitude</button> of our state \(\ket{0}^{\otimes n} \) is \( \pm 1 \) </b> <br><br><br>&emsp;
-        If \( f \) is balanced, we see some similarities, currently we have,
-        \[
-        \sum_{x \in \{0,1\}^n} \frac{1}{2^n} (-1)^f(x)
-        \] &emsp;
-        Recall, a balanced function is a function in which 0 appears as frequently as 1, 
-        \[
-        (-1)^0 + (-1)^1 + (-1)^0 + (-1)^1 + (-1)^0 + (-1)^1..
-        \longrightarrow
-
-        \]
-        \[
-        1 - 1 + 1 - 1 + 1 - 1.. = 0
-        \] &emsp;
-        As we see, an infinite string of alternating \( \pm 1 \)'s will always leave us with 0. <br><br>&emsp;
-        This will leave us with 
-        \[
-        \frac{1}{2^n} (0) = 0
-        \] &emsp;
-        This means that <b>when \( f \) is balanced, the amplitude of our state \(\ket{0}^{\otimes n} \) is \( 0 \) </b> <br><br><br>&emsp;
-        </p>
-        <p>
-        <b>What does this mean?</b><br><br>
-        If \( f \) is constant, our amplitude is \( \pm 1 \)<br>
-        If \( f \) is balanced, our amplitude is \( 0 \) <br><br>
-        
-        Amplitudes are probabilities, so this means we will only ever measure \( f \) as constant given the state \( \ket{0}^{\otimes n} \), and if we measure any other state, \( f \) will be balanced. <br><br>
-        In short, if we get a stream of all \( \ket{0} \)'s, we will always measure \( f \) to be constant 100% of the time. If we get even a singular \( \ket{1} \), \( f \) is balanced.
-        </p>
-        <script src="../../utils/modal.utils.js"></script>
     </body>
 </html>
