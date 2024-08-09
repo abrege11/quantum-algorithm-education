@@ -134,8 +134,91 @@
         <h3>Mathematics</h3>
         While the mathematics in quantum computation looks complicated, it's all quite elementary when you look closer. <br><br>
         <b>Linear algebra</b>
-
-        <b>Other concepts</b>
+        To gain the basic understanding of linear algebra enough to compute these algorithms, we will cover some basic matrix operations. <br><br>
+        We will introduce vectors, let's take a look at a vector \( x \) <br><br>
+        \[
+        x = 
+        \begin{pmatrix}
+        1 & 2 & 3
+        \end{pmatrix}  
+        \]
+        and a vector \( y \)
+        \[
+        y = 
+        \begin{pmatrix}
+        4 \\
+        5 \\
+        6
+        \end{pmatrix}  
+        \]
+        The vector \( x \) is what we refer to as a <b>row vector</b>, while \( y \) is a <b>column vector</b> <br><br>
+        Adding and subtracting two vectors looks as so,
+        \[
+        x = 
+        \begin{pmatrix}
+        x_1 & x_2 & x_3
+        \end{pmatrix}, \quad 
+        z = 
+        \begin{pmatrix}
+        z_1 & z_2 & z_3
+        \end{pmatrix}  
+        \]
+        \[
+        x+z =         
+        \begin{pmatrix}
+        x_1+z_1 & x_2+z_2 & x_3+z_3
+        \end{pmatrix} 
+        \]
+        Let's do an example,
+        \[
+        x = 
+        \begin{pmatrix}
+        1 & 2 & 3
+        \end{pmatrix}, \quad 
+        z = 
+        \begin{pmatrix}
+        6 & 7 & 8
+        \end{pmatrix}  
+        \]
+        \[
+        x+z =         
+        \begin{pmatrix}
+        1+6 & 2+7 & 3+8
+        \end{pmatrix} 
+        \longrightarrow
+        \begin{pmatrix}
+        7 & 9 & 11
+        \end{pmatrix} 
+        \]
+        Simple enough, and it is the same for column vectors,
+        \[
+        x = 
+        \begin{pmatrix}
+        x_1 \\
+        x_2 \\
+        x_3
+        \end{pmatrix}, \quad 
+        y = 
+        \begin{pmatrix}
+        y_1 \\
+        y_2 \\
+        y_3
+        \end{pmatrix}  
+        \]
+        \[
+        x+y=
+        \begin{pmatrix}
+        x_1 + y_1 \\
+        x_2 + y_2 \\
+        x_3 + y_3
+        \end{pmatrix} 
+        \]
+        And the same applies for subtraction, but instead you subtract.. <br><br>
+        Multiplication next, let's note a few things, <br><br>
+        &emsp; 1. Vectors have a dimension of a x b, where a is the height, and b is the width, looking at our original \( x \) and \( y \) vectors, <br><br>
+        &emsp; &emsp; We see that \( x \) is a 1x3 matrix, and \( y \) is a 3x1 as shown in red<br>
+        <img src="../../../assets/vector-size-isolate.png">
+        <br><br><b>Other concepts</b>
         </span>
         <span id="notation">
         <h3>Notation</h3>
