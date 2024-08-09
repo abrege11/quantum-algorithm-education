@@ -65,29 +65,6 @@ const quantumAlgorithmDiv = {
     `+ `<br><br>`
 };
 
-const jozaClassicalAlgorithmDiv = {
-    fetchName: "jozsa-classical-algorithm",
-    bodyContent: 
-    String.raw`
-        <h3>Classical Algorithms</h3>
-        <p>
-        Classical algorithms are commonly known as "algorithms". Since you're just now learning about quantum algorithms, any algorithm you currently know (except for deutsch's algorithm) is classical. <br><br> An algorithm is a set of instructions to solve a problem. Think bubble sort, quick sort, etc. 
-        </p>
-        <p>
-        The important distinction to make between quantum and classical algorithms is their complexities. Classical algorithms are sequential, they can only perform one operation at a time, one by one.
-        </p>
-    `+ `<br><br>`
-};
-
-const jozsaQuantumAlgorithmDiv = {
-    fetchName: "jozsa-quantum-algorithm",
-    bodyContent: 
-    String.raw`
-        <h3>Quantum Algorithms</h3>
-        We will cover quantum algorithms, but Deutsch's algorithm is indeed a quantum one. All classical algorithms are quantum algorithms by nature, quantum algorithms just use the concepts of quantum mechanics and the third state of a qubit, the superposition state, to perform these algorithms incredibly fast. Exponentially faster than classical computers using classical algorithms could.
-    `+ `<br><br>`
-};
-
 const quantumCircuitDiv = {
     fetchName: "quantum-circuit",
     bodyContent: 
@@ -123,100 +100,6 @@ const quantumCircuitDiv = {
                 </tr>
               </table>
             </p>
-    `+ `<br><br>`
-};
-
-const jozsaQuantumCircuitDiv = {
-    fetchName: "jozsa-quantum-circuit",
-    bodyContent: 
-    String.raw`
-        <h3>Quantum Circuits and Gates</h3>
-        <img src="../../../assets/deutsch-jozsa.png"><br>
-        <p>
-            <table>
-                <tr>
-                <th>Name</th>
-                <th>Item</th>
-                <th>Description</th>
-                </tr>
-                <tr>
-                <td>Hadamarad Gate</td>
-                <td><img src="../../../assets/hadamarad-isolate.png"></td>
-                <td>Puts a qubit into a superposition state</td>
-                </tr>
-                <tr>
-                <td>Hadamarad Gate of \( N \) amounts</td>
-                <td><img src="../../../assets/hadamarad-n-isolate.png"></td>
-                <td>Puts n amounts of qubits into superposition states</td>
-                </tr>
-                <tr>
-                <td>Line (Qubit)</td>
-                <td><img src="../../../assets/line-qubit.png"></td>
-                <td>The qubit that we perform an operation on</td>
-                </tr>
-                <tr>
-                <td>Line of N amounts (Qubits)</td>
-                <td><img src="../../../assets/line-n-qubit.png"></td>
-                <td>The qubits that we perform operations on</td>
-                </tr>
-                <tr>
-                <td>Measurement</td>
-                <td><img src="../../../assets/measurement.png"></td>
-                <td>Making our qubit converge to 0 or 1 to give our final output value</td>
-                </tr>
-                <tr>
-                <td>Quantum Oracle</td>
-                <td><img src="../../../assets/quantum-oracle-usubf.png"></td>
-                <td>Find more information on this topic <a href="../other-qunatum/quantum-circuits/quantum-oracle.html"> here</a></td>
-                </tr>
-              </table>
-            </p>
-    `+ `<br><br>`
-};
-
-const jozsaSymbolsDiv = {
-    fetchName: "jozsa-symbols",
-    bodyContent: 
-    String.raw`
-        <h3>Symbols</h3>
-        <p>
-            <table>
-                <tr>
-                <th>Name</th>
-                <th>Item</th>
-                <th>Description</th>
-                </tr>
-                <tr>
-                <td>Hadamarad Gate of \( N \) amounts</td>
-                <td><img src="../../../assets/hadamarad-n-isolate.png"></td>
-                <td>Puts n amounts of qubits into superposition states</td>
-                </tr>
-                <tr>
-                <td>Line of N amounts (Qubits)</td>
-                <td><img src="../../../assets/line-n-qubit.png"></td>
-                <td>The qubits that we perform operations on</td>
-                </tr>
-                <tr>
-                <td>N amounts of \( \ket{0} \)</td>
-                <td><img src="../../../assets/ketzerocrossn.png"></td>
-                <td>Sends n amounts of \( \ket{0} \)'s into the circuit</td>
-                </tr>
-              </table>
-            </p>
-    `+ `<br><br>`
-};
-
-const jozsaHadamardDiv = {
-    fetchName: "jozsa-hadamarad",
-    bodyContent: 
-    String.raw`
-        <h3>Hadamarad Gate</h3>
-        <p>
-        The Hadamarad gate takes in a qubit, and returns the qubit in it's superposition state.
-        </p>
-        <p>
-        These are denoted by <br><img src="../../../assets/hadamarad-isolate.png">
-        </p>
     `+ `<br><br>`
 };
 
@@ -304,23 +187,6 @@ const superpositionDiv = {
     `+ `<br><br>`
 };
 
-const jozsaSuperpositionDiv = {
-    fetchName: "jozsa-superposition",
-    bodyContent: 
-    String.raw`
-        <h3>Superposition</h3>
-        Superposition is the backbone of every quantum algorithm. <br><br>
-        This a term that describes how a system can be in a state of all of it's possible outcomes. <br><br>
-        Looking at the superposition of a qubit, most likely you've seen
-        \[
-        \frac{1}{\sqrt{2}} \ket{0} +
-        \frac{1}{\sqrt{2}} \ket{1} 
-        \]
-        This for example, states that our bit is in a superposition state where it is a 50/50 (\( \frac{1}{\sqrt{2}}\) is half) chance it will be measured as a \( \ket{0} \) or \( \ket{1} \). <br><br>
-        It is important to note that whatever system is in a superposition state, that state is lost upon measurement. To which you obtain either 0 or 1 at the given probabilities of the kets.
-    `+ `<br><br>`
-};
-
 const plusMinusKetDiv = {
     fetchName: "plus-minus-ket",
     bodyContent: 
@@ -360,25 +226,6 @@ const quantumOracleDiv = {
     `+ `<br><br>`
 };
 
-const jozsaQuantumOracleDiv = {
-    fetchName: "jozsa-quantum-oracle",
-    bodyContent: 
-    String.raw`
-        <h3>Quantum Oracle</h3>
-        Similarly to how all classical algorithms are made up of boolean functions, quantum algorithms are made with matrix multiplications. So "oracles" are just small circuits that give us more power in our algorithms. <br><br>
-        These oracles are unitary and reversible, however, you don't really need to know the in's and out's of these oracles, they're black box, so just remember you put in bits, and they give you bits back.
-        \[
-        f \{0,1\}^n 
-        \longrightarrow
-        f \{0,1\}^m
-        \]
-        The oracle, which we will denote at \( U_f \) will act on \( \ket{x} \) and \( \ket{y} \) as follows
-        \[
-        U_f \ket{x} \ket{y} = \ket{x} \ket{y \oplus f(x)}
-        \]
-    `+ `<br><br>`
-};
-
 const phaseOracleDiv = {
     fetchName: "phase-oracle",
     bodyContent: 
@@ -399,7 +246,7 @@ const quantumSupremacyDiv = {
     String.raw`
         <h3>Quantum Supremacy</h3>
         <p>
-        Deutsch-Jozsa's algorithm was the first to prove quantum supremacy, the idea that quantum computers can solve problems faster than classical algorithms. <br><br>
+        The Deutsch-Jozsa algorithm was the first to prove quantum supremacy, the idea that quantum computers can solve problems faster than classical algorithms. <br><br>
         With quantum phenomena such as entanglement and superposition, quantum algorithms can solve a problem with just a singular operation. This same problem would take \( x \) queries on a classical computer. <br><br>
         This concept is what we consider quantum supremacy, we now know that quantum computers can indeed perform operations at a rate not possible by any classical computer.
         </p>
@@ -430,47 +277,16 @@ const quantumComputationDiv = {
     `+ `<br><br>`
 };
 
-const qubitDiv = {
-    fetchName: "qubits",
-    bodyContent: 
-    String.raw`
-        <h3>Bits and Qubits</h3>
-        Qubits are one in the same regrading binary. They too have the states 0 and 1, however, they also have a third state named the superposition state.
-    `+ `<br><br>`
-};
-
 //TODO
-const mathematicsDiv = {
-    fetchName: "mathematics",
-    bodyContent: 
-    String.raw`
+// const mathematicsDiv = {
+//     fetchName: "mathematics",
+//     bodyContent: 
+//     String.raw`
 
-    `+ `<br><br>`
-};
+//     `+ `<br><br>`
+// };
 
-const amplitudeDiv = {
-    fetchName: "amplitude",
-    bodyContent: 
-    String.raw`
-        <h3>Amplitude</h3>
-        A probability amplitude is a complex number, in this case lets use \( x \). To get the probability of this, we perform 
-        \[
-        p = |x|^2
-        \]
-        We now can look at a system with two steps, \( s_1 \) and \( s_2 \). To get \( x \) we take the product<br>
-        <img src="../../../assets/probability-steps.png">
-        \[
-        x = s_1 s_2
-        \]
-        Similarly, a system with two options, \( o_1 \) and \( o_2 \). To get \( x \) we add these amplitudes <br><br>
-        <img src="../../../assets/probability-options.png">
-        \[
-        x = o_1 + o_2
-        \]
-    `+ `<br><br>`
-};
-
-const buttonObjList = [constantDiv, balancedDiv, classicalAlgorithmDiv, quantumAlgorithmDiv, quantumCircuitDiv, ketsDiv, multiKetDiv, hadamaradDiv, superpositionDiv, plusMinusKetDiv, quantumOracleDiv, phaseOracleDiv, quantumSupremacyDiv, classicalComputationDiv, quantumComputationDiv, qubitDiv, mathematicsDiv, amplitudeDiv, jozaClassicalAlgorithmDiv, jozsaQuantumAlgorithmDiv, jozsaQuantumCircuitDiv, jozsaSymbolsDiv, jozsaHadamardDiv, jozsaSuperpositionDiv, jozsaQuantumOracleDiv];
+const buttonObjList = [constantDiv, balancedDiv, classicalAlgorithmDiv, quantumAlgorithmDiv, quantumCircuitDiv, ketsDiv, multiKetDiv, hadamaradDiv, superpositionDiv, plusMinusKetDiv, quantumOracleDiv, phaseOracleDiv, quantumSupremacyDiv, classicalComputationDiv, quantumComputationDiv];
 
 function addStyles (stylePrefix) {
     var style = document.createElement('style');
