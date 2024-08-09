@@ -24,11 +24,12 @@
         \]
         Classically, we would solve this by passing in strings of all 0's with a singular 1 until our string emerges, below is a graphic displaying this method <br><br>
         <img src="../../../assets/bernstein-vazirani-problem-graphic.png"> <br>
-        This solution is taking the bitwise inner product with modulo 2, don't act like you know what that means, let's break it down
+        This is taking the bitwise inner product of the strings, which means we are promised
         \[
         f(x) = s \cdot x \mod 2
         \]
-        What does this mean? When \( n=4 \), a possible secret string \( s \) could be \( 1001 \), which means <br><br>
+        How does this help? Let's look at an example where \( n=4 \)<br><br>
+        \( s \) could be any binary string of length 4, we'll choose \( 1001 \), which means <br><br>
         \( s_1 = 1\)<br>
         \( s_2 = 0\)<br>
         \( s_3 = 0\)<br>
@@ -325,20 +326,43 @@
         \] &emsp;
         This isn't in its most readable form, lets express this differently
         \[
-        \sum_{x \in \{0,1\}^n} \sum_{z \in \{0,1\}^n} \frac{1}{2^n} (-1)^{f(x) + x \cdot z} \ket{z} 
+        \sum_{z \in \{0,1\}^n} \sum_{x \in \{0,1\}^n} \frac{1}{2^n} (-1)^{f(x) + x \cdot z} \ket{z} 
         \] &emsp;
         </p>
-        <p>This is where the Bernstein-Vazirani problem differs from the Deutsch-Jozsa problem. See, we don't need to worry about the post processing of our data, we actually are targeting the string of bits.</p>
-        <p>&emsp;First, let's bring \( \ket{-} \) back into the equation</p>
-        \[
-        \sum_{x \in \{0,1\}^n} \sum_{z \in \{0,1\}^n} \frac{1}{2^n} (-1)^{f(x) + x \cdot z} \ket{z} 
-        \longrightarrow
-        \] 
-        \[
-        \sum_{x \in \{0,1\}^n} \sum_{z \in \{0,1\}^n} \frac{1}{2^n} (-1)^{f(x) + x \cdot z} \ket{z} \ket{-}
-        \] &emsp;
-        Now, we can go back to what \( f(x) \) promises us.
         <span id="bv-difference"></span>
-        &emsp;
+        <h3>Bernstein-Vazirani difference</h3>
+        <p> &emsp;This is where the Bernstein-Vazirani problem differs from the Deutsch-Jozsa problem. See, we don't need to worry about the post processing of our data, we actually are targeting the string of bits.</p> &emsp;
+        Recall that we are promised
+        \[
+        f(x) = s \cdot x \mod2
+        \] &emsp;
+        So,
+        \[
+        \sum_{z \in \{0,1\}^n} \sum_{x \in \{0,1\}^n} \frac{1}{2^n} (-1)^{s \cdot x + z \cdot x} \ket{z}
+        \] &emsp;
+        Which is equal to 
+        \[
+        \sum_{z \in \{0,1\}^n} \sum_{x \in \{0,1\}^n} \frac{1}{2^n} (-1)^{(s \oplus z) \cdot x} \ket{z}
+        \]&emsp;
+        Which we can rewrite as 
+        \[
+        \frac{1}{2^n} \sum_{z \in \{0,1\}^n} \left( \sum_{x \in \{0,1\}^n}  (-1)^{(s \oplus z) \cdot x} \right)\ket{z}
+        \]&emsp;
+        Focusing on the summation inside of the parentheses, we wont worry about when \( s \ne z \), <b>since the terms end up canceling out and become 0.</b> <br><br>&emsp; 
+        However, when \( s = z \) 
+        \[
+        \sum_{x \in \{0,1\}^n}  (-1)^{(0 \oplus 0) \cdot x}
+        \]&emsp;
+        Which makes our exponent go to 0, and our summation goes to 1, which leaves us with
+        \[
+        \frac{1}{2^n} \sum_{z \in \{0,1\}^n} \left( 1 \right) 
+        \]&emsp;
+        Which will run 2^n times, leaving us with 
+        \[
+        \frac{1}{2^n} \left( 2^n \right)
+        \] &emsp;
+        <b>Which is equal to 1, which means \( \ket{s} \) is the secret string that we were looking for, in just one query.</b> <br><br>
+
+        This again is a proof of quantum supremacy. What could take the classical algorithm \( n \) queries, it will take our quantum algorithm no more than a singular query. 
     </body>
 </html>
