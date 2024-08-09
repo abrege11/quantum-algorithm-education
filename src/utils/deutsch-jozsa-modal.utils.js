@@ -203,7 +203,7 @@ const amplitudeDiv = {
     `+ `<br><br>`
 };
 
-const jozsaButtonObjList = [qubitDiv, amplitudeDiv, jozsaClassicalAlgorithmDiv, jozsaQuantumAlgorithmDiv, jozsaQuantumCircuitDiv, jozsaSymbolsDiv, jozsaHadamardDiv, jozsaSuperpositionDiv, jozsaQuantumOracleDiv, classicalAlgorithmDiv, quantumAlgorithmDiv];
+const jozsaButtonObjList = [qubitDiv, amplitudeDiv, jozsaClassicalAlgorithmDiv, jozsaQuantumAlgorithmDiv, jozsaQuantumCircuitDiv, jozsaSymbolsDiv, jozsaHadamardDiv, jozsaSuperpositionDiv, jozsaQuantumOracleDiv];
 
 function addStyles (stylePrefix) {
     var style = document.createElement('style');
