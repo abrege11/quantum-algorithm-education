@@ -163,12 +163,25 @@ const jozsaQuantumOracleDiv = {
     `+ `<br><br>`
 };
 
-//TODO
-const mathematicsDiv = {
-    fetchName: "mathematics",
+const summationDiv = {
+    fetchName: "summation",
     bodyContent: 
     String.raw`
-
+        <img src="../../../assets/summation-diagram.png"> <br><br>
+        This overall is representing the superposition of all possible n-qubit states <br><br>
+        To be clear, <b><i>x is all possible bit strings of length n</i></b> means we are considering all possible bit strings of length n, representing each bit string as x
+        \[
+        n = 2
+        \]
+        \[
+        x = \{00, 01, 10, 11\}
+        \]
+        \[
+        n = 3
+        \]
+        \[
+        x = \{000, 001, 010, 011, 100, 101, 110, 111\}
+        \]
     `+ `<br><br>`
 };
 
@@ -203,7 +216,36 @@ const amplitudeDiv = {
     `+ `<br><br>`
 };
 
-const jozsaButtonObjList = [qubitDiv, amplitudeDiv, jozsaClassicalAlgorithmDiv, jozsaQuantumAlgorithmDiv, jozsaQuantumCircuitDiv, jozsaSymbolsDiv, jozsaHadamardDiv, jozsaSuperpositionDiv, jozsaQuantumOracleDiv];
+const dottedDiv = {
+    fetchName: "dotted",
+    bodyContent: 
+    String.raw`
+        <h3>Dot Product</h3>
+        Dotting denotes multiplying and adding each term of vectors, let's look at an example
+        \[
+        v = 
+        \begin{pmatrix}
+        1 & 2 & 3
+        \end{pmatrix} \quad  
+        u = 
+        \begin{pmatrix}
+        4 & 5 & 6
+        \end{pmatrix} 
+        \] 
+        \[
+        v \cdot u =
+        (1 \cdot 4) + (2 \cdot 5) + (3 \cdot 6) 
+        \longrightarrow
+        \]
+        \[
+        4 + 10 + 18
+        \longrightarrow
+        32
+        \]
+    `+ `<br><br>`
+};
+
+const jozsaButtonObjList = [dottedDiv, summationDiv, qubitDiv, amplitudeDiv, jozsaClassicalAlgorithmDiv, jozsaQuantumAlgorithmDiv, jozsaQuantumCircuitDiv, jozsaSymbolsDiv, jozsaHadamardDiv, jozsaSuperpositionDiv, jozsaQuantumOracleDiv];
 
 function addStyles (stylePrefix) {
     var style = document.createElement('style');
