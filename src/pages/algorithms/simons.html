@@ -12,6 +12,31 @@
     <body>
         <a href="javascript:history.back()"><h2>Simon's algorithm</h2></a>
         [<a href="../index.html">\( \leftarrow \) back to home</a>]
-        <img src="../../../assets/simons.png">
+        <p>Deutsch-Jozsa's algorithm provided a noticeable speedup from the classical counterpart, the Bernstein-Vazirani providing an even larger speedup. </p>
+        <p>However, Simon's algrithm provides an exponentially larger speedup compared to these two prior algorithms</p>
+        <p>Simon's problem is another promise problem, it taking in \( n \) bit binary strings and returns \( m \) bit binary strings. Defined as</p>
+        \[
+        f :\{0,1\}^n \longrightarrow \{0,1\}^m 
+        \]
+        <p>Like the Bernstein-Vazirani problem, we have a hidden string \( s \) that we are trying to find.</p>
+        <p>Let's take a look at our promise</p>
+        \[
+        \left[ f(x) = f(y) \right] \Longleftrightarrow
+        \left[ (x = y)\quad or \quad(x \oplus s = y) \right]
+        \]
+        <p>What is this promising us? It is promising us that \( f(x) = f(y) \) if and only if <br><br>&emsp;
+        1. \( x = y \) <br><br>&emsp;&emsp;It is quite obvious why, this happens when \( s = 0^n \). <br>&emsp;&emsp;If \( s \) is an all 0 string, the bitwise \( XOR \) of any string with an all 0 string, is just that string, so \( f(x) = f(y) \), making it a <b>one-to-one</b> function <br><br>
+        or <br><br>&emsp; 
+        2. \( x \oplus s = y \) <br><br>&emsp;&emsp;
+        If the first promise isn't satisfied, that means that \( s \) is not an all 0 string, and it is a <b>two-to-one</b> function. <br>&emsp;&emsp;
+        This means that for every input string \( x \) there is another string that f(x) maps to with the same output, and the second string must be the output of the \( x \oplus s \). <br>&emsp;&emsp;
+        John Watrous states this very kindly - <br>&emsp;&emsp;
+        <i>"Every \( n \) bit string \( x \) has a partner, and that partner is the string that we get by taking the bitwise \( XOR \) with the string s. Any two partners must give us the same output string." </i><a href="https://www.youtube.com/watch?v=2wticzHE1vs">(55:40)</a>
+        </p>
+        <p>Let's take a look at the table when \( n = 3 \)</p>
+        <img src="../../../assets/simons-table.png"><br>
+        <p>Here, we see that our promise is fulfilled for \( s = 110 \)</p>
+        
+        <br><img src="../../../assets/simons.png">
     </body>
 </html>
