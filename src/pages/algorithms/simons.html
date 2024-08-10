@@ -35,8 +35,28 @@
         </p>
         <p>Let's take a look at the table when \( n = 3 \)</p>
         <img src="../../../assets/simons-table.png"><br>
-        <p>Here, we see that our promise is fulfilled for \( s = 110 \)</p>
-        
-        <br><img src="../../../assets/simons.png">
+        <p>Here, we can choose \( s = 110 \) since it is paired with \( 000 \), so we can easily see </p>
+        \[
+        110 \oplus 000 = 110
+        \]
+        <p>Which satisfies our promise</p>
+        <p>Now let's run through our circuit</p>
+        <br><img src="../../../assets/simons.png"><br>
+        <p>Notice we don't pass a \( \ket{1} \) into our circuit, this means that we won't be performing phase kickback.</p>
+        <p>
+            \( |\Psi_1\rangle \): <br>&emsp;
+            Our ket at this time is 
+            \[
+            \ket{0}^{\otimes n}
+            \] &emsp;
+            Not much to say here, we haven't processed anything, so our stream of bits is simply n abouts of \( \ket{0} \)'s
+        </p>
+        <p>
+            \( |\Psi_2\rangle \): <br>&emsp;
+            We now send our top \( n \) \( \ket{0} \)'s into hadamarad gates, leaving us with
+            \[
+            
+            \] 
+        </p>
     </body>
 </html>
