@@ -348,20 +348,24 @@
         \[
         \frac{1}{2^n} \sum_{z \in \{0,1\}^n} \left( \sum_{x \in \{0,1\}^n}  (-1)^{(s \oplus z) \cdot x} \right)\ket{z}
         \]&emsp;
-        Focusing on the summation inside of the parentheses, we wont worry about when \( s \ne z \), <b>since the terms end up canceling out and become 0.</b> <br><br>&emsp; 
-        However, when \( s = z \) 
+        When we measure, we determine the probability of the rightmost qubits, letting us focus on the summation inside of the parentheses. We also wont worry about when \( s \ne z \), <b>since the terms end up canceling out and become 0.</b> <br><br>&emsp; 
+        However, when \( s = z \), we know 
+        \[ 
+        0 \oplus 0 = 1 \oplus 1 = 0 
+        \] &emsp;
+        So,
         \[
-        \sum_{x \in \{0,1\}^n}  (-1)^{(0 \oplus 0) \cdot x}
-        \]&emsp;
-        Which makes our exponent go to 0, and our summation goes to 1, which leaves us with
-        \[
+        \sum_{x \in \{0,1\}^n}  (-1)^{(0) \cdot x}
+        \longrightarrow
         \frac{1}{2^n} \sum_{z \in \{0,1\}^n} \left( 1 \right) 
         \]&emsp;
-        Which will run 2^n times, leaving us with 
+        We know that we have to make \( 2^n \) queries, so 
         \[
         \frac{1}{2^n} \left( 2^n \right)
+        \longrightarrow
+        1
         \] &emsp;
-        <b>Which is equal to 1, which means \( \ket{s} \) is the secret string that we were looking for, in just one query.</b> <br><br>
+        <b>This means that \( \ket{s} \)'s <button id="amplitude-open">apmlitude</button> is 1, so we measure it 100% of the time </b> <br><br>
 
         This again is a proof of <button id="quantum-supremacy-open">quantum supremacy</button>. What could take the <button id="classical-algorithm-open">classical algorithm</button> \( n \) queries, it will take our <button id="quantum-algorithm-open">quantum algorithm</button> no more than a singular query. 
         <br><br><br><br>

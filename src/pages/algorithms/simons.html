@@ -49,14 +49,105 @@
             \[
             \ket{0}^{\otimes n}
             \] &emsp;
-            Not much to say here, we haven't processed anything, so our stream of bits is simply n abouts of \( \ket{0} \)'s
+            Not much to say here, we haven't processed anything, so our stream of bits is simply n amounts of \( \ket{0} \)'s
         </p>
         <p>
             \( |\Psi_2\rangle \): <br>&emsp;
-            We now send our top \( n \) \( \ket{0} \)'s into hadamarad gates, leaving us with
+            We now send our top \( n \) \( \ket{0} \)'s into hadamarad gates, leaving us with the familiar state
             \[
-            
-            \] 
+            H\ket{0}^{\otimes n} \ket{0}^{\otimes n}
+            \longrightarrow
+            \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} \ket{x} \ket{0}^{\otimes n}
+            \] &emsp; 
+            This is stating that we now have \( n \) qubits in a superposition state, along with \( n \) amounts of \( \ket{0} \)'s <br><br>
         </p>
+        <p>    
+            \( |\Psi_3\rangle \): <br>&emsp;
+            Now, we have applied our oracle \( U_f \), which applies \( \ket{y \oplus f(x)} \) to our remaining \( \ket{0}^{\otimes n} \)
+            \[
+            U_f  \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} \ket{x} \ket{0}^{\otimes n} 
+            \longrightarrow
+            \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} U_f \ket{x} \ket{0}^{\otimes n} 
+            \longrightarrow
+            \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} \ket{x} \ket{f(x)}
+            \]
+        </p>
+        <p>
+            \( |\Psi_4\rangle \): <br>&emsp;
+            With this state, we apply another hadamarad gate to close interference<br><br>&emsp;
+            \[
+            H^{\otimes n} \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} \ket{x} \ket{f(x)}
+            \longrightarrow
+            \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} H\ket{x}^{\otimes n} \ket{f(x)}
+            \]&emsp;
+            So looking what H does for \( \ket{0} \) we can see what it will do for \( \ket{x}^{\otimes n} \)
+            \[
+            H\ket{0}^{\otimes n}
+            \longrightarrow
+            \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} \ket{x}^{\otimes n}
+            \] &emsp;
+            So,
+            \[
+            H\ket{x}^{\otimes n}
+            \longrightarrow
+            \frac{1}{\sqrt{2^n}} \sum_{y \in \{0,1\}^n} (-1)^{x \cdot y} \ket{y}
+            \] &emsp;
+            And we can now redefine \( H\ket{x}^{\otimes n} \)
+            \[
+            \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} \left( 
+            \frac{1}{\sqrt{2^n}} \sum_{y \in \{0,1\}^n} (-1)^{x \cdot y} \ket{y}
+            \right) \ket{f(x)}
+            \] &emsp;
+            Which we can rewrite as
+            \[
+            \frac{1}{2^n} \sum_{y \in \{0,1\}^n} \sum_{x \in \{0,1\}^n} (-1)^{x \cdot y} \ket{y} \ket{f(x)}
+            \]
+        </p>
+        <p>
+            We now measure, and notice that similarly to Bernstein-Vazirani's algorithm, we measure the rightmost qubits, and drop the \( y \)
+            \[
+            \frac{1}{2^n} \sum_{y \in \{0,1\}^n} \sum_{x \in \{0,1\}^n} (-1)^{x \cdot y} \ket{y} \ket{f(x)}
+            \longrightarrow
+            \]
+            \[
+            \left| \left| \frac{1}{2^n} \sum_{x \in \{0,1\}^n} (-1)^{x \cdot y}\ket{f(x)} \right| \right|^2
+            \]
+            We see that we have to do two things<br><br>&emsp; 
+            1. Evaluate for \( x \) possible \( n \) bit binary strings, which we will refer to as \( r(f) \), but can be formally stated as
+            \[
+            \{f(x)\, : x \, \in \textstyle\sum_{}^n \}
+            \] &emsp;
+            2. Evaluate for all r(f) when our condition \( f(x_1) = z \) is met, where \( x_1 \) denotes the current bitstring we are evaluating, and \( z \) denotes the bit string that <button id="promise-recall-open">satisfies our promise</button>, but formally is denoted by
+            \[
+            \{ x \, \in \textstyle\sum{}^n \, : \, f(x)=z \}
+            \]
+            Note, we must also evaluate for all outputs of \( z \) that derive from the \( XOR \) on the secret string s, this can be denoted by \( x_2 \)<br><br>
+            \[
+            x_1 \oplus s
+            \]
+            This means that we can rewrite our equation as
+            \[
+            \left| \left| 
+            \frac{1}{2^n} \sum_{z \in r(f)} \left( 
+            \vphantom{\frac{ \ket{0} + \ket{1} }{\sqrt{2}}}
+            (-1)^{x_1 \cdot y} + (-1)^{(x_1 \oplus s) \cdot y}
+            \right) \ket{z}
+            \right| \right|^2
+            \]
+            Let's rewrite this as
+        </p>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
     </body>
 </html>
