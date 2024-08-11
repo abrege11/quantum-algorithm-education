@@ -15,9 +15,7 @@
         <p>Deutsch-Jozsa's algorithm provided a noticeable speedup from the classical counterpart, the Bernstein-Vazirani providing an even larger speedup. </p>
         <p>However, Simon's algrithm provides an exponential speedup from it's classical counterpart</p>
         <p>Simon's problem is another promise problem, it taking in \( n \) bit binary strings and returns \( m \) bit binary strings. Defined as</p>
-        \[
-        f :\{0,1\}^n \longrightarrow \{0,1\}^m 
-        \]
+        <button id="function-explanation-open">\[ f :\{0,1\}^n \longrightarrow \{0,1\}^m \]</button>
         <p>Like the Bernstein-Vazirani problem, we have a hidden string \( s \) that we are trying to find.</p>
         <p>Let's take a look at our promise</p>
         \[
@@ -25,7 +23,7 @@
         \left[ (x = y)\quad or \quad(x \oplus s = y) \right]
         \]
         <p>What is this promising us? It is promising us that \( f(x) = f(y) \) if and only if <br><br>&emsp;
-        1. \( x = y \) <br><br>&emsp;&emsp;It is quite obvious why, this happens when \( s = 0^n \). <br>&emsp;&emsp;If \( s \) is an all 0 string, the bitwise \( XOR \) of any string with an all 0 string, is just that string, so \( f(x) = f(y) \), making it a <b>one-to-one</b> function <br><br>
+        1. \( x = y \) <br><br>&emsp;&emsp;It is quite obvious why, this happens when \( s = 0^n \). <br>&emsp;&emsp;If \( s \) is an all 0 string, the <button id="bitwise-xor-open">bitwise \( XOR \) </button> of any string with an all 0 string, is just that string, so \( f(x) = f(y) \), making it a <b>one-to-one</b> function <br><br>
         or <br><br>&emsp; 
         2. \( x \oplus s = y \) <br><br>&emsp;&emsp;
         If the first promise isn't satisfied, that means that \( s \) is not an all 0 string, and it is a <b>two-to-one</b> function. <br>&emsp;&emsp;
@@ -35,14 +33,23 @@
         </p>
         <p>Let's take a look at the table when \( n = 3 \)</p>
         <img src="../../../assets/simons-table.png"><br>
-        <p>Here, we can choose \( s = 110 \) since it is paired with \( 000 \), so we can easily see </p>
+        <p>How do we know what our hidden string \( s \) is? Well, let's look at our pairs, and \( XOR \) them to find out </p>
         \[
-        110 \oplus 000 = 110
+        000 \oplus 110 = 110
         \]
-        <p>Which satisfies our promise</p>
-        <p>Now let's run through our circuit</p>
+        \[
+        001 \oplus 111 = 110
+        \]
+        \[
+        010 \oplus 100 = 110
+        \]
+        \[
+        111 \oplus 001 = 110
+        \]
+        <p>Something tells me that our hidden string \( s = 110 \)</p>
+        <p>Now let's run through our <button id="circuit-open">circuit</button></p>
         <br><img src="../../../assets/simons.png"><br>
-        <p>Notice we don't pass a \( \ket{1} \) into our circuit, this means that we won't be performing phase kickback.</p>
+        <p>Notice we don't pass a \( \ket{1} \) into our circuit, this means that we won't be performing <button id="phase-kickback">phase kickback</button>.</p>
         <p>
             \( |\Psi_1\rangle \): <br>&emsp;
             Our ket at this time is 
@@ -74,7 +81,7 @@
         </p>
         <p>
             \( |\Psi_4\rangle \): <br>&emsp;
-            With this state, we apply another hadamarad gate to close interference<br><br>&emsp;
+            With this state, we apply another hadamarad gate
             \[
             H^{\otimes n} \frac{1}{\sqrt{2^n}} \sum_{x \in \{0,1\}^n} \ket{x} \ket{f(x)}
             \longrightarrow
