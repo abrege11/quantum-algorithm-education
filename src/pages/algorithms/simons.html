@@ -134,7 +134,72 @@
             \right) \ket{z}
             \right| \right|^2
             \]
-            Let's rewrite this as
+            Notice that we can rewrite \( (x_1 \oplus s) \cdot y \) as \(( x_1 \cdot y \oplus s \cdot y )\)
+            \[
+            \left| \left| 
+            \frac{1}{2^n} \sum_{z \in r(f)} \left( 
+            \vphantom{\frac{ \ket{0} + \ket{1} }{\sqrt{2}}}
+            (-1)^{x_1 \cdot y} + (-1)^{( x_1 \cdot y \oplus s \cdot y )}
+            \right) \ket{z}
+            \right| \right|^2
+            \]
+            And factor out \( (-1)^{x_1 \cdot y} \)
+            \[
+            \left| \left| 
+            \frac{1}{2^n} \sum_{z \in r(f)} \left( 
+            \vphantom{\frac{ \ket{0} + \ket{1} }{\sqrt{2}}}
+            1 + (-1)^{(s \cdot y )}
+            \right) \ket{z}
+            \right| \right|^2
+            \]
+            \( z \) isn't relevant to our probability at the moment, so we can drop it and rewrite our expression as
+            \[
+            \bigg| 1+(-1)^{s \cdot y} \bigg|^2
+            \]
+            And finally, we see two output cases <br><br>
+            &emsp; \( s \cdot y = 0 \)
+            \[
+            \bigg| 1+(-1)^{0} \bigg|^2 
+            \longrightarrow
+            \bigg| 1+1 \bigg|^2 
+            \longrightarrow
+            \bigg| 2 \bigg|^2 
+            \longrightarrow
+            4
+            \]
+            Generally, this is stated as <br><br> &emsp;
+            \( s \cdot y = 0  \)
+            \[
+            \longrightarrow 
+            \frac{1}{2^{n-1}}
+            \]
+            and <br><br>
+            &emsp; \( s \cdot y = 1 \)
+            \[
+            \bigg| 1+(-1)^{1} \bigg|^2
+            \longrightarrow
+            \bigg| 1-1 \bigg|^2
+            \longrightarrow
+            0
+            \]
+        </p>
+        <p>
+            <br>
+            Now, we can process the outputs we have determined to get the final answer, we see that we have two final cases
+            <br><br> &emsp;
+            1. \( s = 0^n \)
+            <br>&emsp;&emsp;
+            This, as we already determined, will give us a trivial random string
+            <br><br> &emsp;
+            2. \( s \ne 0^n \)
+            <br>&emsp;&emsp;
+            <i>as \( s \cdot y = 1 \) has a probability of 0 to occur as proven, we will ignore it</i><br>&emsp;&emsp;
+            When \( s \cdot y = 0 \), we have a \( \frac{1}{2^{n-1}} \) chance to measure a string y <br><br>
+            Well is this enough to determine \( s \)? Yes, because each time we run this algorithm, it narrows the margin of error. <br><br>
+            For example, if \( n \) = 10, we have a 99.9% accuracy to recover the hidden string \( s \), good enough in my book.
+        </p>
+        <p>
+            <b>This provides an exponential speedup to the classical counterpart.</b>
         </p>
         <br>
         <br>
