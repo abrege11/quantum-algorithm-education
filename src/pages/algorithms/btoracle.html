@@ -12,6 +12,14 @@
     <body>
         <a href="javascript:history.back()"><h2>Beyond the oracle</h2></a>
         [<a href="../index.html">\( \leftarrow \) back to home</a>] <br><br>
+        <p>
+        We are at a point where the oracle method of quantum computation is quite limiting. 
+        You've most likely noticed a pattern in our computation using these quantum oracles. <br><br>
+        While these algorithms are an amazing introduction to the complications of quantum algorithms, they lack 
+        applicability to real world problems. I even remember John Watrous describing the problem of one of these algoirthms, and saying something along the lines of
+        "It may be hard to even imagine where you could use this promise", and thats correct! They're abstract, however, the algorithms to come are more complicated, but they solve real world issues. <br><br>
+        Now, we can go into what you need to know.
+        </p>
         <h3>More gates</h3>
         <p>
             <table>
@@ -55,18 +63,159 @@
                 <td>Phase \(^\dagger \)</td>
                 <td><img src="../../../assets/stranspose.png"></td>
                 <td><img src="../../../assets/stranspose-matrix.png"></td>
-                <td>Find more information on this topic <a href="../other-qunatum/quantum-circuits/quantum-oracle.html"> here</a></td>
+                <td>Inverse of \( S \)</td>
                 </tr>
                 <tr>
                 <td>\( \pi / 8 ^\dagger \)</td>
                 <td><img src="../../../assets/ttranspose.png"></td>
                 <td><img src="../../../assets/ttranspose-matrix.png"></td>
-                <td>Find more information on this topic <a href="../other-qunatum/quantum-circuits/quantum-oracle.html"> here</a></td>
+                <td>Inverse of \( T \)</td>
+                </tr>
+                <tr>
+                <td>QFT Gate</td>
+                <td><img src="../../../assets/r.png"></td>
+                <td><img src="../../../assets/r-matrix.png"></td>
+                <td>Sends our qubit into the given state for n when inputted \( \ket{1} \)</td>
                 </tr>
               </table>
             </p>
+        <h3>New Circuit Diagram Items</h3>
+        <p>
+            <table>
+                <tr>
+                <th>Gate</th>
+                <th>Symbol</th>
+                <th>Operation</th>
+                </tr>
+                <tr>
+                <td>CNOT</td>
+                <td><img src="../../../assets/cnot.png"></td>
+                <td>On two bits, performs a flip on the second bit if the first bit is 1. \( \ket{01} \longrightarrow \ket{01}, \quad \ket{10} \longrightarrow \ket{11} \)</td>
+                </tr>
+                <tr>
+                <td>Swap</td>
+                <td><img src="../../../assets/swap.png"></td>
+                <td>Swaps bits </td>
+                </tr>
+              </table>
+            </p>    
+        <h3>Quantum Fourier Transform</h3>
+        The QFT is a necessity for quantum algorithms, so let's dissect it. <br><br>
+        Looking at the circuit diagram <br>
+        <img src="../../../assets/qft-breakdown.png">
+        <p>First, we can see by the matrix that the \( \ket{0} \) state is not effected by this gate, but let's look at what the \( R_n \) gate does to a qubit \( \ket{1} \)</p>
+        \[
+        R_n \ket{1} \longrightarrow e^{\frac{2 \pi i}{2^n}} \ket{1}
+        \]
+        Interestingly enough, we can rewrite our diagram to see what the outputs are
+        <img src="../../../assets/qft-breakdown-answers.png"><br><br>
+        Let's take a closer look
+        \[
+        \frac{1}{\sqrt{2}}\bigg( \ket{0} + e^{2 \pi i [0.j_1..j_n]} \ket{1} \bigg)
+        \]
+        \[
+        \frac{1}{\sqrt{2}}\bigg( \ket{0} + e^{2 \pi i [0.j_2..j_n]} \ket{1} \bigg)
+        \]
+        \[
+        \frac{1}{\sqrt{2}}\bigg( \ket{0} + e^{2 \pi i [0.j_3..j_n]} \ket{1} \bigg)
+        \]
+        \[
+        \frac{1}{\sqrt{2}}\bigg( \ket{0} + e^{2 \pi i [0.j_n]} \ket{1} \bigg)
+        \]
+        As for the \( 0.x \) notation, \( x \) is just a string of binary digits, and the \( 0. \) is denoting that we are working with a binary fraction. <br><br>
+        For example, if \( x=101 \), then
+        \[
+        x = 101 \longrightarrow 
+        \]
+        \[
+        0.x = 1 \cdot 2^{-1} + 0 \cdot 2^{-2} + 1 \cdot 2^{-3} = .625
+        \]
+        So notice that our output will just be n amounts of these equations, this is what we want, and if we run through a quick example, we can see it in action. <br><br>
+        When we have x, y, and z, this is our output
+        \[
+        QFT \ket{xyz} \longrightarrow
+        \]
+        \[
+        \frac{1}{\sqrt{2}}\bigg( \ket{0} + e^{2 \pi i (\frac{z}{2})} \ket{1} \bigg) \otimes
+        \frac{1}{\sqrt{2}}\bigg( \ket{0} + e^{2 \pi i (\frac{y}{2} + \frac{z}{4})} \ket{1} \bigg) \otimes
+        \frac{1}{\sqrt{2}}\bigg( \ket{0} + e^{2 \pi i (\frac{x}{2} + \frac{y}{4} + \frac{z}{8})} \ket{1} \bigg)
+        \]
+        So how do we get here? Let's rewrite our circuit diagram to represent our specific input, instead of the general case <br>
+        <img src="../../../assets/qft-specific-diagram.png"> <br>
+        Now, looking at \( \ket{x} \), we know that the \( H \) gate puts it into the following state
+        \[
+        H\ket{x} \longrightarrow 
+        \frac{1}{\sqrt{2}}\bigg( \ket{0} + (-1)^x \ket{1} \bigg)
+        \]
+        Since we are working with the Fourier transform, we can rewrite \( (-1)^x \) using euler's formula, this will become apparent why very shortly, it makes the representation of each gate world's easier to understand. <br><br>
+        So, 
+        \[
+        (-1)^x \longrightarrow
+        e^{2 \pi i (\frac{x}{2})}
+        \]
+        With this definition, we can rewrite
+        \[
+        \frac{1}{\sqrt{2}}\bigg( \ket{0} + (-1)^x \ket{1} \bigg)
+        \longrightarrow
+        \frac{1}{\sqrt{2}}\bigg( \ket{0} + e^{2 \pi i (\frac{x}{2})} \ket{1} \bigg)
+        \]
+        Now, you'll notice that we rewrote \( (-1)^x \) to be equivalent to \( R_1 \), because when we run through \( R_2 \), which consults \( y \), our state becomes
+        \[
+        \frac{1}{\sqrt{2}}\bigg( \ket{0} + e^{2 \pi i (\frac{x}{2})} \ket{1} \bigg)
+        \longrightarrow
+        \]
+        \[
+        \frac{1}{\sqrt{2}}\bigg( \ket{0} + e^{2 \pi i (\frac{x}{2})} e^{(\frac{2 \pi i }{2^2})^y} \ket{1} \bigg)
+        \]
+        Which, due to our foresight can be rewritten as
+        \[
+        \frac{1}{\sqrt{2}}\bigg( \ket{0} + e^{2 \pi i (\frac{x}{2})} e^{2 \pi i (\frac{y}{4})} \ket{1} \bigg)
+        \]
+        Which can be further simplified to
+        \[
+        \frac{1}{\sqrt{2}}\bigg( \ket{0} + e^{2 \pi i (\frac{x}{2} + \frac{y}{4})} \ket{1} \bigg)
+        \]
+        And moving onto \( R_3 \) which is consulting \( z \) denoted by the wire trailing to \( \ket{z} \)'s qubit, we'll skip straight to our rewritten state
+        \[
+        \frac{1}{\sqrt{2}}\bigg( \ket{0} + e^{2 \pi i (\frac{x}{2} + \frac{y}{4} + \frac{z}{8})} \ket{1} \bigg)
+        \]
+        Now that we have our state for \( \ket{x} \), let's look at \( \ket{y} \)
+        \[
+        H \ket{y} \longrightarrow
+        \frac{1}{\sqrt{2}}\bigg( \ket{0} + (-1)^y \ket{1} \bigg)
+        \]
+        Which again, we rewrite as
+        \[
+        \frac{1}{\sqrt{2}}\bigg( \ket{0} + e^{2 \pi i (\frac{y}{2})} \ket{1} \bigg)
+        \]
+        And again, looking at \( R_2 \), the pattern persists, leaving us with
+        \[
+        \frac{1}{\sqrt{2}}\bigg( \ket{0} + e^{2 \pi i (\frac{y}{2} + \frac{z}{4})} \ket{1} \bigg)
+        \]
+        And finally, our \( \ket{z} \) is simply running through an \( H \) gate,
+        \[
+        H \ket{z} \longrightarrow
+        \frac{1}{\sqrt{2}}\bigg( \ket{0} + (-1)^z \ket{1} \bigg)
+        \longrightarrow
+        \]
+        \[
+        \frac{1}{\sqrt{2}}\bigg( \ket{0} + e^{2 \pi i (\frac{z}{2})} \ket{1} \bigg)
+        \]
+        Our state is now
+        \[
+        \frac{1}{\sqrt{2}}\bigg( \ket{0} + e^{2 \pi i (\frac{x}{2} + \frac{y}{4} + \frac{z}{8})} \ket{1} \bigg) \otimes
+        \frac{1}{\sqrt{2}}\bigg( \ket{0} + e^{2 \pi i (\frac{y}{2} + \frac{z}{4})} \ket{1} \bigg) \otimes
+        \frac{1}{\sqrt{2}}\bigg( \ket{0} + e^{2 \pi i (\frac{z}{2})} \ket{1} \bigg) 
+        \]
+        That looks very familiar to our final state
+        \[
+        \frac{1}{\sqrt{2}}\bigg( \ket{0} + e^{2 \pi i (\frac{z}{2})} \ket{1} \bigg) \otimes
+        \frac{1}{\sqrt{2}}\bigg( \ket{0} + e^{2 \pi i (\frac{y}{2} + \frac{z}{4})} \ket{1} \bigg) \otimes
+        \frac{1}{\sqrt{2}}\bigg( \ket{0} + e^{2 \pi i (\frac{x}{2} + \frac{y}{4} + \frac{z}{8})} \ket{1} \bigg)
+        \]
+        And that comes from our swap gates at the end, in this case, they're used to reverse our final output, leaving us with the desired output state.
+        <p>This is our quantum fourier transform. This will be used in our next helper algorithm, quantum phase estimation.</p>
         <h3>Quantum Phase Estimation</h3>
-        <h3>Quantum Fourier Transformation</h3>
         <br><br><br><br>
         [<a href="../index.html">\( \leftarrow \) back to home</a>]
         <br><br><br><br>
