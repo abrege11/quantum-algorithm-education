@@ -216,6 +216,75 @@
         And that comes from our swap gates at the end, in this case, they're used to reverse our final output, leaving us with the desired output state.
         <p>This is our quantum fourier transform. This will be used in our next helper algorithm, quantum phase estimation.</p>
         <h3>Quantum Phase Estimation</h3>
+        <p>This algorithm finds the eigenvalue of a unitary operator. What does that mean? <br><br>
+        A unitary operator is a matrix that, multiplied by inverse, is the Identity \( I \) matrix<br><br>
+        The eigenvalue is the multiplying factor of a linear transformation. What does that mean? <br><br>
+        In all honesty, it's not of much importance to understand what an eigenvalue is to understand the equation. However, 3Blue1Brown has a great <a href="https://www.youtube.com/watch?v=PFDu9oVAE-g&t=795s">video</a> on the topic. <br><br>
+        For this algorithm, just think of us looking for \( \theta \)
+        </p>
+        <p>
+        Consider our unitary matrix \( U \) has an eigenvalue \( e^{2 \pi i \theta} \)
+        <br><br> This algorithm tells us how to approximate \( \theta \) with high probability of success.
+        </p>
+        <p>
+        Let's look at the circuit diagram <br>
+        <img src="../../../assets/quantum-phase-estimation-diagram.png"> <br>
+        Notice the \( QFT^{-1}_{2^n}\), is our inverse quantum fourier transform, which runs on \( 2^n \) states since each qubit can have n states of 0 or 1.<br><br>
+        Likewise, notice \( U^n \) where n is referring to the amount of times that \( U \) is applied to a qubit<br><br>
+        Here we can see that we start with the stream of qubits \(\ket{0^{\otimes n}} \ket{\theta}\), the top \( \ket{0} \) qubits are put into superposition state
+        \[
+        \ket{0^{\otimes n}} \ket{\theta}
+        \longrightarrow
+        \]
+        \[
+        \bigg(\frac{1}{\sqrt{2}} \bigg(\ket{0} + \ket{1} \bigg) 
+        \otimes \frac{1}{\sqrt{2}} \bigg(\ket{0} + \ket{1} \bigg)
+        \otimes ... \otimes 
+        \frac{1}{\sqrt{2}} \bigg(\ket{0} + \ket{1} \bigg)
+        \bigg)\ket{\theta}
+        \]
+        Now you'll see similarly to how \( R_n \) works, our \( U \) yields a similar output, let's represent our superposition state of \( \ket{0} \)'s as \( j \) 
+        \[
+        U^j\ket{j} \ket{\theta} \longrightarrow \ket{j} U^J \ket{\theta}
+        \]
+        Notice that this is now in phase kickback, so 
+        \[
+        \ket{j} U^J \ket{\theta} \longrightarrow e^{2 \pi i \theta j}
+        \]
+        Notice us again representing this using euler's formula.
+        </p>
+        Let's see how this looks in our example, since \(2^0 = 1\), and \(U^1=U\), \(U\) is only applied once
+        \[
+        U\bigg(\frac{1}{\sqrt{2}} \bigg(\ket{0} + \ket{1} \bigg) 
+        \otimes \frac{1}{\sqrt{2}} \bigg(\ket{0} + \ket{1} \bigg)
+        \frac{1}{\sqrt{2}} \bigg(\ket{0} + \ket{1} \bigg)
+        \otimes ...
+        \bigg)\ket{\theta}
+        \]
+        This causes phase kickback, and the output in this case is \( e^\theta \), we'll also forget the first string of superposition states for now
+        \[
+        \longrightarrow 
+         ...\otimes
+        \frac{1}{\sqrt{2}} \bigg(\ket{0} + e^\theta\ket{1} \bigg)
+        \ket{\theta}
+        \]
+        Next, we see that \( U \) is applied twice, this goes how you think it would
+        \[
+        U^2 ...\otimes
+       \frac{1}{\sqrt{2}} \bigg(\ket{0} + e^\theta\ket{1} \bigg)
+       \ket{\theta}
+       \longrightarrow
+       \frac{1}{\sqrt{2}} \bigg(\ket{0} + e^i\theta\ket{1} \bigg)
+       \frac{1}{\sqrt{2}} \bigg(\ket{0} + e^{2i\theta}\ket{1} \bigg)
+       \ket{\theta}
+        \]
+        and this pattern continues on, we can represent this as
+        \[
+        
+        \]
+        <p>
+        
+        </p>
         <br><br><br><br>
         [<a href="../index.html">\( \leftarrow \) back to home</a>]
         <br><br><br><br>
