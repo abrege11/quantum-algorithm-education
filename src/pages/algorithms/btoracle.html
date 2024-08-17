@@ -223,7 +223,7 @@
         For this algorithm, just think of us looking for \( \theta \)
         </p>
         <p>
-        Consider our unitary matrix \( U \) has an eigenvalue \( e^{2 \pi i \theta} \)
+        Consider our unitary matrix \( U \) has an eigenvalue \( e^{i \theta} \)
         <br><br> This algorithm tells us how to approximate \( \theta \) with high probability of success.
         </p>
         <p>
@@ -231,9 +231,9 @@
         <img src="../../../assets/quantum-phase-estimation-diagram.png"> <br>
         Notice the \( QFT^{-1}_{2^n}\), is our inverse quantum fourier transform, which runs on \( 2^n \) states since each qubit can have n states of 0 or 1.<br><br>
         Likewise, notice \( U^n \) where n is referring to the amount of times that \( U \) is applied to a qubit<br><br>
-        Here we can see that we start with the stream of qubits \(\ket{0^{\otimes n}} \ket{\theta}\), the top \( \ket{0} \) qubits are put into superposition state
+        Here we can see that we start with the stream of qubits \(\ket{0^{\otimes n}} \ket{\phi}\), the top \( \ket{0} \) qubits are put into superposition state
         \[
-        \ket{0^{\otimes n}} \ket{\theta}
+        \ket{0^{\otimes n}} \ket{\phi}
         \longrightarrow
         \]
         \[
@@ -241,17 +241,16 @@
         \otimes \frac{1}{\sqrt{2}} \bigg(\ket{0} + \ket{1} \bigg)
         \otimes ... \otimes 
         \frac{1}{\sqrt{2}} \bigg(\ket{0} + \ket{1} \bigg)
-        \bigg)\ket{\theta}
+        \bigg)\ket{\phi}
         \]
         Now you'll see similarly to how \( R_n \) works, our \( U \) yields a similar output, let's represent our superposition state of \( \ket{0} \)'s as \( j \) 
         \[
-        U^j\ket{j} \ket{\theta} \longrightarrow \ket{j} U^J \ket{\theta}
+        U^j\ket{j} \ket{\phi} \longrightarrow \ket{j} U^J \ket{\phi}
         \]
         Notice that this is now in phase kickback, so 
         \[
-        \ket{j} U^J \ket{\theta} \longrightarrow e^{2 \pi i \theta j}
+        \ket{j} U^J \ket{\phi} \longrightarrow \ket{j} e^{i \theta} \phi
         \]
-        Notice us again representing this using euler's formula.
         </p>
         Let's see how this looks in our example, since \(2^0 = 1\), and \(U^1=U\), \(U\) is only applied once
         \[
@@ -259,32 +258,55 @@
         \otimes \frac{1}{\sqrt{2}} \bigg(\ket{0} + \ket{1} \bigg)
         \frac{1}{\sqrt{2}} \bigg(\ket{0} + \ket{1} \bigg)
         \otimes ...
-        \bigg)\ket{\theta}
+        \bigg)\ket{\phi}
         \]
-        This causes phase kickback, and the output in this case is \( e^\theta \), we'll also forget the first string of superposition states for now
+        This causes phase kickback, and the output in this case is \( e^{i \theta} \), we'll also forget the first string of superposition states for now
         \[
         \longrightarrow 
          ...\otimes
-        \frac{1}{\sqrt{2}} \bigg(\ket{0} + e^\theta\ket{1} \bigg)
-        \ket{\theta}
+        \frac{1}{\sqrt{2}} \bigg(\ket{0} + e^{i\theta}\ket{1} \bigg)
+        \ket{\phi}
         \]
         Next, we see that \( U \) is applied twice, this goes how you think it would
         \[
         U^2 ...\otimes
-       \frac{1}{\sqrt{2}} \bigg(\ket{0} + e^\theta\ket{1} \bigg)
-       \ket{\theta}
-       \longrightarrow
-       \frac{1}{\sqrt{2}} \bigg(\ket{0} + e^i\theta\ket{1} \bigg)
-       \frac{1}{\sqrt{2}} \bigg(\ket{0} + e^{2i\theta}\ket{1} \bigg)
-       \ket{\theta}
+        \frac{1}{\sqrt{2}} \bigg(\ket{0} + e^{i\theta}\ket{1} \bigg)
+        \ket{\phi}
+        \longrightarrow
+        \]
+        \[
+        \frac{1}{\sqrt{2}} \bigg(\ket{0} + e^{i\theta}\ket{1} \bigg)
+        \frac{1}{\sqrt{2}} \bigg(\ket{0} + e^{2i\theta}\ket{1} \bigg)
+        \ket{\phi}
         \]
         and this pattern continues on, we can represent this as
         \[
-        
+        \frac{1}{\sqrt{2}} \bigg(\ket{0} + e^{2^{n-1}i\theta}\ket{1} \bigg) \otimes ... \otimes
+        \frac{1}{\sqrt{2}} \bigg(\ket{0} + e^{2i\theta}\ket{1} \bigg) \otimes
+        \frac{1}{\sqrt{2}} \bigg(\ket{0} + e^{i\theta}\ket{1} \bigg) \ket{\phi}
         \]
         <p>
-        
-        </p>
+        So what do we do with this state? Well, notice we now have to run our qubits through the inverse quantum fourier transform.<br><br>
+        Interestingly enough, all that we've been doing up to this point is preparing a QFT state to be able to be decoded at the end of our algorithm. <br><br>
+        So, let's look back at what QFT's output on \( \ket{x} \) looks like
+        \[
+        QFT \ket{x} \longrightarrow
+        \frac{1}{\sqrt{2}} \bigg( \ket{0} + e^{\frac{2 \pi i x}{2^1}} \ket{1} \bigg) \otimes 
+        \frac{1}{\sqrt{2}} \bigg( \ket{0} + e^{\frac{2 \pi i x}{2^2}} \ket{1} \bigg) \otimes 
+        \frac{1}{\sqrt{2}} \bigg( \ket{0} + e^{\frac{2 \pi i x}{2^n}} \ket{1} \bigg)
+        \]
+        Notice these are very close, but there is a couple differentiating factors, our \( \theta \phi \), would need to be mulitplied by \( 2 \pi \) and our \( 2^n \) is actually in the denominator
+        <br><br> However, notice that our inverse QFT is run \( 2^n \) times, so we can forget about that, and just apply \( 2\pi \)
+        <br><br>Adding \( 2\pi \) is simply putting it in front of \( i \theta \), so while we do this, we'll also write our state in summation form, this is due to the fact that writing out each qubit is trivial at this point, we get the state
+        \[
+        \frac{1}{\sqrt{2}} \sum^{}_{\phi =0} {e^{2 \pi i \theta \phi } \ket {\phi}}
+        \]
+        And with this state, we can now run it through our inverse QFT
+        \[
+        QFT^{-1}_{2^n} \bigg( \frac{1}{\sqrt{2}} \sum^{}_{k=0} {e^{2 \pi i \theta \phi } \ket {\phi}} \bigg) \longrightarrow \ket{\theta}
+        \]
+        We can see that the \( QFT^{-1} \) allows us to have \( \theta \) in a state, that upon measurement, leaves us with the eigenvalue \( \theta \) <br><br>
+        We will use this in the upcoming Shor's algorithm. 
         <br><br><br><br>
         [<a href="../index.html">\( \leftarrow \) back to home</a>]
         <br><br><br><br>
