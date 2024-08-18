@@ -12,8 +12,27 @@
     <body>
         <a href="javascript:history.back()"><h2>Shor's algorithm</h2></a>
         [<a href="../index.html">\( \leftarrow \) back to home</a>] <br><br>
-        
-        <br><br><br><img src="../../../assets/shors.png">
+        <p>
+        Shor's algorithm is unique in many ways. Deutsch-Jozsa's algorithm is what I would consider the blueprint to quantum computation. It was the first algorithm to prove quantum supremacy. 
+        The only issue, which many quantum algorithms share, is that it was a pretty niche problem to solve in the first place. You'll notice that it becomes harder to think of a way that the algorithm could have real world
+        application than it is to actually understand the algorithm itself. Like, seriously.
+        </p>
+        <p>
+        There's no issue with this, and these oracle based algorithms are the birth of a new era of computing, which sparked talks of changing the world. But this is where Shor's algorithm comes in, it actually <i>will</i> change the world.
+        </p>
+        <p>
+        Shor's algorithm is a beast. As I'm sure you've heard, when implemented, it will break RSA encryption. Now I won't go into what that all means, because realistically, it probably has already been accounted for in some government 20 year plan, as post quantum encryption is already a topic of research in the industry.
+        </p>
+        <p>
+        Another thing to note, is that it has only been performed on very small data sets. As we don't have the physical machine that can run it on larger numbers. With almost everything quantum, the setback at the moment is really just the physical implementation. Think of qubits like transistors, we're at about 1,000 qubit's right now. So in the historic classical timeline, we're basically in the 1960's.
+        </p>
+        <p>
+        But to actually jump into the algorithm, look at the circuit diagram
+        </p>
+        <img src="../../../assets/shors.png">
+        <p>
+        Pretty familiar, right? Because Shor's algorithm has classical and quantum steps in the algorithms. The quantum part, is really just using Quantum Phase Estimation
+        </p>
         <br><br><br><br>
         [<a href="../index.html">\( \leftarrow \) back to home</a>]
         <br><br><br><br>
