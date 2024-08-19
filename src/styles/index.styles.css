@@ -42,3 +42,7 @@ button {
     max-width: 100%;
     height: auto;
 }
+
+#small {
+    font-size: small;
+}
