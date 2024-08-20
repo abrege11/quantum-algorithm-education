@@ -34,8 +34,96 @@
         Pretty familiar, right? Because Shor's algorithm has classical and quantum steps in the algorithms. The quantum part is really just using Quantum Phase Estimation. So we will actually learn classical concepts in this algorithm as well.
         </p>
         <p>
-        A way to think about Shor's algorithm, is that it is a classical concept that quantum computers can perform very fast.
+        A way to think about Shor's algorithm, is that it is a classical concept that quantum computers can perform very fast. <br><br>
+        We'll focus on the quantum subroutine of Shor's algorithm, but we still need to get a context of the classical component to understand why we need the quantum component. <br><br>
+        RSA encryption is what we use to securely store data, it utilizes the fact that classical computers cannot factor large prime numbers in polynomial time. <br><br>
+        Take a number \( N = 15 \), it's pretty easy to know that the prime factors are 3 and 5. But when you scale this number up, finding the two primes that make this integer <b>(factoring)</b> is practically impossible <br><br>
+        Whether you believe it or not, this is a fact, and this is the base of RSA encryption. Take two large prime numbers, multiply them together, and trust that your data is safe - in a classical world.. <br><br>
+        But, we will soon live in a quantum world, and before we've even arrived, Peter Shor dropped the bombshell that is Shor's algorithm, which can factor these large numbers in polynomial time. <br><br>
+        But how? <br><br>
+        Well, we start with our integer \( N \), where we make a guess of some random number that could be a factor. Now, this guess doesn't have to be correct. In fact, if we even find a number that is a shared factor of \( N \), we're already done! Using Euclid's algorithm, we can already find shared factors incredibly efficiently.
+        <br><br> This is a classical concept, the issue is that even guessing a factor of \( N \) is crazy unlikely. <br><br>
+        With that, we start to dip into the quantum aspect of the algorithm. I'll lay out our next steps, and then go through each one <br><br>
+        &emsp;1. Take a number \( a \) where \( 1 < a < N \) and \( gcd(a,N) = 1 \) <br><br>
+        &emsp;2. Find the period of modular exponentiation \( r \) of \( a^x mod(N) \) <br><br>
+        &emsp;3. Find the \( gcd(a^{r/2} + 1, N) \) and \( gcd(a^{r/2} - 1, N) \), which will reveal either \( p \) or \( q \) (with even a small chance of containing both) <br><br>
+        Well alright, so this is all saying that we take a guess \( a \), which obviously has to be between 1 and \( N \) (a factor of \( N \) won't be larger than \( N \) itself), and make sure that it shares no common factors with \( N \) since if it does, we can just use Euclid's algorithm<br><br>
+        Then, we find the period of modular exponentiation \( r \) using QPE, which refers to the amount of times you need to multiply a factor \( a \) by itself to get \( m \cdot B + 1 \). Which reads \( a^r = m \cdot B + 1 \) <br><br>
+        All of this is possible due to the clever arithmetic equivalency of 
+        \[
+        g^p = m \cdot N + 1 \longrightarrow
+        g^p - 1 = m \cdot N \longrightarrow
+        (g^{p/2} + 1)(g^{p/2} - 1) = m \cdot N
+        \]
+        So, relating this back to our equation, after we approximate \( r \) with our QPE algorithm, we can be assured that 
+        \[
+        gcd(a^{r/2} + 1, N)
+        \]
+        and/or
+        \[ 
+        gcd(a^{r/2} - 1, N)
+        \]
+        Will contain one, or both of our factors \( N \), now, finding \( r \) is the bread and butter of this algorithm, which can be done classically, but it is so horribly inefficient to find the period of exponentiation classically, that superposition is the only answer.
+        <br><br>So let's take a look at a new circuit, spoiler alert, it's just phase estimation. However, the operator we apply to the bottom stream of qubits, is closely related to Shor's algorithm.
         </p>
+        <img src="../../../assets/shors-with-modulous.png">
+        <p>
+        Now, notice we have our gate \( a^k modN \), this is just the operation we say in bulletpoint 2, but with \( k \) instead of \( x \)
+        <br><br> Let's look at \( \Psi_1 \) <br><br>&emsp;
+        Here, our state is 
+        \[
+        \ket{0}^{\otimes n}\ket{1}
+        \]
+        &emsp; We have \( n \) amounts of 0's, and our stream is ended with a 1
+        <br><br> \( \Psi_2 \) <br><br>&emsp;
+        Here we now put our top stream of \( \ket{0} \)'s into a superposition state,
+        \[
+        2^{-n/2} \sum^{2^n-1}_{k=0} \ket{k} \ket{1}
+        \] &emsp;
+        So what's going on here? Well we have our normalization factor \( 2^{-n/2} \), and we are summing over all bits in our stream \( k \). So we go from 0, up to the penultimate index, as standard in any computer science algorithm. <br><br>
+        \( \Psi_3 \) <br><br>&emsp;
+        Now, don't overthink it, this is just running our bottom stream into our unitary operator, like any other algorithm
+        \[
+        (a^k modN) \bigg( 2^{-n/2} \sum^{2^n-1}_{k=0} \ket{k} \ket{1} \bigg)
+        \longrightarrow
+        2^{-n/2} \sum^{2^n-1}_{k=0} \ket{k} (a^k modN) \ket{1}
+        \longrightarrow
+        \]
+        \[
+        2^{-n/2} \sum^{2^n-1}_{k=0} \ket{k} \ket{a^k modN}
+        \] &emsp;
+        Now, remember, this is just Quantum Phase Estimation, so if \( a^k modN = U \), when U originally acts on a state \( \ket{x_s} \) as so
+        \[
+        U\ket{x_s} \longrightarrow e^{2 \pi i \psi_s} \ket{x_s}
+        \] &emsp;
+        Then that is no different here, so
+        \[
+        \ket{a^k modN} \longrightarrow r^{-1/2} \sum^{r-1}_{s=0} e^{2 \pi i k s/r}\ket{x_s}
+        \] &emsp;
+        Now, take a step back, and remember that our original algorithm finds \( \psi_s \), and in this case, we are replacing that with \( s/r \), that is the trick, as when it's all finished, \( r \) will be derived from our Inverse Quantum Fourier Transform, but let's keep moving for now
+        <br><br>&emsp; So, we need to rewrite our equation with our new definition of \( \ket{a^k modN} \)
+        \[
+        2^{-n/2} \sum^{2^n-1}_{k=0} \ket{k} 
+        \bigg( 
+        r^{-1/2} \sum^{r-1}_{s=0} e^{2 \pi i k s/r}\ket{x_s} 
+        \bigg)
+        \longrightarrow
+        \]
+        \[
+        r^{-1/2} 2^{-n/2} \sum^{r-1}_{s=0} \sum^{2^n-1}_{k=0} e^{2 \pi i k s/r} \ket{k} \ket{x_s} 
+        \]
+        &emsp; Now, just like in QPE, we run this through our \( QFT^{-1}_{2^n} \), and this gives us 
+        \[
+        r^{-1/2} \sum^{r-1}_{s=0}\ket{s/r} \ket{x_s}
+        \]
+        &emsp; Note that \( \ket{s/r} \) is actually an approximation, as is output in any algorithm with "Estimation" in the name, but as we saw in the breakdown of this algorithm, we can be 99% sure that it is what we want
+        <br><br> &emsp;
+        So what now? Well, we're done! We can easily obtain \( r \) from \( s \) using the continued fractions algorithm. Now that we have \( r \), as long as it's even, we can used
+        \[
+        gcd(a^{r/2} \pm 1, N) 
+        \]
+        &emsp; To obtain our prime factor(s)
+        </p> 
         <br><br><br><br>
         [<a href="../index.html">\( \leftarrow \) back to home</a>]
         <br><br><br><br>
